@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>ApiControl</title>
+</head>
+
+<body>
+  <h1 class="center font">
+    Faça uma simulação
+  </h1>
+  <div class="simulador center font">
+    <span style="white-space: nowrap;">Quantidade de Colmeias em seu Apiário no começo do ano passado:</span><br>
+    <input type="number" id="ipt_qnt_colmeia"><br>
+    <span style=" white-space: nowrap;">Colmeias que foram perdidas no final do ano passado:</span><br>
+    <input type="number" id="ipt_qnt_perda"><br>
+    <span>Quantos quilos são produzidos por caixa:</span><br>
+    <input type="number" id="ipt_kilos"><br>
+    <span>Valor do quilo do mel:</span><br>
+    <input type="number" id="ipt_valor_kilos"><br>
+
+    <button onclick="simulacao()">
+      Simular
+    </button><br>
+    <div id="negativo" class="font center"></div>
+    <div class="cards">
+      <div class="card" id="resultado1"></div>
+      <div class="card" id="resultado2"></div>
+      <div class="card" id="resultado3"></div>
+    </div>
+    <div id="comApicontrol">
+    </div>
+    <div id="semApicontrol">
+    </div>
+
+    <div id="motivacao"></div>
+  </div>
+  <div class="quadrado"></div>
+  <div class="imagem">
+    <img src="./img/Analise.jpg" alt="Análise de dados">
+  </div>
+</body>
+
+</html>
+
+<script>
+  function simulacao() {
+    var qnt_colmeia = Number(ipt_qnt_colmeia.value);
+    var perda = Number(ipt_qnt_perda.value);
+    var kilo = Number(ipt_kilos.value);
+    var valor = Number(ipt_valor_kilos.value)
+
+    if (qnt_colmeia == "" && perda == "") {
+      negativo.innerHTML = `
+          <b style="color: red">É necessário preencher todos os campos!</b>
+        `;
+      resultado1.innerHTML = ``;
+      resultado2.innerHTML = ``;
+      resultado3.innerHTML = ``;
+      motivacao.innerHTML = ``;
+    } else {
+      var qnt_mel = qnt_colmeia * kilo;
+      var perda_mel = perda * kilo;
+      var percentutal_perda = (perda_mel / qnt_mel) * 100;
+      negativo.innerHTML = ``;
+      if (perda <= 0) {
+        motivacao.innerHTML = `
+       <b>Invista em nosso produto e economize mão de obra!</b><br> Reduza o esforço e maximize seus ganhos. Conte conosco para melhorar a eficiência do seu apiário.
+       <b>Aproveite esta oportunidade para aumentar seus lucros!</b>
+      `
+        resultado1.innerHTML = ``;
+        resultado2.innerHTML = ``;
+        resultado3.innerHTML = ``;
+        semApicontrol.innerHTML = ``;
+        comApicontrol.innerHTML = ``;
+      } else {
+        motivacao.innerHTML = ` Com nosso produto, você pode reduzir perdas e maximizar seus lucros, economizando na mão de obra tendo mais controle sobre suas colmeias.<br>
+        <b>Invista</b> agora e potencialize seus ganhos!`
+        resultado1.innerHTML = `
+        <div class="padding"><b>Percentual de perda</b><br>${percentutal_perda.toFixed(2)}%</div>
+      `;
+
+        resultado2.innerHTML = `
+      <div class="padding"><b>Total de mel perdido</b><br>${perda_mel.toFixed(2)}Kg</div>
+      `;
+
+        resultado3.innerHTML = `
+      <div class="padding"><b>Prejuízo estimado</b><br>R$${(perda_mel * valor).toFixed(2)}</div>
+      `;
+
+        comApicontrol.innerHTML = `
+      <b>Estimativa de faturamento total sem o prejuizo R$${(qnt_colmeia * kilo) * valor}</b>
+
+      `
+        semApicontrol.innerHTML = `
+      <b>Estimativa de faturamento do ano R$${((qnt_colmeia - perda) * kilo) * valor} </b>
+      `;
+      }
+      if (percentutal_perda > 20) {
+        motivacao.innerHTML = ` <b>Alerta vermelho!</b><br> Você teve uma perda significativas. Não espere mais para agir. Com nosso produto, você pode evitar que esse numero aumente. garanta um futuro seguro para suas colmeias.`
+      }
+    }
+  }
+</script>
