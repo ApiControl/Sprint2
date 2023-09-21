@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="titulo">
+        <br>
+        <h1>FAÇA UMA SIMULAÇÃO</h1>
+    </div>
+    <div class="simulador">
+        <div class="perguntas">
+            <h4>Qual a quantidade total de colmeias no seu apiário no ano passado?</h4>
+        </div>
+        <div class="inputs"><input type="number" id="input_qntColmeias"></div> <br>
+
+        <div class="perguntas">
+            <h4>Qual o valor cobrado em cada kg de mel? (em R$)</h4>
+        </div>
+        <div class="inputs"><input type="number" id="input_valorMel"></div> <br>
+
+        <div class="perguntas">
+            <h4>Quanto cada colmeia produz de mel (em Kg)</h4>
+        </div>
+        <div class="inputs"><input type="number" id="input_qntMelPorColmeia"></div> <br>
+
+        <div class="perguntas">
+            <h4>Qual a quantidade total de colmeias perdidas no ano passado?</h4>
+        </div>
+        <div class="inputs"> <input type="number" id="input_colmeiasPerdidas"></div> <br>
+
+        <div class="botao"><button onclick="calcular()">SIMULAR</button>
+            <div id="div_calculo"></div>
+        </div>
+
+    </div>
+
+    <div class="imagem">
+        <img src="https://static.vecteezy.com/ti/vetor-gratis/p3/19513245-analise-de-negocios-empresarios-fazem-analise-de-negocios-com-graficos-vetor.jpg,"
+            style="height: 365px; width: 555px; border-radius: 12%;">
+    </div>
+
+    <div class="backgroundColor"></div>
+</body>
+
+</html>
+
+<script>
+    function calcular() {
+        var colmeias = Number(input_qntColmeias.value)
+        var valorMel = Number(input_valorMel.value)
+        var melPorColmeia = Number(input_qntMelPorColmeia.value)
+        var colmeiasPerdidas = Number(input_colmeiasPerdidas.value)
+
+        var porcentagemPerda = colmeiasPerdidas * 100 / colmeias
+        var producaoMel = colmeias * melPorColmeia
+        var lucroBruto = producaoMel * valorMel
+        var perda = colmeiasPerdidas * melPorColmeia
+        var valorPerda = perda * valorMel
+        var lucroLiquido = lucroBruto - valorPerda
+
+        div_calculo.innerHTML = `
+        A porcentagem de Perda é ${porcentagemPerda}% <br>
+        A produção de Mel é ${producaoMel}kg <br>
+        O lucro teoricamente deveria ser R$${lucroBruto} <br>
+        A perda de mel é de ${perda}kg <br>
+        O valor total da perda é de R$${valorPerda} <br>
+        O lucro liquido é de R$${lucroLiquido} <br>
+        `
+    }
+</script>

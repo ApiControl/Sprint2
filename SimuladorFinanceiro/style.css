@@ -1,0 +1,50 @@
+.simulador {
+    margin-top: auto;
+    width: 400px;
+    position: relative;
+    top: 80px;
+    left: 250px;
+}
+
+
+input[type="number"] {
+    background-color: #f9fdcd;
+    width: 95%;
+    height: 25px;
+    border-top: #f9fdcd;
+    border-left: #f9fdcd;
+    border-right: #f9fdcd;
+    border-bottom-color: #F5C755;
+}
+
+button {
+    border-radius: 30px;
+    width: 30%;
+    height: 35px;
+    position: relative;
+    left: 300px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #F5C755;
+    border-color: #ffffff;
+}
+
+.perguntas {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.imagem {
+    border: 5px solid #F5C755;
+    border-radius: 12%;
+    width: 555px;
+    height: 365px;
+    position: absolute;
+    bottom: 118px;
+    left: 800px;
+}
+
+.titulo {
+    color: #D77C16;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0 auto;
+    width: 30%;
+}
