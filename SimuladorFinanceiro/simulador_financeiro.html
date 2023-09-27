@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body id="site">
     <div class="titulo">
         <br>
-        <h1>FAÇA UMA SIMULAÇÃO</h1>
+        <h1>Simulador ApiControl</h1>
+        <h2>Potencialize sua produção e reduza custos!</h2>
     </div>
     <div class="simulador">
         <div class="perguntas">
@@ -35,7 +36,9 @@
         <div class="inputs"> <input type="number" id="input_colmeiasPerdidas"></div> <br>
 
         <div class="botao"><button onclick="calcular()">SIMULAR</button>
-            <div id="div_calculo"></div>
+            <div id="div_calculo">
+                
+            </div>
         </div>
 
     </div>
@@ -46,6 +49,7 @@
     </div>
 
     <div class="backgroundColor"></div>
+    <div class="img_msg"> </div>
 </body>
 
 </html>
@@ -64,13 +68,17 @@
         var valorPerda = perda * valorMel
         var lucroLiquido = lucroBruto - valorPerda
 
-        div_calculo.innerHTML = `
-        A porcentagem de Perda é ${porcentagemPerda}% <br>
-        A produção de Mel é ${producaoMel}kg <br>
-        O lucro teoricamente deveria ser R$${lucroBruto} <br>
-        A perda de mel é de ${perda}kg <br>
-        O valor total da perda é de R$${valorPerda} <br>
-        O lucro liquido é de R$${lucroLiquido} <br>
+        div_calculo.innerHTML = `<div id="titulo_msg">
+        <b>Aqui estäo alguns resultados gerados pelo nosso simulador financeiro do ApiControl: </b>
+
+        <div id="corpo_msg"><p>A produçäo total de mel, em quilogramas, foi de ${producaoMel}kg, o que é um ótimo indicativo! Parabéns!</p><br>
+        <p>Entretanto, no processo ocorreu uma perda de ${perda}kg, isto representa exatos ${porcentagemPerda}% da produçäo total.<br>
+        Em termos financeiros, o seu prejuízo lhe custou R$${valorPerda}.</p><br>
+        <p>Todavia, o lucro líquido do projeto foi de R$${lucroLiquido}, o que representa (porcentagem do lucro teórico) do lucro teórico, avaliado em R$${lucroBruto}.</p>
+        <p>O potencial do projeto visa diminuir estas perdas em até 50%. </p></div><br>
+
+        </div>
+    </div><br>
         `
     }
 </script>
