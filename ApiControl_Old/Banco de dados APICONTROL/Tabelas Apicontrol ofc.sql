@@ -82,12 +82,10 @@ create table especie (
 id_especie int primary key auto_increment,
 nome varchar (40),
 tipo varchar(40),
-media_producao_ano float null,
 temperatura_minima float null, -- default null
 temperatura_maxima float null,
 umidade_minima float null,
-umidade_maxima float null,
-media_valor_mel_kg float null
+umidade_maxima float null
 )auto_increment = 100;
 
 insert into especie (nome, tipo, media_producao_ano, media_valor_mel_kg) values
@@ -101,7 +99,7 @@ select * from especie;
 
 -- Tabela COLMEIA
 create table colmeia(
-id_colmeia smallint primary key auto_increment,
+id_colmeia int primary key auto_increment,
 descricao varchar(200),
 status_colmeia varchar(40),
 localizacao varchar(40),
