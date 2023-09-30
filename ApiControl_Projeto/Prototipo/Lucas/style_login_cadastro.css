@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+/* Style do header com background e padding pra posicionamento */
+.header {
+    overflow: hidden;
+    background-color: #0C2626;
+    padding: 20px 10px;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style dos links do header */
+.header a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+/* Style do link do logo (Font-size com o mesmo valor do line-height do .header pra evitar conflito) */
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* Background-color muda com mouse por cima */
+.header a:hover {
+    background-color: #FFE087;
+    color: #0C2626;
+}
+
+/* Style do link atual*/
+.header a.active {
+    background-color: #FFB800;
+    color: #0C2626;
+}
+
+/* Links pra direita */
+.header-right {
+    float: right;
+}
+
+/* "Responsividade" */
+@media screen and (max-width: 770px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-image: url('https://wallpapers.com/images/hd/honeycomb-bright-yellow-3ohq0vhdvb63kiki.jpg');
+}
+
+.wrapper {
+    position: relative;
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    padding: 34px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgb(12, 38, 38, 1);
+    margin: 0 auto;
+    margin-top: 10vh;
+}
+
+.wrapper h2 {
+    position: relative;
+    font-size: 22px;
+    font-weight: 600;
+    color: #0c2626;
+}
+
+.wrapper h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 28px;
+    border-radius: 12px;
+    background: #FFB800;
+}
+
+.wrapper form {
+    margin-top: 30px;
+}
+
+.wrapper form .input-box {
+    height: 52px;
+    margin: 18px 0;
+}
+
+form .input-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 15px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #0C2626;
+    border: 1.5px solid #0C2626;
+    border-bottom-width: 2.5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus,
+.input-box input:valid {
+    border-color: #FFB800;
+}
+
+form .policy_lembrar {
+    display: flex;
+    align-items: center;
+}
+
+form h3 {
+    color: #0C2626;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.input-box.button input {
+    color: #fff;
+    letter-spacing: 1px;
+    border: none;
+    background: #CC9918;
+    cursor: pointer;
+}
+
+.input-box.button input:hover {
+    background: #FFB800;
+}
+
+form .text h3 {
+    color: #0C2626;
+    width: 100%;
+    text-align: center;
+}
+
+form .text h3 a {
+    color: #CC9918;
+    text-decoration: none;
+}
+
+form .text h3 a:hover {
+    text-decoration: underline;
+}
