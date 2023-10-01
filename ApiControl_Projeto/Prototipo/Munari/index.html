@@ -70,7 +70,7 @@
 </div>
 <div class="section">
   <p class="tituloSimulador">
-    Simule sua produção e veja como pode potencializar seu lucro
+    Simule sua produção e veja como pode alavancar seu negócio
   </p>
   <div class="divContainer" >
     <div class="divSimulador">
@@ -116,16 +116,16 @@
         Resultado
       </span>
       <div class="valoresContainer">
-        <span class="valoresTitulo">Quantidade de mel perdido:</span>
-        <span class="valoresResultado">10kg</span>
+        <span class="valoresTitulo">Quantidade de mel perdido por ano:</span>
+        <span class="valoresResultado" id="mel_perdido">10kg</span>
       </div>
       <div class="valoresContainer">
-        <span class="valoresTitulo">Prejuizo estimado:</span>
-        <span class="valoresResultado">R$500,00</span>
+        <span class="valoresTitulo">Prejuizo estimado em um ano:</span>
+        <span class="valoresResultado" id="valor_perda">R$500,00</span>
       </div>
       <div class="valoresContainer">
         <span class="valoresTitulo">Percentual de perda:</span>
-        <span class="valoresResultado">25%</span>
+        <span class="valoresResultado" id="percentual_perda">25%</span>
       </div>
       <div class="ctaContainer">
         <span class="ctaText">A ApiControl pode te ajudar.
@@ -172,9 +172,21 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
-//Faz aparecer bloco de resultado
+//Faz aparecer bloco de resultado e exibe os valores 
 function aparecerResultado() {
   div_resultado.style.display = "flex";
+  var qtdColmeias = Number(i_qtd_colmeia.value);//Variavel que armazena a quantidade de colmeias ativas no apiário
+  var colmeiasPerdidas = Number(i_qtd_colmeias_perdidas.value);//Variavel que armazena a quantidade de colmeias perdidas
+  var kgColmeias = Number(i_qtd_kg.value);// Variavel que armazena a produtividade em kg das colmeias
+  var valMel = Number(i_valor_mel.value);//Variavel que armazena o input de valor do kg de mel
+  var kgPerdidoAno = colmeiasPerdidas * kgColmeias * 12; //Calculo de perda de kg por colmeias perdidas
+  var dinheiroPerdido = kgPerdidoAno * valMel ; //Calculo em dinheiro da perda da produção de colmeias no ano
+  var percentualPerda = (colmeiasPerdidas / (qtdColmeias + colmeiasPerdidas)) * 100;
+  // Calculo do percentual de colmeias perdidas
+  
+  mel_perdido.innerHTML = `${kgPerdidoAno}kg`; // Exibição da quantidade perdida
+  valor_perda.innerHTML = `R$${dinheiroPerdido}`; // Exibição do valor perdido 
+  percentual_perda.innerHTML = `${percentualPerda.toFixed(1)}%`; //Exibição da perda percentual
 
 }
 
