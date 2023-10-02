@@ -158,8 +158,77 @@ body {
     animation-name: fade;
     animation-duration: 1.5s;
   }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .h1{
+    color: yellow;
+  }
+  .center-text {
+    text-align: center;
+  }
+
+  .flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px; /* Adicione margem acima do conteúdo */
+    margin-bottom: 50px; /* Adicione margem abaixo do conteúdo */
+    height: 100vh;
+    margin: 0;
+  }
+
+  .text-container {
+    flex: 10;
+    text-align: justify;
+    margin-left: 425px; /* Alinhe o texto à esquerda */
+    margin-right: 50px;
+    font-family: 'Poppins',  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: #333;
+    /* Outras propriedades de estilo, como cor de fundo, margens, padding, etc. */
+  }
+
+
+  .image-container {
+    flex: 5;
+    text-align: right; /* Alinhe a imagem à direita */
+    margin-left: 60px;
+    filter: drop-shadow(5px 5px 5px #222);
+            width:200px;
+            height:330px;
+    
+  }
+
+  .image-container img {
+
+    max-width: 200%;
+    height: auto;
+  
+  }
+
+  
+
+  
+
+ 
+
   
   @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+
+
+
+
+
+
+
+    
   }
