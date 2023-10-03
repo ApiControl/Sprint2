@@ -1,53 +1,156 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_login_cadastro.css">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style_login_cadastro.css" />
     <title>Cadastro</title>
-   </head>
+</head>
+
 <body>
 
     <div class="header">
         <a href="index.html" class="logo">ApiControl</a>
         <div class="header-right">
-          <a href="index.html">Home</a>
-          <a href="#simulacao">Simulação</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
-          <a href="login.html">Login</a>
-          <a class="active" href="cadastro.html">Cadastro</a>
+            <a href="index.html">Home</a>
+            <a href="#simulacao">Simulação</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#contato">Contato</a>
+            <a href="login.html">Login</a>
+            <a class="active" href="cadastro.html">Cadastro</a>
         </div>
     </div>
 
-  <div class="container">
-    <h2>Cadastro</h2>
-    <form action="login.html">
-      <div class="input-field">
-        <input type="text" placeholder="Nome" required>
-      </div>
-      <div class="input-field">
-        <input type="text" placeholder="Email" required>
-      </div>
-      <div class="input-field">
-        <input type="password" placeholder="Criar senha" required>
-      </div>
-      <div class="input-field">
-        <input type="password" placeholder="Confirmar senha" required>
-      </div>
-      <div class="policy_lembrar">
-        <input type="checkbox">
-        <h3>Eu aceito todos termos e condições</h3>
-      </div>
-      <div class="input-field button">
-        <input type="Submit" value="Cadastrar">
-      </div>
-      <div class="text">
-        <h3>Já possui uma conta? <a href="login.html">Acessar</a></h3>
-      </div>
-    </form>
-  </div>
-  
+    <div class="container">
+        <h2>Cadastro</h2>
+        <form action="endereco.html">
+
+                <div class="field name-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Nome" class="name" required/>
+                    </div>
+                </div>
+
+                <div class="field telefone-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Telefone" class="telefone" maxlength="12"/>
+                    </div>
+                </div>
+
+                <div class="field cnpj-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="CNPJ" class="cnpj" minlength="14" maxlength="14"/>
+                    </div>
+                </div>
+
+                <div class="field email-field">
+                    <div class="input-field">
+                        <input type="email" placeholder="Email" class="email"/>
+                    </div>
+                    <span class="error email-error">
+                        <p class="error-text">Por favor informar email válido</p>
+                    </span>
+                </div>
+
+                <div class="field create-password">
+                    <div class="input-field">
+                        <input type="password" placeholder="Criar senha" class="password"/>
+                    </div>
+                    <span class="error password-error">
+                        <p class="error-text">
+                            Por favor inserir pelo menos 8 dígitos, incluindo um número, símbolo, letra minúscula
+                            e letra maiúscula
+                        </p>
+                    </span>
+                </div>
+
+                <div class="field confirm-password">
+                    <div class="input-field">
+                        <input type="password" placeholder="Confirmar senha" class="cPassword"/>
+                    </div>
+                    <span class="error cPassword-error">
+                        <p class="error-text">Senhas diferentes</p>
+                    </span>
+                </div>
+
+                <div class="policy_lembrar">
+                    <input type="checkbox">
+                    <h3>Eu aceito todos termos e condições</h3>
+                </div>
+
+                <div class="input-field button">
+                    <input type="submit" value="Continuar"/>
+                </div>
+
+                <div class="text">
+                    <h3>Já possui uma conta? <a href="login.html">Acessar</a></h3>
+                </div>
+        </form>
+    </div>
+
 </body>
+
 </html>
+
+<script>
+
+    const form = document.querySelector("form"),
+        emailField = form.querySelector(".email-field"),
+        emailInput = emailField.querySelector(".email"),
+        passField = form.querySelector(".create-password"),
+        passInput = passField.querySelector(".password"),
+        cPassField = form.querySelector(".confirm-password"),
+        cPassInput = cPassField.querySelector(".cPassword");
+
+    // Email Validação
+    function checkEmail() {
+        const emaiPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!emailInput.value.match(emaiPattern)) {
+            return emailField.classList.add("invalid"); //adicionando classe inválida se o valor do email não corresponder ao padrão de email
+        }
+        emailField.classList.remove("invalid"); //removendo classe inválida se o valor do email corresponder a emaiPattern
+    }
+
+    // Senha Validação
+    function createPass() {
+        const passPattern =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (!passInput.value.match(passPattern)) {
+            return passField.classList.add("invalid"); //adicionando classe inválida se o valor de entrada da senha não corresponder a passPattern
+        }
+        passField.classList.remove("invalid"); //removendo classe inválida se o valor de entrada da senha corresponder a passPattern
+    }
+
+    // Confirmar Senha Validação
+    function confirmPass() {
+        if (passInput.value !== cPassInput.value || cPassInput.value === "") {
+            return cPassField.classList.add("invalid");
+        }
+        cPassField.classList.remove("invalid");
+    }
+
+    // Chamando Função no form submit
+    form.addEventListener("submit", (e) => {
+        e.preventDefault(); //previnindo submit de trocar de página
+        checkEmail();
+        createPass();
+        confirmPass();
+
+        //Chamando funções pelo keyup para validar em tempo real
+        emailInput.addEventListener("keyup", checkEmail);
+        passInput.addEventListener("keyup", createPass);
+        cPassInput.addEventListener("keyup", confirmPass);
+
+        if (
+            !emailField.classList.contains("invalid") &&
+            !passField.classList.contains("invalid") &&
+            !cPassField.classList.contains("invalid")
+        ) {
+            location.href = form.getAttribute("action");
+        }
+    });
+
+</script>

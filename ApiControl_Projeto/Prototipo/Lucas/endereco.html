@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style_login_cadastro.css" />
+    <title>Cadastro</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <a href="index.html" class="logo">ApiControl</a>
+        <div class="header-right">
+            <a href="index.html">Home</a>
+            <a href="#simulacao">Simulação</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#contato">Contato</a>
+            <a href="login.html">Login</a>
+            <a class="active" href="cadastro.html">Cadastro</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Cadastro</h2>
+        <form action="login.html">
+
+                <div class="field cep-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="CEP" class="cep" id="cep" value="" size="10" maxlength="9" onblur="pesquisacep(this.value);" required/>
+                    </div>
+                </div>
+
+                <div class="field estado-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Estado" class="estado" size="2" maxlength="2" id="uf" required/>
+                    </div>
+                </div>
+
+                <div class="field cidade-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Cidade" class="cidade" id="cidade" required/>
+                    </div>
+                </div>
+
+                <div class="field bairro-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Bairro" class="bairro" id="bairro" required/>
+                    </div>
+                </div>
+
+                <div class="field logradouro-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Logradouro" class="logradouro" id="rua" required/>
+                    </div>
+                </div>
+
+                <div class="field numero-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Número" class="numero" required/>
+                    </div>
+                </div>
+
+                <div class="field complemento-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Complemento" class="complemento" required/>
+                    </div>
+                </div>
+
+                <div class="input-field button">
+                    <input type="submit" value="Cadastrar"/>
+                </div>
+
+                <div class="text">
+                    <h3>Já possui uma conta? <a href="login.html">Acessar</a></h3>
+                </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+    </script>
