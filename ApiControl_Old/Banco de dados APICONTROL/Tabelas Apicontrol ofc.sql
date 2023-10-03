@@ -66,7 +66,7 @@ id_sensor int primary key auto_increment,
 temperatura float,
 data_hora_coleta datetime default current_timestamp
 );
-    
+
 desc sensor;
 
 insert into sensor (temperatura) values
@@ -82,10 +82,12 @@ create table especie (
 id_especie int primary key auto_increment,
 nome varchar (40),
 tipo varchar(40),
+media_producao_ano float null,
 temperatura_minima float null, -- default null
 temperatura_maxima float null,
 umidade_minima float null,
-umidade_maxima float null
+umidade_maxima float null,
+media_valor_mel_kg float null
 )auto_increment = 100;
 
 insert into especie (nome, tipo, media_producao_ano, media_valor_mel_kg) values
@@ -99,7 +101,7 @@ select * from especie;
 
 -- Tabela COLMEIA
 create table colmeia(
-id_colmeia int primary key auto_increment,
+id_colmeia smallint primary key auto_increment,
 descricao varchar(200),
 status_colmeia varchar(40),
 localizacao varchar(40),
@@ -144,7 +146,7 @@ show tables;
 
 
 
--- Exibindo a especie da abela a localizaçãoe e o sensor associado a essa colmeia
+-- Exibindo a especie da tabela a localizaçãoe e o sensor associado a essa colmeia
 select colmeia.especie as ESPECIE_ABELHA, colmeia.localizacao as CORREDOR_COLMEIA, sensor.id_sensor as ID_SENSOR
 	from sensor join colmeia
 		on id_sensor = fksensor_id;

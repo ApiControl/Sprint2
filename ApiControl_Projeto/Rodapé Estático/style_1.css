@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Chella';
+    src: local('Chella SemiBold Italic'), local('Chella-SemiBold-Italic'),
+        url('Chella-SemiBoldItalic.woff2') format('woff2'),
+        url('Chella-SemiBoldItalic.woff') format('woff'),
+        url('Chella-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+  }
