@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylecopy.css">
+    <title>Home</title>
+</head>
+<body>
+
+    <div class="header">
+        <a href="#default" class="logo">ApiControl</a>
+        <div class="header-right">
+          <a class="active" href="#home">Home</a>
+          <a href="#simulacao">Simulação</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+          <a href="#login">Login</a>
+          <a href="#cadastro">Cadastro</a>
+        </div>
+      </div>
+
+    <!-- Slideshow container -->
+<div class="slideshow-container">
+
+    <!-- Imagens do slider / Captions / Números da página -->
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="apicultura.jpg" style="width:100%">
+        <div class="text">
+            <h5>Slide de Abelha</h5>
+            <p>Olha as abelha que bonitinha</p>
+            <!-- Dots/"bolinhas" -->
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 3</div>
+      <img src="Mel.jpg" style="width:100%">
+        <div class="text">
+            <h5>Slide de Mel</h5>
+            <p>Olha os mel que as abelha bonitinha tão fazendo</p>
+            <!-- Dots/"bolinhas" -->
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 3</div>
+      <img src="colmeia.jpg" style="width:100%">
+        <div class="text">
+            <h5>Slide de Colmeia</h5>
+            <p>Olha as colmeia como vai trabalhando no mel</p>
+            <!-- Dots/"bolinhas" -->
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+  
+    <!-- Botão de previous e next -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<style>
+ 
+</style>
+<style>
+
+</style>
+
+<div class="center-text">
+  <h1>Sobre Nós</h1>  
+  <div class="flex-container">
+    <div class="image-container">
+      <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/06/Destaque-abelha.jpg" alt="img_abelha" width="400px">
+      <div class="caixa_roxa"></div>
+    </div>
+    <div class="text-container">
+      <p>
+        Estamos empenhados em revolucionar completamente a maneira como os apicultores trabalham. Apresentamos uma ferramenta que não apenas torna suas tarefas mais simples, mas também os coloca no caminho do sucesso, utilizando dados precisos. Nossa missão é proporcionar uma transformação significativa para a apicultura, capacitando nossos parceiros com o que há de melhor na tecnologia, tudo isso, de forma acessível e descomplicada.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
+</script>
