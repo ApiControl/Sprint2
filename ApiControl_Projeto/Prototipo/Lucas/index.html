@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_prot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>Home</title>
 </head>
 <body>
 
+    <!-- Header -->
     <div class="header">
         <a href="index.html" class="logo">ApiControl</a>
         <div class="header-right">
@@ -27,7 +29,7 @@
     <!-- Imagens do slider / Captions / Números da página -->
     <div class="mySlides fade">
       <div class="numbertext">1 / 3</div>
-      <img src="apicultura.jpg" style="width:100%">
+      <img src="imagens/apicultura.jpg" style="width:100%">
         <div class="text">
             <h5>Slide de Abelha</h5>
             <p>Olha as abelha que bonitinha</p>
@@ -40,7 +42,7 @@
   
     <div class="mySlides fade">
       <div class="numbertext">2 / 3</div>
-      <img src="Mel.jpg" style="width:100%">
+      <img src="imagens/Mel.jpg" style="width:100%">
         <div class="text">
             <h5>Slide de Mel</h5>
             <p>Olha os mel que as abelha bonitinha tão fazendo</p>
@@ -53,7 +55,7 @@
   
     <div class="mySlides fade">
       <div class="numbertext">3 / 3</div>
-      <img src="colmeia.jpg" style="width:100%">
+      <img src="imagens/colmeia.jpg" style="width:100%">
         <div class="text">
             <h5>Slide de Colmeia</h5>
             <p>Olha as colmeia como vai trabalhando no mel</p>
@@ -68,12 +70,148 @@
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
+
+<div class="section">
+  <p class="tituloSimulador">
+    Simule sua produção e veja como pode alavancar seu negócio
+  </p>
+  <div class="divContainer" >
+    <div class="divSimulador">
+      <div>
+        <span class="tituloItem">Quantidade de colmeias em seu apiário:</span><br>
+        <div class="inputContainer">
+          <input type="number" onkeypress="return event.charCode >= 48" min="1" class="inputSimulador" id="i_qtd_colmeia"  value="10">
+          <button onclick="calcValores(1)" class="botaoSimulador">+</button>
+          <button onclick="calcValores(2)" class="botaoSimulador">-</button>
+        </div>
+      </div>
+      <div>
+        <span class="tituloItem">Colmeias que foram perdidas no ultimo ano:</span>
+        <div class="inputContainer">
+          <input class="inputSimulador" id="i_qtd_colmeias_perdidas" value="2">
+          <button onclick="calcValores(3)" class="botaoSimulador">+</button>
+          <button onclick="calcValores(4)" class="botaoSimulador">-</button>
+        </div>
+      </div>
+      <div>
+        <span class="tituloItem">Quantos quilos são produzidos por mês:</span><br>
+        <div class="inputContainer">
+          <input class="inputSimulador" id="i_qtd_kg" value="10">
+          <button onclick="calcValores(5)" class="botaoSimulador">+</button>
+          <button onclick="calcValores(6)" class="botaoSimulador">-</button>
+        </div>
+      </div>
+      <div>
+        <span class="tituloItem">Valor do quilo do mel:</span><br>
+        <div class="inputContainer">
+          <input class="inputSimulador" id="i_valor_mel" value="10">
+          <button onclick="calcValores(7)" class="botaoSimulador">+</button>
+          <button onclick="calcValores(8)" class="botaoSimulador">-</button>
+        </div>
+        <button class="botaoResultado" onclick="aparecerResultado()">
+          Simular
+        </button>
+      </div>
+    
+    </div>
+    <div id="div_resultado" class="divResultado">
+      <span class="tituloResultado">
+        Resultado
+      </span>
+      <div class="valoresContainer">
+        <span class="valoresTitulo">Quantidade de mel perdido por ano:</span>
+        <span class="valoresResultado" id="mel_perdido">10kg</span>
+      </div>
+      <div class="valoresContainer">
+        <span class="valoresTitulo">Prejuizo estimado em um ano:</span>
+        <span class="valoresResultado" id="valor_perda">R$500,00</span>
+      </div>
+      <div class="valoresContainer">
+        <span class="valoresTitulo">Percentual de perda:</span>
+        <span class="valoresResultado" id="percentual_perda">25%</span>
+      </div>
+      <div class="ctaContainer">
+        <span class="ctaText">A ApiControl pode te ajudar.
+          <a class="ctaLink" href="">
+            Entrar em contato
+          </a>
+          </span>
+      </div>
+    </div>
+    </div>
+</div>
+
+  <!-- Rodapé -->
+<footer>
+  <div class="container">
+      <div class="row">
+          <!-- 1st Column -->
+          <div class="footer-col footer-logo">
+              <ul>
+                  <img src="imagens/Logo ApiControl.png" class="logoApi"><br>
+                  <b href="">ApiControl</b> <br>
+                  <c href="">Transformando Dados em Melhores Escolhas</c>
+              </ul>
+          </div>
+
+          <!-- 2nd Column -->
+          <div class="footer-col">
+              <h4>Contato</h4>
+              <ul>
+                  <li><img src="imagens/icon telefone.png"
+                          class="icon_phone"><a href="">(11) 99845-0000</a> </li>
+                  <li><img src="imagens/icon maps.png"
+                          class="icon_maps"><a href="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo</a>
+                  </li>
+                  <li><img src="imagens/icon email.png"
+                          class="icon_mail"><a href="">   contato@apicontrol.com</a> </li>
+              </ul>
+          </div>
+
+          <!-- 3rd Column -->
+          <div class="footer-col">
+              <h4>Menu</h4>
+              <ul>
+                  <li><a href="">Início</a> </li>
+                  <li><a href="">Simulação</a> </li>
+                  <li><a href="">Sobre</a> </li>
+                  <li><a href="">Serviços</a> </li>
+              </ul>
+          </div>
+
+          <!-- 4th Column -->
+          <div class="footer-col">
+              <h4>Entre em contato:</h4>
+              <form action="">
+                  <input type="text" placeholder="Seu Nome" class="input_nome">
+                  <input type="email" placeholder="Seu Email" class="input_email">
+                  <input type="submit" value="Enviar" class="input_submit">
+              </form>
+          </div>
+      </div>
+      <hr>
+      <div class="row">
+          <div class="col">
+              <p>&#169; 2023 ApiControl. Todos os Direitos Reservados. </p>
+          </div>
+          <div class="social_icon">
+              <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+              <a href=""><i class="fa-brands fa-instagram"></i></a>
+              <a href=""><i class="fa-brands fa-linkedin"></i></a>
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+          </div>
+      </div>
+  </div>
+</footer>
+
+
   
 </body>
 </html>
 
 <script>
 
+// "Carousel"
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -101,6 +239,47 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
+}
+
+// Calculadora
+
+// Faz aparecer bloco de resultado e exibe os valores 
+function aparecerResultado() {
+  div_resultado.style.display = "flex";
+  var qtdColmeias = Number(i_qtd_colmeia.value);//Variavel que armazena a quantidade de colmeias ativas no apiário
+  var colmeiasPerdidas = Number(i_qtd_colmeias_perdidas.value);//Variavel que armazena a quantidade de colmeias perdidas
+  var kgColmeias = Number(i_qtd_kg.value);// Variavel que armazena a produtividade em kg das colmeias
+  var valMel = Number(i_valor_mel.value);//Variavel que armazena o input de valor do kg de mel
+  var kgPerdidoAno = colmeiasPerdidas * kgColmeias * 12; //Calculo de perda de kg por colmeias perdidas
+  var dinheiroPerdido = kgPerdidoAno * valMel ; //Calculo em dinheiro da perda da produção de colmeias no ano
+  var percentualPerda = (colmeiasPerdidas / (qtdColmeias + colmeiasPerdidas)) * 100;
+  // Calculo do percentual de colmeias perdidas
+  
+  mel_perdido.innerHTML = `${kgPerdidoAno}kg`; // Exibição da quantidade perdida
+  valor_perda.innerHTML = `R$${dinheiroPerdido}`; // Exibição do valor perdido 
+  percentual_perda.innerHTML = `${percentualPerda.toFixed(1)}%`; //Exibição da perda percentual
+
+}
+
+//Somas e subtrações dos inputs pelos botões
+function calcValores(numero) {
+  if(numero == 1) {
+    i_qtd_colmeia.value++;
+  }else if (numero == 2 && i_qtd_colmeia.value > 0) {
+    i_qtd_colmeia.value--;
+  }else if (numero == 3) {
+    i_qtd_colmeias_perdidas.value++;
+  }else if (numero == 4 && i_qtd_colmeias_perdidas.value > 0) {
+    i_qtd_colmeias_perdidas.value--;
+  }else if (numero == 5) {
+    i_qtd_kg.value++;
+  }else if (numero == 6 && i_qtd_kg.value > 0) {
+    i_qtd_kg.value--;
+  }else if (numero == 7) {
+    i_valor_mel.value++;
+  }else if (numero == 8 && i_valor_mel.value > 0) {
+    i_valor_mel.value--;
+  }
 }
 
 </script>

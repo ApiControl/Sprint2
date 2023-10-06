@@ -1,5 +1,20 @@
 /* Google Fonts - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+  font-family: 'Chella';
+  src: local('Chella SemiBold Italic'), local('Chella-SemiBold-Italic'),
+      url('fontes/Chella-SemiBoldItalic.woff2') format('woff2'),
+      url('fontes/Chella-SemiBoldItalic.woff') format('woff'),
+      url('fontes/Chella-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Chella;
+  src: url("fontes/Chella-SemiBoldItalic.ttf");
+}
 
 html, body {
   margin: 0;
@@ -63,6 +78,7 @@ html, body {
   }
 }
 
+/* Login */
 * {
   margin: 0;
   padding: 0;
@@ -76,7 +92,7 @@ body {
   backdrop-filter: blur(5px);
 }
 
-.container {
+.container-form {
   position: relative;
   max-width: 430px;
   width: 100%;
@@ -85,17 +101,18 @@ body {
   border-radius: 6px;
   box-shadow: 0 5px 10px rgb(12, 38, 38, 1);
   margin: 0 auto;
-  margin-top: 5vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 
-.container h2 {
+.container-form h2 {
   position: relative;
   font-size: 22px;
   font-weight: 600;
   color: #0c2626;
 }
 
-.container h2::before {
+.container-form h2::before {
   content: '';
   position: absolute;
   left: 0;
@@ -106,11 +123,11 @@ body {
   background: #FFB800;
 }
 
-.container form {
+.container-form form {
   margin-top: 30px;
 }
 
-.container form .input-field {
+.container-form form .input-field {
   height: 52px;
   margin: 18px 0;
 }
@@ -215,4 +232,167 @@ form .text h3 a {
 
 form .text h3 a:hover {
   text-decoration: underline;
+}
+
+/* Footer */
+footer .container {
+  background-color: #0c2626;
+  margin:auto;
+}
+
+.footer-logo {
+  margin-right: 15px;
+}
+
+.logoApi {
+  width: 150px;
+  margin-top: -35px;   
+  margin-bottom: -10px;
+  margin-left: 45px;
+}
+
+.icon_phone {
+  width: 20px;
+  opacity: 0.5;
+}
+
+.icon_maps {
+  width: 30px;
+  opacity: 0.5;
+}
+
+.icon_mail {
+  width: 30px;
+  opacity: 0.5;
+}
+
+.footer-col a {
+  color: #fff;
+  margin-top: 0;
+  font-size: 40px;
+  position: relative;
+  margin-left: 15px;
+}
+
+.footer-col b {
+  color: #fff;
+  margin-top: 0;
+  font-size: 40px;
+  position: relative;
+  font-family: 'Chella';
+}
+
+.footer-col c {
+  color: #fff;
+  font-family: monospace;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-size: 12.5px;
+  margin-left: -27px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 100px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col h4 {
+  color: #fff;
+  margin-bottom: 25px;
+  font-size: 20px;
+  position: relative;
+}
+
+.footer-col h4::before {
+  content: '';
+  width: 70px;
+  height: 2px;
+  position: absolute;
+  background-color: #cc9918;
+  bottom: -10px
+}
+
+.footer-col ul li {
+  padding: 10px 0;
+}
+
+.footer-col ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  opacity: 0.7;
+  transition: 0.2s;
+}
+
+.footer-col ul li a:hover {
+  opacity: 1;
+}
+
+.footer-col input {
+  border: none;
+  width: 250px;
+  height: 45px;
+  display: block;
+  padding-left: 20px;
+  margin: 14px 0;
+}
+
+.footer-col .input_submit {
+  padding: 0px 20px;
+  background-color: #cc9918;
+  border: none;
+  color: #fff
+}
+
+.col p {
+  color: #cc9918;
+  font-size: 13px;
+}
+
+hr {
+  opacity: 0.5;
+} 
+
+.row .social_icon i {
+  display: inline-block;
+  color: #cc9918;
+  font-size: 20px;
+  margin: 0 15px;
+  transition: 0.2s;
+}
+
+.row .social_icon i:hover {
+  color: #fff;
+}
+
+/* "Responsividade" */
+@media(max-width: 770px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .footer-col h4 {
+    text-align: left;
+  }
+  .logoApi {
+    margin-left: 0;
+  }
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+  }
+  .footer-col h4 {
+    text-align: left;
+  }
+  .logoApi {
+    margin-left: 0;
+  }
 }

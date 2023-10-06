@@ -1,4 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+  font-family: 'Chella';
+  src: local('Chella SemiBold Italic'), local('Chella-SemiBold-Italic'),
+      url('fontes/Chella-SemiBoldItalic.woff2') format('woff2'),
+      url('fontes/Chella-SemiBoldItalic.woff') format('woff'),
+      url('fontes/Chella-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Chella;
+  src: url("fontes/Chella-SemiBoldItalic.ttf");
+}
+
 * {
+  margin:0;
+	padding:0;
   box-sizing: border-box
 }
 
@@ -71,7 +90,7 @@ body {
   width: 100%;
 }
 
-img {
+.mySlides img {
   height: 65vh;
   min-height: 350px;
   object-fit: cover;
@@ -172,5 +191,331 @@ h5 {
 
   to {
     opacity: 1
+  }
+}
+
+/* Calculadora */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+}
+
+.tituloSimulador {
+  margin: 48px 126px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 32px;
+  width: 100%;
+  text-align: center;
+}
+.divContainer {
+  margin: 16px 126px;
+  display: flex;
+  flex-direction: row;
+  gap: 160px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 2px solid #FFBF00 ;
+  gap: 16px;
+  padding: 0px 0px 4px 0px;
+}
+
+.tituloItem {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/*style da Div de resultados*/
+.divResultado {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  gap: 24px;
+  display: none;
+  flex-direction: column;
+  background: url(https://preview.redd.it/pwpks2a80bj31.gif?width=800&auto=webp&s=48bfc3ad55d7d05c07ff193152deac92c9bb090e);
+  background-size: 250px;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: 50%;
+  border-radius: 24px;
+  box-shadow: 0px 8px 16px 0px #00000025;
+  padding: 24px 24px;
+  height: fit-content;
+  transition: 5s;
+  bottom: 0;
+}
+
+.divSimulador {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 400px;
+}
+
+.inputSimulador {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 32px;
+  width: 100%;
+  min-width: fit-content;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number] {
+-moz-appearance: textfield;
+}
+
+.botaoSimulador {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 40px;
+  font-size: 24px;
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #FFBF00;
+  box-shadow: 0px 4px 8px 0px #00000025;
+}
+
+.botaoSimulador:hover {
+  background-color: #E6A817;
+  cursor: pointer;
+}
+
+.botaoResultado {
+  margin: 40px 0px 0px 0px;
+  padding: 8px 16px;
+  background-color: #000;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tituloResultado {
+  align-self: stretch;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.valoresContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+.valoresTitulo {
+  font-size: 16px;
+
+}
+.valoresResultado {
+  font-size: 32px;
+}
+
+.ctaContainer {
+  background-color: #FFBF00;
+  border-radius: 40px;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: row;
+}
+.ctaText {
+  font-size: 16px;
+  font-weight: 600;
+}
+.ctaLink {
+  font-size: 16px;
+  color: black;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+@media (max-width: 1260px) {
+  .divResultado {
+    background: none;
+  }
+}
+
+/* Footer */
+footer .container {
+  background-color: #0c2626;
+  margin:auto;
+}
+
+.footer-logo {
+  margin-right: 15px;
+}
+
+.logoApi {
+  width: 150px;
+  margin-top: -35px;   
+  margin-bottom: -10px;
+  margin-left: 45px;
+}
+
+.icon_phone {
+  width: 20px;
+  opacity: 0.5;
+}
+
+.icon_maps {
+  width: 30px;
+  opacity: 0.5;
+}
+
+.icon_mail {
+  width: 30px;
+  opacity: 0.5;
+}
+
+.footer-col a {
+  color: #fff;
+  margin-top: 0;
+  font-size: 40px;
+  position: relative;
+  margin-left: 15px;
+}
+
+.footer-col b {
+  color: #fff;
+  margin-top: 0;
+  font-size: 40px;
+  position: relative;
+  font-family: 'Chella';
+}
+
+.footer-col c {
+  color: #fff;
+  font-family: monospace;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-size: 12.5px;
+  margin-left: -27px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 100px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col h4 {
+  color: #fff;
+  margin-bottom: 25px;
+  font-size: 20px;
+  position: relative;
+}
+
+.footer-col h4::before {
+  content: '';
+  width: 70px;
+  height: 2px;
+  position: absolute;
+  background-color: #cc9918;
+  bottom: -10px
+}
+
+.footer-col ul li {
+  padding: 10px 0;
+}
+
+.footer-col ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  opacity: 0.7;
+  transition: 0.2s;
+}
+
+.footer-col ul li a:hover {
+  opacity: 1;
+}
+
+.footer-col input {
+  border: none;
+  width: 250px;
+  height: 45px;
+  display: block;
+  padding-left: 20px;
+  margin: 14px 0;
+}
+
+.footer-col .input_submit {
+  padding: 0px 20px;
+  background-color: #cc9918;
+  border: none;
+  color: #fff
+}
+
+.col p {
+  color: #cc9918;
+  font-size: 13px;
+}
+
+hr {
+  opacity: 0.5;
+} 
+
+.row .social_icon i {
+  display: inline-block;
+  color: #cc9918;
+  font-size: 20px;
+  margin: 0 15px;
+  transition: 0.2s;
+}
+
+.row .social_icon i:hover {
+  color: #fff;
+}
+
+/* "Responsividade" */
+@media(max-width: 770px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .footer-col h4 {
+    text-align: left;
+  }
+  .logoApi {
+    margin-left: 0;
+  }
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+  }
+  .footer-col h4 {
+    text-align: left;
+  }
+  .logoApi {
+    margin-left: 0;
   }
 }

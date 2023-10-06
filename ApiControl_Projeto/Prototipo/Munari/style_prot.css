@@ -54,7 +54,6 @@ body {
     gap: 24px;
     display: none;
     flex-direction: column;
-    /*background-color: white;*/
     background: url(https://preview.redd.it/pwpks2a80bj31.gif?width=800&auto=webp&s=48bfc3ad55d7d05c07ff193152deac92c9bb090e);
     background-size: 250px;
     background-repeat: no-repeat;
