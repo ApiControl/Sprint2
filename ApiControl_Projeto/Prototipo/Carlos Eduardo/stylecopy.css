@@ -166,69 +166,95 @@ body {
     justify-content: center;
   }
 
-  .h1{
-    color: yellow;
-  }
+
   .center-text {
     text-align: center;
+    color: rgb(255, 187, 0);
+    font-size: 50px;
+    background-image: linear-gradient(to right, rgb(180, 180, 180), transparent);
+    
+  }
+
+  .center-text h1{
+    margin-top: 0;
   }
 
   .flex-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 50px; /* Adicione margem acima do conteúdo */
-    margin-bottom: 50px; /* Adicione margem abaixo do conteúdo */
+    justify-content: space-evenly;
+    /* margin-top: 50px; Adicione margem acima do conteúdo */
+    /* margin-bottom: 50px; Adicione margem abaixo do conteúdo */
+    width: 100%;
     height: 100vh;
     margin: 0;
   }
 
   .text-container {
-    flex: 10;
-    text-align: justify;
-    margin-left: 425px; /* Alinhe o texto à esquerda */
-    margin-right: 50px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
     font-family: 'Poppins',  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 22px;
+    font-size: 28px;
     line-height: 1.5;
     color: #333;
+    /* flex: 10;
+    text-align: justify;
+     margin-left: 425px;  
+    margin-right: 50px; 
+    font-family: 'Poppins',  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 28px;
+    line-height: 1.5;
+    color: #333;
+     margin-bottom: 270px;  */
+   
     /* Outras propriedades de estilo, como cor de fundo, margens, padding, etc. */
   }
-
+  .text-container P{
+    height: 300px;
+    width: 100%;
+    margin-top: 100px;
+  }
 
   .image-container {
-    flex: 5;
-    text-align: right; /* Alinhe a imagem à direita */
-    margin-left: 60px;
-    filter: drop-shadow(5px 5px 5px #222);
-            width:200px;
-            height:330px;
-    
+    display: flex;
+    width: 50%;
+    height: 100%;
+    align-items: start;
+    justify-content: center;
   }
 
-  .image-container img {
+  /* .caixa_roxa {
+    color: #333;
+    position: absolute;
+    width: 1000px;
+  } */
+  .image-container div{
+    width: 600px;
+    height: 400px;
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom, purple, transparent);
+    margin-right: 100px;
+  }
 
-    max-width: 200%;
-    height: auto;
-  
+  .image-container .caixa-abelha {
+    position: absolute;
+    background-image: url("https://img.olhardigital.com.br/wp-content/uploads/2023/06/Destaque-abelha.jpg");
+    background-position: right;
+    background-size: cover;
+    width: 600px;
+    height: 400px;
+    margin-left: 200px;
+    margin-top: 100px;
+   
   }
 
   
 
-  
-
- 
-
-  
   @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
-
-
-
-
-
-
-
     
   }
