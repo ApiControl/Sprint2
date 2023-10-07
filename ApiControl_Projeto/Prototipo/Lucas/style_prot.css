@@ -32,6 +32,9 @@ body {
   padding: 20px 10px;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
 }
 
 /* Style dos links do header */
@@ -52,6 +55,11 @@ body {
   font-weight: bold;
 }
 
+.header img {
+  height: 50px;
+  float: left;
+}
+
 /* Background-color muda com mouse por cima */
 .header a:hover {
   background-color: #FFE087;
@@ -70,7 +78,10 @@ body {
 }
 
 /* "Responsividade" */
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 837px) {
+  .header {
+    position: sticky;
+  }
   .header a {
     float: none;
     display: block;
@@ -80,6 +91,12 @@ body {
   .header-right {
     float: none;
   }
+
+  .header img {
+    height: 40px;
+    margin-right: 15px;
+    position: center;
+  }
 }
 
 /* "Carousel" abaixo */
@@ -88,6 +105,8 @@ body {
 .slideshow-container {
   position: relative;
   width: 100%;
+  z-index: 1;
+  padding-top: 90px;
 }
 
 .mySlides img {
@@ -157,7 +176,6 @@ h5 {
   font-size: 20px;
   padding: 8px 12px;
   position: absolute;
-  top: 0;
   text-shadow: 0px 3px 2px black;
 }
 
@@ -194,6 +212,13 @@ h5 {
   }
 }
 
+/* "Responsividade" */
+@media screen and (max-width: 837px) {
+  .slideshow-container {
+    padding-top: 0px;
+  }
+}
+
 /* Calculadora */
 
 .section {
@@ -201,6 +226,7 @@ h5 {
   flex-direction: column;
   align-items: center;
   align-self: stretch;
+  z-index: 1;
 }
 
 .tituloSimulador {
@@ -249,6 +275,7 @@ h5 {
   height: fit-content;
   transition: 5s;
   bottom: 0;
+  z-index: 1;
 }
 
 .divSimulador {
@@ -356,6 +383,195 @@ input[type=number] {
     background: none;
   }
 }
+
+/* Serviços */
+.servicos {
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  z-index: 1;
+}
+
+h3 {
+  color: #ffb800;
+  padding-top: 50px;
+  font-size: 40px;
+  width: 10%;
+  width: 100%;
+  text-align: center;
+}
+
+.servicos .titulo_servicos p {
+  color: #ddd;
+  text-align: right;
+  margin-right: 180px;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.conteudo_servicos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 90%;
+  margin: auto;
+}
+
+.img_api {
+  margin-top: 70px;
+  filter: drop-shadow(-50px -50px 1px #FFE087);
+  border-radius: 20px;
+  width: 40vw;
+  height: 50vh;
+  margin-left: 50px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.texto_servicos {
+  color: #ffffff;
+  font-size: 25px;
+  padding-left: 55px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: -10px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.texto_servicos .card_item {
+  color: #0C2626;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@media(max-width: 1250px){
+  .img_api {
+    width: 90vw;
+    margin-left: 10px;
+  }
+  .conteudo_servicos {
+    display: grid;
+  }
+  .texto_servicos {
+    padding-left: 0;
+  }
+}
+
+/* Sobre nós */
+.center-text {
+  text-align: center;
+  color: rgb(255, 187, 0);
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10%;
+  z-index: 1;
+}
+
+.center-text h1{
+  margin-top: 0;
+}
+
+.flex-container {
+  flex-direction: row-reverse;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.text-container {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  font-family: 'Poppins',  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 22px;
+  text-align: justify;
+  line-height: 1.5;
+  color: #333;
+}
+
+.text-container P{
+  height: 100%;
+  width: 100%;
+  margin-top: 100px;
+  margin: 10%;
+  font-size: 25px;
+  display: flex;
+}
+
+.image-container {
+  flex-direction: column;
+  display: flex;
+  width: 40vw;
+  height: 50vh;
+  align-items: end;
+  
+}
+
+.image-container div{
+  width: 40vw;
+  height: 50vh;
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom, purple, transparent);
+  margin-right: 50px;
+}
+
+.image-container .caixa-abelha {
+  position: absolute;
+  background-image: url("https://img.olhardigital.com.br/wp-content/uploads/2023/06/Destaque-abelha.jpg");
+  background-position: right;
+  background-size: cover;
+  width: 40vw;
+  height: 50vh;
+  margin-right: 100px;
+  margin-top: 50px;
+  min-width: 30vw;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@media(max-width: 1250px){
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .text-container {
+    width: 80%;
+    text-align: center;
+  }
+
+  .image-container {
+    width: 100%;
+    align-items: center;
+  }
+
+  .image-container .caixa-roxa {
+    min-width: 90vw;
+  }
+
+  .image-container .caixa-abelha {
+    margin-top: 20px;
+    margin-right: 0;
+    min-width: 90vw;
+    background-position: center;
+  }
+}
+
 
 /* Footer */
 footer .container {

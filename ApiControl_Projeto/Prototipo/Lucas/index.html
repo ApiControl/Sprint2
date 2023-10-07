@@ -11,20 +11,21 @@
 
     <!-- Header -->
     <div class="header">
+      <img src="imagens/Logo ApiControl.png" href="index.html">
         <a href="index.html" class="logo">ApiControl</a>
         <div class="header-right">
-          <a class="active" href="#home">Home</a>
-          <a href="#simulacao">Simulação</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
+          <a class="active" href="#home" onclick="SlideScroll()">Home</a>
+          <a href="#calculadora" onclick="CalcScroll()">Simulação</a>
+          <a href="#serviço" onclick="ServicoScroll()">Serviços</a>
+          <a href="#sobre" onclick="SobreScroll()">Sobre</a>
+          <a href="#footer" onclick="FooterScroll()">Contato</a>
           <a href="login.html">Login</a>
           <a href="cadastro.html">Cadastro</a>
         </div>
       </div>
 
     <!-- Slideshow container -->
-<div class="slideshow-container">
+<div class="slideshow-container" id="slide_scroll">
 
     <!-- Imagens do slider / Captions / Números da página -->
     <div class="mySlides fade">
@@ -71,7 +72,7 @@
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
 
-<div class="section">
+<div class="section" id="calc_scroll">
   <p class="tituloSimulador">
     Simule sua produção e veja como pode alavancar seu negócio
   </p>
@@ -141,9 +142,48 @@
     </div>
 </div>
 
+  <!-- Serviços -->
+<div class="servicos" id="servico_scroll">
+  <div class="titulo_servicos">
+    <h3>Serviços</h3>
+  </div>
+  <div class="conteudo_servicos">
+    <div class="imagem_servicos">
+      <img class="img_api" src="https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg" >
+    </div>
+    <div class="texto_servicos">
+      <span class="card_item"> Nossa empresa oferece uma solução completa e avançada para a apicultura, integrando sensores de
+        temperatura e
+        umidade nas colmeias para um controle preciso. Isso permite que os apicultores acessem informações em tempo
+        real
+        por meio de uma plataforma inuitiva e realizem análises remotas para tomar decisões conscientes e eficazes.
+      </span>
+    </div>
+  </div>
+</div>
+
+  <!-- Sobre nós -->
+<div class="center-text" id="sobre_scroll">
+  <h1>Sobre Nós</h1>  
+  <div class="flex-container">
+    
+    <div class="image-container">
+
+      <div class="caixa-roxa"></div>
+      <div class="caixa-abelha"></div>
+      
+    </div>
+    <div class="text-container">
+      <p>
+        Estamos empenhados em revolucionar completamente a maneira como os apicultores trabalham. Apresentamos uma ferramenta que não apenas torna suas tarefas mais simples, mas também os coloca no caminho do sucesso, utilizando dados precisos. Nossa missão é proporcionar uma transformação significativa para a apicultura, capacitando nossos parceiros com o que há de melhor na tecnologia, tudo isso, de forma acessível e descomplicada.
+      </p>
+    </div>
+  </div>
+</div>
+
   <!-- Rodapé -->
 <footer>
-  <div class="container">
+  <div class="container" id="footer_scroll">
       <div class="row">
           <!-- 1st Column -->
           <div class="footer-col footer-logo">
@@ -280,6 +320,26 @@ function calcValores(numero) {
   }else if (numero == 8 && i_valor_mel.value > 0) {
     i_valor_mel.value--;
   }
+}
+
+function SlideScroll() {
+  document.getElementById("slide_scroll").scrollIntoView({behavior: "smooth"});
+}
+
+function CalcScroll() {
+  document.getElementById("calc_scroll").scrollIntoView({behavior: "smooth"});
+}
+
+function ServicoScroll() {
+  document.getElementById("servico_scroll").scrollIntoView({behavior: "smooth"});
+}
+
+function SobreScroll() {
+  document.getElementById("sobre_scroll").scrollIntoView({behavior: "smooth"});
+}
+
+function FooterScroll() {
+  document.getElementById("footer_scroll").scrollIntoView({behavior: "smooth"});
 }
 
 </script>

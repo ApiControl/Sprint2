@@ -48,6 +48,11 @@ html, body {
   font-weight: bold;
 }
 
+.header img {
+  height: 50px;
+  float: left;
+}
+
 /* Background-color muda com mouse por cima */
 .header a:hover {
   background-color: #FFE087;
@@ -66,7 +71,7 @@ html, body {
 }
 
 /* "Responsividade" */
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 837px) {
   .header a {
     float: none;
     display: block;
@@ -75,6 +80,12 @@ html, body {
 
   .header-right {
     float: none;
+  }
+
+  .header img {
+    height: 40px;
+    margin-right: 15px;
+    position: center;
   }
 }
 
