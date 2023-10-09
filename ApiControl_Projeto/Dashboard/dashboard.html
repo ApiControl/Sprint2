@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+    <link rel="stylesheet" href="style-dash.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&family=Kanit:ital,wght@1,500&family=Poppins&family=Roboto+Condensed:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./integracaoBD.js"> -->
+    <link rel="stylesheet" href="style-sensores.html">
+</head>
+
+<body onload="adicionar_colmeia()">
+    <!-- divs do header -->
+    <div class="header">
+
+        <div class="container">
+
+            <h1 class="logo">
+                <a href="index.html">ApiControl</a>
+            </h1>
+
+            <ul class="botoes_header">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="">Perfil</a>
+                <a href="">Contato</a>
+                <a href="">Ajuda</a>
+                <a href="">Sair</a>
+            </ul>
+
+        </div>
+
+    </div>
+    <!-- coneúdo da dashboard -->
+
+    <div class="painel">
+        <div class="container">
+            <h1>
+                Dashboard
+            </h1>
+            <div class="texto_periodo">
+                Período:
+                <div class="periodos">
+                    <select id="periodo">
+                        <option value=""></option> <br>
+                        <option value="tempAtual">Temperatura atual</option> <br>
+                        <option value="ult24Horas">Últimas 24 horas</option> <br>
+                        <option value="ultSemana">Última semana</option> <br>
+                        <option value="ultMes">Último mês</option> <br>
+                        <option value="ultAno">Último ano</option> <br>
+                    </select>
+                </div>
+            </div>
+            <div class="lista_colmeias">
+                <ul id="colmeias">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    var vetor_colmeia = [15, 2, 31, 24, 50];
+
+    function adicionar_colmeia() {
+        contador = 0;
+
+        while (contador < vetor_colmeia.length) {
+            colmeias.innerHTML += ` 
+            <li class="lista_colmeia_item" >             
+            <a href="${contador}"> Colméia ${vetor_colmeia[contador]}</a>
+            <div class="status_colmeia" ></div>
+            </li>
+            `
+            contador += 1;
+        }
+    }
+
+</script>
