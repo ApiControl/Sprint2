@@ -46,7 +46,7 @@ footer .container {
     margin-left: 15px;
 }
 
-.footer-col b {
+.footer-col .api {
     color: #fff;
     margin-top: 0;
     font-size: 40px;
@@ -54,7 +54,7 @@ footer .container {
     font-family: 'Chella';
 }
 
-.footer-col c {
+.footer-col .slogan {
     color: #fff;
     font-family: monospace;
     margin-top: 10px;
@@ -142,91 +142,3 @@ hr {
 .row .social_icon i:hover {
     color: #fff;
 }
-
-/* body {
-    margin: 0;
-    overflow: hidden;
-}
-
-.footer {
-    position: static;
-    background-color: #0c2626;
-    margin-top: 480px;
-    height: 227px;
-}
-
-.logo_container {
-    position: absolute;
-    margin-left: 20px;
-    margin-right: 83%;
-    height: 100%;
-}
-
-.logo {
-    height: 130px;
-    margin-left: 30%;
-    margin-right: 30%;
-}
-
-@font-face {
-    font-family: Chella;
-    src: url("Chella-SemiBoldItalic.ttf");
- }
-
-.ApiControl {
-    text-align: center;
-    font-size: xx-large;
-    font-family: Chella;
-    color: #fff;
-}
-
-.slogan {
-    text-align: center;
-    font-size: x-small;
-    font-family: monospace;
-    color: #fff;
-}
-
-.icones { 
-    position: absolute;
-    height: 100%;
-    margin-left: 37%;
-    margin-right: 0;
-    margin-top: 0px;
-    font-size: large;
-    font-family: sans-serif;
-    color: #fff;
-    
-    float:left; 
-    margin-bottom:2em;
-  }
-
-.linha {
-    width: 100%;
-    border-bottom: 1px solid hsla(0, 0%, 100%, 0.19);
-  }
-
-.iconWpp {
-    background-color: #0c2626;
-    width: 50px;
-    margin-bottom: 25%;
-}
-
-.iconLkd {
-    background-color: #0c2626;
-    width: 50px;
-    margin-bottom: 30%;
-}
-
-.iconFace {
-    background-color: #0c2626;
-    width: 30px;
-    margin-bottom: 30%;
-}
-
-.iconInsta {
-    background-color: #0c2626;
-    width: 50px;
-    margin-bottom: 50%;
-} */
-
