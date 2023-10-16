@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+  font-family: 'Chella';
+  src: local('Chella SemiBold Italic'), local('Chella-SemiBold-Italic'),
+      url('fontes/Chella-SemiBoldItalic.woff2') format('woff2'),
+      url('fontes/Chella-SemiBoldItalic.woff') format('woff'),
+      url('fontes/Chella-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Chella;
+  src: url("fontes/Chella-SemiBoldItalic.ttf");
+}
+
+body {
+  margin: 0;
+  background-color: #121212;
+}
+
+/* Style do header com background e padding pra posicionamento */
+.header {
+  overflow: hidden;
+  background-color: #0C2626;
+  padding: 20px 10px;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style dos links do header */
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style do link do logo (Font-size com o mesmo valor do line-height do .header pra evitar conflito) */
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header img {
+  height: 50px;
+  float: left;
+}
+
+/* Background-color muda com mouse por cima */
+.header a:hover {
+  background-color: #FFE087;
+  color: #0C2626;
+}
+
+/* Style do link atual*/
+.header a.active {
+  background-color: #FFB800;
+  color: #0C2626;
+}
+
+/* Links pra direita */
+.header-right {
+  float: right;
+}
+
+/* "Responsividade" */
+@media screen and (max-width: 837px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-right {
+    float: none;
+  }
+
+  .header img {
+    height: 40px;
+    margin-right: 15px;
+    position: center;
+  }
+}
+
+/* conteúdo da dashboard */
+
+.painel{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    margin-bottom: 10%;
+}
+
+.painel .container h1 {
+    display: inline;
+    margin: 0;
+    color: white;
+    padding-top: 1%;
+}
+
+.painel .container .titulo h1 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    color: white;
+    padding-top: 1%;
+}
+
+.painel .container .titulo {
+    height: 30vh;
+}
+
+.painel .container .container-chart .chart {
+    display: grid;
+	gap: 1em;
+	grid-template-rows: min-content minmax(0, 1fr) min-content;
+	grid-template-columns: 1fr minmax(0, 3fr);
+	grid-template-areas: "a h"
+						 "a c"
+						 "a f";
+	height: calc(100vh - 2em);
+	width: calc(100vw - 2em);
+}
+
+.painel .container {
+    width: 90%;
+    height: 100%;
+    margin: 0;
+    padding: 10px 2.5%;
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 10%;
+}
+
+.painel .container-chart {
+    width: 90%;
+    height: 100%;
+    margin: 0;
+    padding: 10px 2.5%;
+    display: flex;
+}
+
+.painel .container .lista_colmeias{
+    width: 20vw;
+    height: 80%;
+    display: flex;
+}
+
+.painel .container .lista_colmeias a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding-top: 5px;
+}
+
+.painel .container .texto_periodo{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.painel .container .texto_periodo .periodos{
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.painel .container .lista_colmeias .lista_colmeia_item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 5vw;
+}
+
+.painel .container .lista_colmeias #colmeias{
+    flex-direction: column;
+    flex: 50%;
+    align-items: center;
+}
+
+.painel .container .lista_colmeias #colmeias2{
+    flex-direction: column;
+    flex: 50%;
+    align-items: center;
+}
+/* melhorar dimensionalidade (espaçamento) do width (bolinhas de status) */
+
+.painel .container .lista_colmeias .lista_colmeia_item .status_colmeia{
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    background-color: green;
+}
+
+/* Footer */
+footer .container {
+    background-color: #0c2626;
+    margin:auto;
+  }
+  
+  .footer-logo {
+    margin-right: 15px;
+  }
+  
+  .logoApi {
+    width: 150px;
+    margin-top: -35px;   
+    margin-bottom: -10px;
+    margin-left: 45px;
+  }
+  
+  .icon_phone {
+    width: 20px;
+    opacity: 0.5;
+  }
+  
+  .icon_maps {
+    width: 30px;
+    opacity: 0.5;
+  }
+  
+  .icon_mail {
+    width: 30px;
+    opacity: 0.5;
+  }
+  
+  .footer-col a {
+    color: #fff;
+    margin-top: 0;
+    font-size: 40px;
+    position: relative;
+    margin-left: 15px;
+  }
+  
+  .footer-col b {
+    color: #fff;
+    margin-top: 0;
+    font-size: 40px;
+    position: relative;
+    font-family: 'Chella';
+  }
+  
+  .footer-col c {
+    color: #fff;
+    font-family: monospace;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-size: 12.5px;
+    margin-left: -27px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 100px;
+  }
+  
+  .footer-col ul {
+    list-style: none;
+  }
+  
+  .footer-col h4 {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 20px;
+    position: relative;
+  }
+  
+  .footer-col h4::before {
+    content: '';
+    width: 70px;
+    height: 2px;
+    position: absolute;
+    background-color: #cc9918;
+    bottom: -10px
+  }
+  
+  .footer-col ul li {
+    padding: 10px 0;
+  }
+  
+  .footer-col ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    opacity: 0.7;
+    transition: 0.2s;
+  }
+  
+  .footer-col ul li a:hover {
+    opacity: 1;
+  }
+  
+  .footer-col input {
+    border: none;
+    width: 250px;
+    height: 45px;
+    display: block;
+    padding-left: 20px;
+    margin: 14px 0;
+  }
+  
+  .footer-col .input_submit {
+    padding: 0px 20px;
+    background-color: #cc9918;
+    border: none;
+    color: #fff
+  }
+  
+  .col p {
+    color: #cc9918;
+    font-size: 13px;
+  }
+  
+  hr {
+    opacity: 0.5;
+  } 
+  
+  .row .social_icon i {
+    display: inline-block;
+    color: #cc9918;
+    font-size: 20px;
+    margin: 0 15px;
+    transition: 0.2s;
+  }
+  
+  .row .social_icon i:hover {
+    color: #fff;
+  }
+  
+  /* "Responsividade" */
+  @media(max-width: 770px){
+    .footer-col{
+      width: 50%;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .footer-col h4 {
+      text-align: left;
+    }
+    .logoApi {
+      margin-left: 0;
+    }
+  }
+  @media(max-width: 574px){
+    .footer-col{
+      width: 100%;
+    }
+    .footer-col h4 {
+      text-align: left;
+    }
+    .logoApi {
+      margin-left: 0;
+    }
+  }
