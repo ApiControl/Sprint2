@@ -710,6 +710,12 @@ hr {
   color: #fff;
 }
 
+.input_submit:hover {
+  background-color: #FFB800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 /* "Responsividade" */
 @media(max-width: 770px){
   .footer-col{

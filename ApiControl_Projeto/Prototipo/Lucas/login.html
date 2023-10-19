@@ -9,23 +9,26 @@
    </head>
 <body>
 
-    <div class="header">
-      <img src="imagens/Logo ApiControl.png" href="index.html">
-      <a href="index.html" class="logo">ApiControl</a>
-        <div class="header-right">
-          <a href="index.html">Home</a>
-          <a href="index.html#calc_scroll">Simulação</a>
-          <a href="index.html#servico_scroll">Serviços</a>
-          <a href="index.html#sobre_scroll">Sobre</a>
-          <a href="index.html#footer_scroll">Contato</a>
-          <a class="active" href="login.html">Login</a>
-          <a href="cadastro.html">Cadastro</a>
-        </div>
-    </div>
+  <!-- Header -->
+  <div class="header">
+    <img src="imagens/Logo ApiControl.png" href="index.html">
+    <a href="index.html" class="logo">ApiControl</a>
+      <div class="header-left">  
+        <a href="index.html">Home</a>
+        <a href="index.html#calc_scroll">Simulação</a>
+        <a href="index.html#servico_scroll">Serviços</a>
+        <a href="index.html#sobre_scroll">Sobre</a>
+        <a href="index.html#footer_scroll">Contato</a>
+      </div>
+      <div class="header-right">
+        <a class="active" href="login.html">Login</a>
+        <a href="cadastro.html">Cadastro</a>
+      </div>
+</div>
 
   <div class="container-form">
     <h2>Login</h2>
-    <form action="index.html">
+    <form action="dashboard.html">
       <div class="input-field">
         <input type="text" placeholder="Email" required>
       </div>
@@ -76,19 +79,19 @@
           <div class="footer-col">
               <h4>Menu</h4>
               <ul>
-                  <li><a href="">Início</a> </li>
-                  <li><a href="">Simulação</a> </li>
-                  <li><a href="">Sobre</a> </li>
-                  <li><a href="">Serviços</a> </li>
+                <li><a href="index.html">Home</a> </li>
+                <li><a href="index.html#calc_scroll">Simulação</a> </li>
+                <li><a href="index.html#servico_scroll">Serviços</a> </li>
+                <li><a href="index.html#sobre_scroll">Sobre</a> </li>
               </ul>
           </div>
 
           <!-- 4th Column -->
           <div class="footer-col">
               <h4>Entre em contato:</h4>
-              <form action="">
-                  <input type="text" placeholder="Seu Nome" class="input_nome">
-                  <input type="email" placeholder="Seu Email" class="input_email">
+              <form action="endereco.html">
+                  <input type="text" placeholder="Seu Nome" class="input_nome" required>
+                  <input type="email" placeholder="Seu Email" class="input_email" required>
                   <input type="submit" value="Enviar" class="input_submit">
               </form>
           </div>

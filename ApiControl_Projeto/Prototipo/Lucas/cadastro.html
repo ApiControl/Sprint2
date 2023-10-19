@@ -11,33 +11,36 @@
 
 <body>
 
+    <!-- Header -->
     <div class="header">
         <img src="imagens/Logo ApiControl.png" href="index.html">
         <a href="index.html" class="logo">ApiControl</a>
-        <div class="header-right">
+          <div class="header-left">  
             <a href="index.html">Home</a>
             <a href="index.html#calc_scroll">Simulação</a>
             <a href="index.html#servico_scroll">Serviços</a>
             <a href="index.html#sobre_scroll">Sobre</a>
             <a href="index.html#footer_scroll">Contato</a>
+          </div>
+          <div class="header-right">
             <a href="login.html">Login</a>
             <a class="active" href="cadastro.html">Cadastro</a>
-        </div>
+          </div>
     </div>
 
     <div class="container-form">
-        <h2>Cadastro</h2>
+        <h2>Cadastro Passo - 1/2</h2>
         <form action="endereco.html">
 
                 <div class="field name-field">
                     <div class="input-field">
-                        <input type="text" placeholder="Nome" class="name" required/>
+                        <input type="text" placeholder="Nome da Empresa" class="name" required/>
                     </div>
                 </div>
 
                 <div class="field telefone-field">
                     <div class="input-field">
-                        <input type="text" placeholder="Telefone" class="telefone" maxlength="12"/>
+                        <input type="text" placeholder="Telefone Comercial" class="telefone" maxlength="12"/>
                     </div>
                 </div>
 
@@ -49,7 +52,7 @@
 
                 <div class="field email-field">
                     <div class="input-field">
-                        <input type="email" placeholder="Email" class="email"/>
+                        <input type="email" placeholder="Email Empresarial" class="email"/>
                     </div>
                     <span class="error email-error">
                         <p class="error-text">Por favor informar email válido</p>
@@ -120,24 +123,24 @@
             </div>
   
             <!-- 3rd Column -->
-            <div class="footer-col">
-                <h4>Menu</h4>
-                <ul>
-                    <li><a href="">Início</a> </li>
-                    <li><a href="">Simulação</a> </li>
-                    <li><a href="">Sobre</a> </li>
-                    <li><a href="">Serviços</a> </li>
-                </ul>
-            </div>
-  
-            <!-- 4th Column -->
-            <div class="footer-col">
-                <h4>Entre em contato:</h4>
-                <form action="">
-                    <input type="text" placeholder="Seu Nome" class="input_nome">
-                    <input type="email" placeholder="Seu Email" class="input_email">
-                    <input type="submit" value="Enviar" class="input_submit">
-                </form>
+          <div class="footer-col">
+            <h4>Menu</h4>
+            <ul>
+              <li><a href="index.html">Home</a> </li>
+              <li><a href="index.html#calc_scroll">Simulação</a> </li>
+              <li><a href="index.html#servico_scroll">Serviços</a> </li>
+              <li><a href="index.html#sobre_scroll">Sobre</a> </li>
+            </ul>
+        </div>
+
+        <!-- 4th Column -->
+        <div class="footer-col">
+            <h4>Entre em contato:</h4>
+            <form action="endereco.html">
+                <input type="text" placeholder="Seu Nome" class="input_nome" required>
+                <input type="email" placeholder="Seu Email" class="input_email" required>
+                <input type="submit" value="Enviar" class="input_submit">
+            </form>
             </div>
         </div>
         <hr>
