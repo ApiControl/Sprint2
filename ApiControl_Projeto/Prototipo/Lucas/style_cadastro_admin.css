@@ -39,8 +39,6 @@ html, body {
   padding: 20px 10px;
   margin: 0;
   font-family: "Dosis", sans-serif;
-  position: relative;
-  z-index: 2;
 }
 
 /* Style dos links do header */
@@ -102,73 +100,6 @@ html, body {
   }
 }
 
-/*Gradient brilho*/
-.card {
-  background: #0C2626;
-  padding: 3px;
-  position: relative;
-  border-radius: 15px;
-  color: rgb(88 199 250 / 0%);
-  cursor: pointer;
-  font-family: "Dosis", sans-serif;
-}
-
-.card a:hover {
-  color: #0C2626;
-  background-color: rgb(255 184 0 / 100%);
-  border-radius: 15px;
-  transition: color 1s;
-}
-.card a:hover:before, .card a:hover:after {
-  animation: none;
-  opacity: 0;
-}
-
-
-.card::before {
-  content: "";
-  width: 104%;
-  height: 102%;
-  border-radius: 8px;
-  background-image: linear-gradient(
-    var(--rotate)
-    , #ffe087, #ffb800 43%, #CC9918);
-    position: absolute;
-    z-index: -1;
-    top: -1%;
-    left: -2%;
-    animation: spin 2.5s linear infinite;
-}
-
-.card::after {
-  position: relative;
-  content: "";
-  top: calc(var(--card-height) / 6);
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-  transform: scale(0.8);
-  filter: blur(calc(var(--card-height) / 6));
-  background-image: linear-gradient(
-    var(--rotate)
-    , #ffe087, #ffb800 43%, #CC9918);
-    opacity: 1;
-  transition: opacity .5s;
-  animation: spin 2.5s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    --rotate: 0deg;
-  }
-  100% {
-    --rotate: 360deg;
-  }
-}
-
 /*User dropdown*/
 .dropdown {
   float: right;
@@ -202,8 +133,8 @@ html, body {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160.28px;
-  max-width: 160.28px;
+  min-width: 148.48px;
+  max-width: 148.48px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }

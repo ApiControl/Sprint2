@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_dash.css">
+    <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard</title>
 </head>
@@ -20,10 +22,17 @@
             <a href="index.html#sobre_scroll">Sobre</a>
             <a href="index.html#footer_scroll">Contato</a>
           </div>
-          <div class="header-right">
-            <a href="login.html">Login</a>
-            <a href="cadastro.html">Cadastro</a>
-          </div>
+          <div class="dropdown">
+            <img src="imagens\user_icon.png">
+            <button class="dropbtn" onclick="myFunction()">Usuário
+              <i class="fa fa-caret-down"></i>
+            </button>
+              <div class="dropdown-content" id="myDropdown">
+                <a href="cadastro_admin.html">Cadastrar</a>
+                <a href="#">Espécies</a>
+                <a href="login.html">Deslogar</a>
+              </div>
+            </div>
     </div>
 
     <!-- conteúdo da dashboard -->
@@ -73,6 +82,21 @@
 </html>
 
 <script>
+/* Quando o usuário clica no botão,
+alternar entre ocultar e mostrar o conteúdo suspenso */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Feche o menu suspenso se o usuário clicar fora dele
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
     const vetor_colmeia = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16, 17];
     const vetor_colmeia2 = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27 ,28, 29, 30, 31, 32];
 

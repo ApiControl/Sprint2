@@ -5,8 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="style_login_cadastro.css"/>
+    <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>Cadastro</title>
+    <title>Cadastro da Empresa</title>
 </head>
 
 <body>
@@ -22,15 +23,15 @@
             <a href="index.html#sobre_scroll">Sobre</a>
             <a href="index.html#footer_scroll">Contato</a>
           </div>
-          <div class="header-right">
+          <div class="header-right card">
             <a href="login.html">Login</a>
-            <a class="active" href="cadastro.html">Cadastro</a>
+            <a href="cadastro_empresa.html">Cadastro</a>
           </div>
     </div>
 
     <div class="container-form">
         <h2>Cadastro Passo - 1/2</h2>
-        <form action="endereco.html">
+        <form action="endereco_empresa.html">
 
                 <div class="field name-field">
                     <div class="input-field">
@@ -40,43 +41,22 @@
 
                 <div class="field telefone-field">
                     <div class="input-field">
-                        <input type="text" placeholder="Telefone Comercial" class="telefone" maxlength="12"/>
+                        <input type="text" placeholder="Telefone Comercial" class="telefone" maxlength="12" required/>
                     </div>
                 </div>
 
                 <div class="field cnpj-field">
                     <div class="input-field">
-                        <input type="text" placeholder="CNPJ" class="cnpj" minlength="14" maxlength="14"/>
+                        <input type="text" placeholder="CNPJ" class="cnpj" minlength="14" maxlength="14" required/>
                     </div>
                 </div>
 
                 <div class="field email-field">
                     <div class="input-field">
-                        <input type="email" placeholder="Email Empresarial" class="email"/>
+                        <input type="email" placeholder="Email Corporativo" class="email"/>
                     </div>
                     <span class="error email-error">
                         <p class="error-text">Por favor informar email válido</p>
-                    </span>
-                </div>
-
-                <div class="field create-password">
-                    <div class="input-field">
-                        <input type="password" placeholder="Criar senha" class="password"/>
-                    </div>
-                    <span class="error password-error">
-                        <p class="error-text">
-                            Por favor inserir pelo menos 8 dígitos, incluindo um número, símbolo, letra minúscula
-                            e letra maiúscula
-                        </p>
-                    </span>
-                </div>
-
-                <div class="field confirm-password">
-                    <div class="input-field">
-                        <input type="password" placeholder="Confirmar senha" class="cPassword"/>
-                    </div>
-                    <span class="error cPassword-error">
-                        <p class="error-text">Senhas diferentes</p>
                     </span>
                 </div>
 
@@ -136,10 +116,8 @@
         <!-- 4th Column -->
         <div class="footer-col">
             <h4>Entre em contato:</h4>
-            <form action="endereco.html">
-                <input type="text" placeholder="Seu Nome" class="input_nome" required>
-                <input type="email" placeholder="Seu Email" class="input_email" required>
-                <input type="submit" value="Enviar" class="input_submit">
+            <form action="cadastro_empresa.html">
+                <input type="submit" value="Fazer Cadastro" class="input_submit">
             </form>
             </div>
         </div>
@@ -166,11 +144,8 @@
 
     const form = document.querySelector("form"),
         emailField = form.querySelector(".email-field"),
-        emailInput = emailField.querySelector(".email"),
-        passField = form.querySelector(".create-password"),
-        passInput = passField.querySelector(".password"),
-        cPassField = form.querySelector(".confirm-password"),
-        cPassInput = cPassField.querySelector(".cPassword");
+        emailInput = emailField.querySelector(".email");
+
 
     // Email Validação
     function checkEmail() {
@@ -181,41 +156,16 @@
         emailField.classList.remove("invalid"); //removendo classe inválida se o valor do email corresponder a emaiPattern
     }
 
-    // Senha Validação
-    function createPass() {
-        const passPattern =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-        if (!passInput.value.match(passPattern)) {
-            return passField.classList.add("invalid"); //adicionando classe inválida se o valor de entrada da senha não corresponder a passPattern
-        }
-        passField.classList.remove("invalid"); //removendo classe inválida se o valor de entrada da senha corresponder a passPattern
-    }
-
-    // Confirmar Senha Validação
-    function confirmPass() {
-        if (passInput.value !== cPassInput.value || cPassInput.value === "") {
-            return cPassField.classList.add("invalid");
-        }
-        cPassField.classList.remove("invalid");
-    }
-
     // Chamando Função no form submit
     form.addEventListener("submit", (e) => {
         e.preventDefault(); //previnindo submit de trocar de página
         checkEmail();
-        createPass();
-        confirmPass();
 
         //Chamando funções pelo keyup para validar em tempo real
         emailInput.addEventListener("keyup", checkEmail);
-        passInput.addEventListener("keyup", createPass);
-        cPassInput.addEventListener("keyup", confirmPass);
 
         if (
-            !emailField.classList.contains("invalid") &&
-            !passField.classList.contains("invalid") &&
-            !cPassField.classList.contains("invalid")
+            !emailField.classList.contains("invalid")
         ) {
             location.href = form.getAttribute("action");
         }

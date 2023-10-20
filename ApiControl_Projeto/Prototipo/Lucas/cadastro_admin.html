@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style_cadastro_admin.css"/>
+    <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Cadastro Admin</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="imagens/Logo ApiControl.png" href="index.html">
+        <a href="index.html" class="logo">ApiControl</a>
+          <div class="header-left">  
+            <a href="index.html">Home</a>
+            <a href="index.html#calc_scroll">Simulação</a>
+            <a href="index.html#servico_scroll">Serviços</a>
+            <a href="index.html#sobre_scroll">Sobre</a>
+            <a href="index.html#footer_scroll">Contato</a>
+          </div>
+          <div class="dropdown">
+            <img src="imagens\user_icon.png">
+            <button class="dropbtn" onclick="myFunction()">Usuário
+              <i class="fa fa-caret-down"></i>
+            </button>
+              <div class="dropdown-content" id="myDropdown">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#">Espécies</a>
+                <a href="login.html">Deslogar</a>
+              </div>
+            </div>
+    </div>
+
+    <div class="container-form">
+        <h2>Cadastro Passo - 1/2</h2>
+        <form action="endereco_admin.html">
+
+                <div class="field name-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Nome da Empresa" class="name" required/>
+                    </div>
+                </div>
+
+                <div class="field telefone-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="Telefone Comercial" class="telefone" maxlength="12" required/>
+                    </div>
+                </div>
+
+                <div class="field cnpj-field">
+                    <div class="input-field">
+                        <input type="text" placeholder="CNPJ" class="cnpj" minlength="14" maxlength="14" required/>
+                    </div>
+                </div>
+
+                <div class="field email-field">
+                    <div class="input-field">
+                        <input type="email" placeholder="Email Empresarial" class="email"/>
+                    </div>
+                    <span class="error email-error">
+                        <p class="error-text">Por favor informar email válido</p>
+                    </span>
+                </div>
+
+                <div class="field create-password">
+                    <div class="input-field">
+                        <input type="password" placeholder="Criar senha" class="password"/>
+                    </div>
+                    <span class="error password-error">
+                        <p class="error-text">
+                            Por favor inserir pelo menos 8 dígitos, incluindo um número, símbolo, letra minúscula
+                            e letra maiúscula
+                        </p>
+                    </span>
+                </div>
+
+                <div class="field confirm-password">
+                    <div class="input-field">
+                        <input type="password" placeholder="Confirmar senha" class="cPassword"/>
+                    </div>
+                    <span class="error cPassword-error">
+                        <p class="error-text">Senhas diferentes</p>
+                    </span>
+                </div>
+
+                <div class="policy_lembrar">
+                    <input type="checkbox" required>
+                    <h3>Eu aceito todos termos e condições</h3>
+                </div>
+
+                <div class="input-field button">
+                    <input type="submit" value="Continuar"/>
+                </div>
+
+                <div class="text">
+                    <h3>Já possui uma conta? <a href="login.html">Acessar</a></h3>
+                </div>
+        </form>
+    </div>
+
+    <!-- Rodapé -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <!-- 1st Column -->
+            <div class="footer-col footer-logo">
+                <ul>
+                    <img src="imagens/Logo ApiControl.png" class="logoApi"><br>
+                    <b href="">ApiControl</b> <br>
+                    <c href="">Transformando Dados em Melhores Escolhas</c>
+                </ul>
+            </div>
+  
+            <!-- 2nd Column -->
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><img src="imagens/icon telefone.png"
+                            class="icon_phone"><a href="">(11) 99845-0000</a> </li>
+                    <li><img src="imagens/icon maps.png"
+                            class="icon_maps"><a href="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo</a>
+                    </li>
+                    <li><img src="imagens/icon email.png"
+                            class="icon_mail"><a href="">   contato@apicontrol.com</a> </li>
+                </ul>
+            </div>
+  
+            <!-- 3rd Column -->
+          <div class="footer-col">
+            <h4>Menu</h4>
+            <ul>
+              <li><a href="index.html">Home</a> </li>
+              <li><a href="index.html#calc_scroll">Simulação</a> </li>
+              <li><a href="index.html#servico_scroll">Serviços</a> </li>
+              <li><a href="index.html#sobre_scroll">Sobre</a> </li>
+            </ul>
+        </div>
+
+        <!-- 4th Column -->
+        <div class="footer-col">
+            <h4>Entre em contato:</h4>
+            <form action="cadastro_empresa.html">
+                <input type="submit" value="Fazer Cadastro" class="input_submit">
+            </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <p>&#169; 2023 ApiControl. Todos os Direitos Reservados. </p>
+            </div>
+            <div class="social_icon">
+                <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>
+
+<script>
+/* Quando o usuário clica no botão,
+alternar entre ocultar e mostrar o conteúdo suspenso */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Feche o menu suspenso se o usuário clicar fora dele
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+
+    const form = document.querySelector("form"),
+        emailField = form.querySelector(".email-field"),
+        emailInput = emailField.querySelector(".email"),
+        passField = form.querySelector(".create-password"),
+        passInput = passField.querySelector(".password"),
+        cPassField = form.querySelector(".confirm-password"),
+        cPassInput = cPassField.querySelector(".cPassword");
+
+    // Email Validação
+    function checkEmail() {
+        const emaiPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!emailInput.value.match(emaiPattern)) {
+            return emailField.classList.add("invalid"); //adicionando classe inválida se o valor do email não corresponder ao padrão de email
+        }
+        emailField.classList.remove("invalid"); //removendo classe inválida se o valor do email corresponder a emaiPattern
+    }
+
+    // Senha Validação
+    function createPass() {
+        const passPattern =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (!passInput.value.match(passPattern)) {
+            return passField.classList.add("invalid"); //adicionando classe inválida se o valor de entrada da senha não corresponder a passPattern
+        }
+        passField.classList.remove("invalid"); //removendo classe inválida se o valor de entrada da senha corresponder a passPattern
+    }
+
+    // Confirmar Senha Validação
+    function confirmPass() {
+        if (passInput.value !== cPassInput.value || cPassInput.value === "") {
+            return cPassField.classList.add("invalid");
+        }
+        cPassField.classList.remove("invalid");
+    }
+
+    // Chamando Função no form submit
+    form.addEventListener("submit", (e) => {
+        e.preventDefault(); //previnindo submit de trocar de página
+        checkEmail();
+        createPass();
+        confirmPass();
+
+        //Chamando funções pelo keyup para validar em tempo real
+        emailInput.addEventListener("keyup", checkEmail);
+        passInput.addEventListener("keyup", createPass);
+        cPassInput.addEventListener("keyup", confirmPass);
+
+        if (
+            !emailField.classList.contains("invalid") &&
+            !passField.classList.contains("invalid") &&
+            !cPassField.classList.contains("invalid")
+        ) {
+            location.href = form.getAttribute("action");
+        }
+    });
+
+</script>

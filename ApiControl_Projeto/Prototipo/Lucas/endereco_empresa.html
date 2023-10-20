@@ -5,29 +5,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="style_login_cadastro.css"/>
+    <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>Endereço</title>
+    <title>Endereço da Empresa</title>
 </head>
 
 <body>
 
+    <!-- Header -->
     <div class="header">
         <img src="imagens/Logo ApiControl.png" href="index.html">
         <a href="index.html" class="logo">ApiControl</a>
-        <div class="header-right">
+          <div class="header-left">  
             <a href="index.html">Home</a>
             <a href="index.html#calc_scroll">Simulação</a>
             <a href="index.html#servico_scroll">Serviços</a>
             <a href="index.html#sobre_scroll">Sobre</a>
             <a href="index.html#footer_scroll">Contato</a>
+          </div>
+          <div class="header-right card">
             <a href="login.html">Login</a>
-            <a class="active" href="cadastro.html">Cadastro</a>
-        </div>
+            <a href="cadastro_empresa.html">Cadastro</a>
+          </div>
     </div>
 
     <div class="container-form">
         <h2>Cadastro Passo - 2/2</h2>
-        <form action="login.html">
+        <form action="cadastro_contato.html">
 
                 <div class="field cep-field">
                     <div class="input-field">
@@ -122,10 +126,8 @@
             <!-- 4th Column -->
             <div class="footer-col">
                 <h4>Entre em contato:</h4>
-                <form action="">
-                    <input type="text" placeholder="Seu Nome" class="input_nome" required>
-                    <input type="email" placeholder="Seu Email" class="input_email" required>
-                    <input type="submit" value="Enviar" class="input_submit">
+                <form action="cadastro_empresa.html">
+                    <input type="submit" value="Fazer Cadastro" class="input_submit">
                 </form>
             </div>
         </div>

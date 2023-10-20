@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.cdnfonts.com/css/dosis');
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
 
 @font-face {
   font-family: 'Chella';
@@ -18,7 +24,7 @@
 * {
   margin:0;
 	padding:0;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 body {
@@ -31,7 +37,7 @@ body {
   background-color: #0C2626;
   padding: 20px 10px;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Dosis", sans-serif;
   position: fixed;
   z-index: 2;
   width: 100%;
@@ -61,7 +67,7 @@ body {
 }
 
 /* Background-color muda com mouse por cima */
-.header a:hover {
+.header-left a:hover {
   background-color: #FFE087;
   color: #0C2626;
 }
@@ -75,6 +81,73 @@ body {
 /* Links pra direita */
 .header-right {
   float: right;
+}
+
+/*Gradient brilho*/
+.card {
+  background: #0C2626;
+  padding: 3px;
+  position: relative;
+  border-radius: 15px;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: "Dosis", sans-serif;
+}
+
+.card a:hover {
+  color: #0C2626;
+  background-color: rgb(255 184 0 / 100%);
+  border-radius: 15px;
+  transition: color 1s;
+}
+.card a:hover:before, .card a:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #ffe087, #ffb800 43%, #CC9918);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: relative;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #ffe087, #ffb800 43%, #CC9918);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
 }
 
 /* "Responsividade" */
@@ -107,6 +180,7 @@ body {
   width: 100%;
   z-index: 1;
   padding-top: 90px;
+  font-family: 'Dosis', sans-serif;
 }
 
 .mySlides img {
@@ -114,6 +188,7 @@ body {
   min-height: 350px;
   object-fit: cover;
   object-position: center;
+  filter: contrast(60%);
 }
 
 /* Hide the images by default */
@@ -152,8 +227,9 @@ body {
 
 /* Caption text */
 .text {
-  color: #f2f2f2;
-  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
   padding: 8px 12px;
   position: absolute;
   bottom: 8px;
@@ -167,13 +243,15 @@ h5 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 /* Number text (1/3) */
 .numbertext {
-  color: #f2f2f2;
-  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
   padding: 8px 12px;
   position: absolute;
   text-shadow: 0px 3px 2px black;
@@ -227,11 +305,12 @@ h5 {
   align-items: center;
   align-self: stretch;
   z-index: 1;
+  font-family: 'Dosis', sans-serif;
 }
 
 .tituloSimulador {
   margin: 48px 126px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Dosis', sans-serif;;
   font-size: 32px;
   width: 100%;
   text-align: center;
@@ -253,14 +332,14 @@ h5 {
 }
 
 .tituloItem {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Dosis', sans-serif;
   font-size: 16px;
   font-weight: 600;
 }
 
 /*style da Div de resultados*/
 .divResultado {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Dosis', sans-serif;
   gap: 24px;
   display: none;
   flex-direction: column;
@@ -280,7 +359,7 @@ h5 {
 
 .divSimulador {
   font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Dosis', sans-serif;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -288,7 +367,7 @@ h5 {
 }
 
 .inputSimulador {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Dosis', sans-serif;
   outline: none;
   border: none;
   background-color: transparent;
@@ -308,7 +387,7 @@ input[type=number] {
 }
 
 .botaoSimulador {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Dosis', sans-serif;
   border-radius: 40px;
   font-size: 24px;
   min-width: 40px;
@@ -330,15 +409,22 @@ input[type=number] {
 .botaoResultado {
   margin: 40px 0px 0px 0px;
   padding: 8px 16px;
-  background-color: #000;
+  background-color: #0C2626;
   border-radius: 4px;
   color: white;
   border: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Dosis', sans-serif;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
 }
+
+.botaoResultado:hover {
+  background-color: #FFBF00;
+  color: #0C2626;
+  cursor: pointer;
+}
+
 
 .tituloResultado {
   align-self: stretch;
@@ -362,6 +448,7 @@ input[type=number] {
 
 .ctaContainer {
   background-color: #FFBF00;
+  color: #0C2626;
   border-radius: 40px;
   padding: 16px 24px;
   display: flex;
@@ -373,9 +460,13 @@ input[type=number] {
 }
 .ctaLink {
   font-size: 16px;
-  color: black;
+  color: #0C2626;
   font-weight: 800;
   text-decoration: underline;
+}
+
+.ctaLink:hover {
+  color: #154242;
 }
 
 @media (max-width: 1260px) {
@@ -387,11 +478,11 @@ input[type=number] {
 /* Serviços */
 .servicos {
   background-color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Dosis', sans-serif;
   z-index: 1;
 }
 
-h3 {
+h2 {
   color: #ffb800;
   padding-top: 50px;
   font-size: 40px;
@@ -437,15 +528,16 @@ h3 {
   padding-top: 10px;
   padding-bottom: -10px;
   text-align: center;
-  line-height: 40px;
+  line-height: 1.5;
 }
 
-.texto_servicos .card_item {
+.texto_servicos p {
   color: #0C2626;
   font-size: 25px;
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  font-weight: bold;
 }
 
 @media(max-width: 1250px){
@@ -463,10 +555,10 @@ h3 {
 
 /* Sobre nós */
 .center-text {
-  text-align: center;
+  text-align: justify;
   color: rgb(255, 187, 0);
-  font-size: 30px;
-  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
+  font-family: 'Dosis', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -475,7 +567,7 @@ h3 {
   z-index: 1;
 }
 
-.center-text h1{
+.center-text h2{
   margin-top: 0;
 }
 
@@ -487,6 +579,7 @@ h3 {
   width: 100%;
   height: 100%;
   margin: 0;
+  padding-top: 50px;
 }
 
 .text-container {
@@ -495,20 +588,21 @@ h3 {
   justify-content: center;
   width: 50%;
   height: 100%;
-  font-family: 'Poppins',  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 22px;
+  font-family: 'Dosis', sans-serif;
+  font-size: 25px;
   text-align: justify;
   line-height: 1.5;
   color: #333;
 }
 
-.text-container P{
+.text-container p{
   height: 100%;
   width: 100%;
   margin-top: 100px;
   margin: 10%;
   font-size: 25px;
   display: flex;
+  font-weight: bold;
 }
 
 .image-container {
@@ -551,7 +645,7 @@ h3 {
   }
 
   .text-container {
-    width: 80%;
+    width: 100%;
     text-align: center;
   }
 
@@ -577,6 +671,7 @@ h3 {
 footer .container {
   background-color: #0c2626;
   margin:auto;
+  font-family: 'Dosis', sans-serif;
 }
 
 .footer-logo {
