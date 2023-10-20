@@ -247,7 +247,7 @@ body {
 
 
 /* "Responsividade" */
-.painel .container .titulo .container-chart .chart {
+/* .painel .container .titulo .container-chart .chart {
   display: grid;
   gap: 1em;
   grid-template-rows: min-content minmax(0, 1fr) min-content;
@@ -258,4 +258,4 @@ body {
   height: calc(100vh - 2em);
   width: calc(100vw - 2em);
   padding: 0px 0px;
-}
+} */

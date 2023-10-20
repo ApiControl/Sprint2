@@ -29,7 +29,6 @@
             </button>
               <div class="dropdown-content" id="myDropdown">
                 <a href="cadastro_admin.html">Cadastrar</a>
-                <a href="#">Espécies</a>
                 <a href="login.html">Deslogar</a>
               </div>
             </div>
@@ -142,20 +141,20 @@ window.onclick = function(e) {
       options: {
         // responsive: true,
         // maintainAspectRatio: false,
-        // scales: {
-        //     y: {
-				// 	beginAtZero: true,
-				// 	grid: {
-				// 		color: '#000',
-				// 		drawBorder: false 
-				// 	}
-				// },
-				// x: {
-				// 	grid: {
-				// 		display: false,
-				// 	}
-        //     }
-        // }
+        scales: {
+            y: {
+					beginAtZero: true,
+					// grid: {
+					// 	color: '#000',
+					// 	drawBorder: false 
+					// }
+				},
+				x: {
+					// grid: {
+					// 	display: false,
+					// }
+            }
+        }
        }
     });
 
@@ -176,20 +175,20 @@ window.onclick = function(e) {
       options: {
         // responsive: true,
         // maintainAspectRatio: false,
-        // scales: {
-        //   y: {
-				// 	beginAtZero: true,
-				// 	grid: {
-				// 		color: '#000',
-				// 		drawBorder: false 
-				// 	}
-				// },
-				// x: {
-				// 	grid: {
-				// 		display: false,
-				// 	}
-        //     }
-        // }
+        scales: {
+          y: {
+					beginAtZero: true,
+					// grid: {
+					// 	color: '#000',
+					// 	drawBorder: false 
+					// }
+				},
+				x: {
+					// grid: {
+					// 	display: false,
+					// }
+            }
+        }
       }
     });
 
