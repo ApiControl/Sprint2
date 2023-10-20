@@ -391,13 +391,14 @@ input[type=number] {
   z-index: 1;
 }
 
-h3 {
+h1 {
   color: #ffb800;
   padding-top: 50px;
-  font-size: 40px;
-  width: 10%;
-  width: 100%;
+  font-size: 45px;
+  /* width: 10%; */
+  /* width: 100%; */
   text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .servicos .titulo_servicos p {
@@ -427,6 +428,7 @@ h3 {
   margin-left: 50px;
   object-fit: cover;
   object-position: center;
+  margin-bottom: 100px;
 }
 
 .texto_servicos {
@@ -465,8 +467,7 @@ h3 {
 .center-text {
   text-align: center;
   color: rgb(255, 187, 0);
-  font-size: 30px;
-  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -475,8 +476,11 @@ h3 {
   z-index: 1;
 }
 
-.center-text h1{
+.center-text h1 {
+  font-size: 45px;
+  margin-bottom: 70px;
   margin-top: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 .flex-container {
@@ -500,15 +504,21 @@ h3 {
   text-align: justify;
   line-height: 1.5;
   color: #333;
+  margin: 0;
+  margin-right: -10px;
 }
+
 
 .text-container P{
   height: 100%;
-  width: 100%;
-  margin-top: 100px;
-  margin: 10%;
+  width: 800px;
+  padding-top: 100px;
+  padding-right: 80px;
   font-size: 25px;
   display: flex;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin-right: 50px;
 }
 
 .image-container {
