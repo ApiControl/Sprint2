@@ -37,7 +37,7 @@
 
     <!-- conteúdo da dashboard -->
     <div class="painel">
-        <div class="container">
+        <div class="kpi">
             <h1>
                 Colmeias
             </h1>
@@ -62,17 +62,17 @@
                         <option value="ultAno">Último ano</option> <br>
                     </select>
                 </div>
-            </div>
-            <div class="titulo">
                 <h1>
                     Análise da Colmeia
                 </h1>
+            </div>
+            <div class="titulo" style="display: flex;">
                     <div class="container-chart chart">
-                        <canvas id="myChart"></canvas>
+                        <canvas id="myChart" style="position: relative; height: 120px; width: 180px;"></canvas>
                     </div>
                 
                     <div class="container-chart chart">
-                        <canvas id="myChart2"></canvas>
+                        <canvas id="myChart2" style="position: relative; height: 120px; width: 180px;"></canvas>
                     </div>
             </div>
         </div>
@@ -140,22 +140,22 @@ window.onclick = function(e) {
         }]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            y: {
-					beginAtZero: true,
-					grid: {
-						color: '#000',
-						drawBorder: false 
-					}
-				},
-				x: {
-					grid: {
-						display: false,
-					}
-            }
-        }
+        // responsive: true,
+        // maintainAspectRatio: false,
+        // scales: {
+        //     y: {
+				// 	beginAtZero: true,
+				// 	grid: {
+				// 		color: '#000',
+				// 		drawBorder: false 
+				// 	}
+				// },
+				// x: {
+				// 	grid: {
+				// 		display: false,
+				// 	}
+        //     }
+        // }
        }
     });
 
@@ -174,22 +174,22 @@ window.onclick = function(e) {
         }]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-					beginAtZero: true,
-					grid: {
-						color: '#000',
-						drawBorder: false 
-					}
-				},
-				x: {
-					grid: {
-						display: false,
-					}
-            }
-        }
+        // responsive: true,
+        // maintainAspectRatio: false,
+        // scales: {
+        //   y: {
+				// 	beginAtZero: true,
+				// 	grid: {
+				// 		color: '#000',
+				// 		drawBorder: false 
+				// 	}
+				// },
+				// x: {
+				// 	grid: {
+				// 		display: false,
+				// 	}
+        //     }
+        // }
       }
     });
 
