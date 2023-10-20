@@ -482,11 +482,8 @@ input[type=number] {
   z-index: 1;
 }
 
-<<<<<<< HEAD
+
 h2 {
-=======
-h1 {
->>>>>>> 2b62a09f12f2b4b556e9819c12f27e937a1825b0
   color: #ffb800;
   padding-top: 50px;
   font-size: 45px;
@@ -563,12 +560,8 @@ h1 {
 .center-text {
   text-align: justify;
   color: rgb(255, 187, 0);
-<<<<<<< HEAD
   font-size: 25px;
   font-family: 'Dosis', sans-serif;
-=======
-  font-size: 32px;
->>>>>>> 2b62a09f12f2b4b556e9819c12f27e937a1825b0
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -577,13 +570,7 @@ h1 {
   z-index: 1;
 }
 
-<<<<<<< HEAD
 .center-text h2{
-=======
-.center-text h1 {
-  font-size: 45px;
-  margin-bottom: 70px;
->>>>>>> 2b62a09f12f2b4b556e9819c12f27e937a1825b0
   margin-top: 0;
   font-family: 'Poppins', sans-serif;
 }
@@ -614,25 +601,17 @@ h1 {
   margin-right: -10px;
 }
 
-<<<<<<< HEAD
 .text-container p{
-=======
-
-.text-container P{
->>>>>>> 2b62a09f12f2b4b556e9819c12f27e937a1825b0
   height: 100%;
   width: 800px;
   padding-top: 100px;
   padding-right: 80px;
   font-size: 25px;
   display: flex;
-<<<<<<< HEAD
   font-weight: bold;
-=======
   font-family: 'Poppins', sans-serif;
   text-align: center;
   margin-right: 50px;
->>>>>>> 2b62a09f12f2b4b556e9819c12f27e937a1825b0
 }
 
 .image-container {
