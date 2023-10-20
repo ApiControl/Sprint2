@@ -93,7 +93,6 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -120,6 +119,7 @@ body {
   font-size: 22px;
   font-weight: 600;
   color: #0c2626;
+  font-family: 'Poppins', sans-serif;
 }
 
 .container-form h2::before {
@@ -379,6 +379,12 @@ hr {
 
 .row .social_icon i:hover {
   color: #fff;
+}
+
+.input_submit:hover {
+  background-color: #FFB800;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 /* "Responsividade" */
