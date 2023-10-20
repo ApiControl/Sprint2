@@ -95,17 +95,21 @@ body {
 .painel{
     font-family: 'Poppins', sans-serif;
     display: flex;
-    margin-bottom: 10%;
+    width: 100%;
 }
 
-.painel .container h1 {
+.painel .kpi {
+  width: 25%;
+}
+
+.painel .kpi h1 {
     display: inline;
     margin: 0;
     color: white;
     padding-top: 1%;
 }
 
-.painel .container .titulo h1 {
+.painel .kpi .titulo h1 {
     display: flex;
     justify-content: center;
     margin: 0;
@@ -113,18 +117,17 @@ body {
     padding-top: 1%;
 }
 
-.painel .container .titulo {
+.painel .kpi .titulo {
     height: 30vh;
 }
 
 .painel .container {
-    width: 90%;
+    width: 100%;
     height: 100%;
     margin: 0;
     padding: 10px 2.5%;
     display: flex;
-    flex-flow: column wrap;
-    margin-bottom: 10%;
+    flex-flow: column;
 }
 
 .painel .container-chart {
@@ -135,31 +138,31 @@ body {
     display: flex;
 }
 
-.painel .container .lista_colmeias{
+.painel .kpi .lista_colmeias{
     width: 20vw;
     height: 80%;
     display: flex;
 }
 
-.painel .container .lista_colmeias a {
+.painel .kpi .lista_colmeias a {
     display: block;
     color: white;
     text-decoration: none;
     padding-top: 5px;
 }
 
-.painel .container .texto_periodo{
+.painel .kpi .texto_periodo{
     display: flex;
     justify-content: center;
     color: white;
 }
 
-.painel .container .texto_periodo .periodos{
+.painel .kpi .texto_periodo .periodos{
     border-radius: 5px;
     margin-left: 10px;
 }
 
-.painel .container .lista_colmeias .lista_colmeia_item{
+.painel .kpi .lista_colmeias .lista_colmeia_item{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -167,20 +170,20 @@ body {
     width: 5vw;
 }
 
-.painel .container .lista_colmeias #colmeias{
+.painel .kpi .lista_colmeias #colmeias{
     flex-direction: column;
     flex: 50%;
     align-items: center;
 }
 
-.painel .container .lista_colmeias #colmeias2{
+.painel .kpi .lista_colmeias #colmeias2{
     flex-direction: column;
     flex: 50%;
     align-items: center;
 }
 /* melhorar dimensionalidade (espaçamento) do width (bolinhas de status) */
 
-.painel .container .lista_colmeias .lista_colmeia_item .status_colmeia{
+.painel .kpi .lista_colmeias .lista_colmeia_item .status_colmeia{
     border-radius: 50px;
     width: 20px;
     min-width: 20px;
@@ -189,8 +192,10 @@ body {
     background-color: green;
 }
 
+
+
 /* "Responsividade" */
-.painel .container .container-chart .chart {
+.painel .container .titulo .container-chart .chart {
   display: grid;
   gap: 1em;
   grid-template-rows: min-content minmax(0, 1fr) min-content;
@@ -200,4 +205,5 @@ body {
                         "a f";
   height: calc(100vh - 2em);
   width: calc(100vw - 2em);
+  padding: 0px 0px;
 }
