@@ -56,7 +56,7 @@ body {
 }
 
 /* Background-color muda com mouse por cima */
-.header a:hover {
+.header-left a:hover {
   background-color: #FFE087;
   color: #0C2626;
 }
