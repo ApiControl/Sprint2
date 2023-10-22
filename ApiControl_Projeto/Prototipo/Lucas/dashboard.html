@@ -41,25 +41,24 @@
                 Colmeias
             </h1>
             <div class="lista_colmeias">
-                <ul id="colmeias">
+                <ol id="colmeias">
+                  
+                </ol>
+                <ol id="colmeias2">
 
-                </ul>
-                <ul id="colmeias2">
-
-                </ul>
+                </ol>
             </div>
         </div>
-        <div class="container">
-            <div class="texto_periodo">
-                Período:
+        <div class="container" style="display: none;" id="graficos">
+            <div class="texto_periodo" >
                 <div class="periodos">
-                    <select id="periodo">
+                    <!-- <select id="periodo">
                         <option value="tempAtual">Temperatura atual</option> <br>
                         <option value="ult24Horas">Últimas 24 horas</option> <br>
                         <option value="ultSemana">Última semana</option> <br>
                         <option value="ultMes">Último mês</option> <br>
                         <option value="ultAno">Último ano</option> <br>
-                    </select>
+                    </select> -->
                 </div>
                 <h1>
                     Análise da Colmeia
@@ -105,8 +104,10 @@ window.onclick = function(e) {
 
         while (contador < vetor_colmeia.length) {
             colmeias.innerHTML += ` 
-            <li class="lista_colmeia_item" >             
-            <a href="${contador}">${vetor_colmeia[contador]}</a>
+            <li class="lista_colmeia_item">
+              <a href="#" onclick = "mostrarGrafico(${contador})">
+                ${vetor_colmeia[contador]}
+              </a>             
             <div class="status_colmeia" ></div>
             </li>
             `
@@ -116,7 +117,7 @@ window.onclick = function(e) {
         while (contador2 < vetor_colmeia2.length) {
             colmeias2.innerHTML += ` 
             <li class="lista_colmeia_item" >             
-            <a href="${contador2}">${vetor_colmeia2[contador2]}</a>
+            <a href="#" onclick = "mostrarGrafico(${contador})">${vetor_colmeia2[contador2]} </a>
             <div class="status_colmeia" ></div>
             </li>
             `
@@ -124,15 +125,60 @@ window.onclick = function(e) {
         }
     }
 
+    
+    function mostrarGrafico(num) {
+      graficos.style.display = "flex";
+
+      new Chart(ctz, {
+      type: 'line',
+      data: {
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        datasets: [{
+          label: 'Temperatura',
+          data: listaTemperaturas[num],
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        // responsive: true,
+        // maintainAspectRatio: false,
+        scales: {
+          y: {
+					beginAtZero: true,
+					// grid: {
+					// 	color: '#000',
+					// 	drawBorder: false 
+					// }
+				},
+				x: {
+					// grid: {
+					// 	display: false,
+					// }
+            }
+        }
+      }
+    });
+    }
+
     const ctx = document.getElementById('myChart2');
   
+    // Colmeia 1
+    var listaTemperaturas = [[30, 29, 28, 25, 22, 23], [19, 19, 20, 20, 20, 22]]
+    var umidadeColmeia1 = [90, 89, 93, 87, 88, 82]; 
+
+    
+
+    const ctz = document.getElementById('myChart');
+
     new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
         datasets: [{
           label: 'Umidade Média',
-          data: [90, 89, 93, 87, 88, 82],
+          // data: [90, 89, 93, 87, 88, 82],
           backgroundColor: 'rgb(40, 140, 255)',
           borderColor: 'rgb(40, 140, 255)',
           borderWidth: 1
@@ -158,38 +204,6 @@ window.onclick = function(e) {
        }
     });
 
-    const ctz = document.getElementById('myChart');
-
-    new Chart(ctz, {
-      type: 'line',
-      data: {
-        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        datasets: [{
-          label: 'Temperatura',
-          data: [30, 29, 28, 25, 22, 23],
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        // responsive: true,
-        // maintainAspectRatio: false,
-        scales: {
-          y: {
-					beginAtZero: true,
-					// grid: {
-					// 	color: '#000',
-					// 	drawBorder: false 
-					// }
-				},
-				x: {
-					// grid: {
-					// 	display: false,
-					// }
-            }
-        }
-      }
-    });
+    
 
 </script>
