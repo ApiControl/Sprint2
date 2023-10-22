@@ -209,6 +209,10 @@ body {
     color: white;
 }
 
+.painel .kpi .texto_periodo h1 {
+    color: white;
+}
+
 .painel .kpi .texto_periodo .periodos{
     border-radius: 5px;
     margin-left: 10px;
