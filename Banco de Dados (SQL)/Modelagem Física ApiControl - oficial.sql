@@ -149,5 +149,12 @@ insert into registros values -- null, valorRegistrado, dataHora, fkSensor
 
 select * from registros;
 
-
-
+-- mostrando dados da empresa junto com as colmeias
+select * from empresa as e
+join colmeia as c
+	on c.fkEmpresa = e.idEmpresa
+		where idEmpresa = 1;
+    
+    
+    
+    
