@@ -49,6 +49,13 @@
                 </ol>
             </div>
         </div>
+        <div class="container" style="display: flex;" id="holder">
+              <h1 style="color: white;">
+                  Análise da Colmeia
+              </h1>
+              <br>
+              <span class="filler">Clique em uma das COLMEIAS A ESQUERDA para verificar seus STATUS ATUAL <br> e também <br> Veja abaixo em RELATÓRIOS para verificar relatórios dos ÚLITMOS 7 DIAS da colmeia atual</span>
+        </div>
         <div class="container" style="display: none;" id="graficos">
             <div class="texto_periodo" >
                 <div class="periodos">
@@ -60,7 +67,7 @@
                         <option value="ultAno">Último ano</option> <br>
                     </select> -->
                 </div>
-                <h1>
+                <h1 style="color: white;" id="title">
                     Análise da Colmeia
                 </h1>
             </div>
@@ -73,6 +80,18 @@
                         <canvas id="myChart2" style="position: relative; height: 120px; width: 180px;"></canvas>
                     </div>
             </div>
+                  <h1 style="color: white;" id="title">
+                      Relatórios dos últimos 7 dias da Colmeia
+                  </h1>
+              <div class="titulo" style="display: flex;">
+                      <div class="container-chart chart">
+                          <canvas id="myChart3" style="position: relative; height: 120px; width: 180px;"></canvas>
+                      </div>
+                  
+                      <div class="container-chart chart">
+                          <canvas id="myChart4" style="position: relative; height: 120px; width: 180px;"></canvas>
+                      </div>
+              </div>
         </div>
     </div>
 
@@ -103,22 +122,49 @@ window.onclick = function(e) {
         contador2 = 0;
 
         while (contador < vetor_colmeia.length) {
+          if (contador == 0) {
             colmeias.innerHTML += ` 
             <li class="lista_colmeia_item">
               <a href="#" onclick = "atualizarGrafico(${contador})">
                 ${vetor_colmeia[contador]}
               </a>             
-            <div class="status_colmeia" ></div>
+            <div class="status_colmeia" style="background-color: red;"></div>
             </li>
             `
+
             contador += 1;
+
+          } else if (contador == 1) {
+            colmeias.innerHTML += ` 
+            <li class="lista_colmeia_item">
+              <a href="#" onclick = "atualizarGrafico(${contador})">
+                ${vetor_colmeia[contador]}
+              </a>             
+            <div class="status_colmeia" style="background-color: orange;"></div>
+            </li>
+            `
+
+            contador += 1;
+
+          } else {
+            colmeias.innerHTML += ` 
+            <li class="lista_colmeia_item">
+              <a href="#" onclick = "atualizarGrafico(${contador})">
+                ${vetor_colmeia[contador]}
+              </a>             
+            <div class="status_colmeia" style="background-color: green;"></div>
+            </li>
+            `
+
+            contador += 1;
+          }
         }
 
         while (contador2 < vetor_colmeia2.length) {
             colmeias2.innerHTML += ` 
             <li class="lista_colmeia_item" >             
             <a href="#" onclick = "graficos(${contador})">${vetor_colmeia2[contador2]} </a>
-            <div class="status_colmeia" ></div>
+            <div class="status_colmeia" style="background-color: green;"></div>
             </li>
             `
             contador2 += 1;
@@ -127,8 +173,11 @@ window.onclick = function(e) {
 
     var contClick = 0;
     
+    const ctw = document.getElementById('myChart4');
+    const cty = document.getElementById('myChart3');
     const ctx = document.getElementById('myChart2');
     const ctz = document.getElementById('myChart');
+
 
     const myChart = new Chart(ctz, {
       type: 'line',
@@ -165,9 +214,9 @@ window.onclick = function(e) {
     const myChart2 = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
       datasets: [{
-        label: 'Umidade Média',
+        label: 'Umidade',
         data: [],
         backgroundColor: 'rgb(40, 140, 255)',
         borderColor: 'rgb(40, 140, 255)',
@@ -192,8 +241,73 @@ window.onclick = function(e) {
             }
           }
         }
-      });
+      })
 
+    const myChart3 = new Chart(cty, {
+    type: 'bar',
+    data: {
+      labels: ['Temperatura Mínima', 'Temperatura Média', 'Temperatura Máxima'],
+      datasets: [{
+        label: 'Temperatura',
+        data: [],
+        backgroundColor: ['rgb(255, 99, 132)','rgb(255, 70 , 70)','rgb(255, 30, 30)'],
+        borderColor: 'rgb(255, 99, 132)',
+        borderWidth: 3
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      // responsive: true,
+      // maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          // grid: {
+            // 	color: '#000',
+            // 	drawBorder: false 
+            // }
+          },
+          x: {
+            // grid: {
+              // 	display: false,
+              // }
+            }
+          }
+        }
+      })
+      
+    const myChart4 = new Chart(ctw, {
+    type: 'bar',
+    data: {
+      labels: ['Umidade Mínima', 'Umidade Média', 'Umidade Máxima'],
+      datasets: [{
+        label: 'Umidade',
+        data: [],
+        backgroundColor: ['rgb(40, 140, 255)','rgb(40, 80, 255)','rgb(30, 30, 255)'],
+        borderColor: 'rgb(40, 140, 255)',
+        borderWidth: 3
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      // responsive: true,
+      // maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          // grid: {
+            // 	color: '#000',
+            // 	drawBorder: false 
+            // }
+          },
+          x: {
+            // grid: {
+              // 	display: false,
+              // }
+            }
+          }
+        }
+      });
     
     function mostrarGrafico(num) {
       atualizarGrafico(num);
@@ -204,26 +318,23 @@ window.onclick = function(e) {
       
       myChart.config.data.datasets[0].data = listaTemperatura[num];
       myChart2.config.data.datasets[0].data = listaUmidade[num];
+      myChart3.config.data.datasets[0].data = listaTempRel[num];
+      myChart4.config.data.datasets[0].data = listaUmidRel[num];
 
       myChart.update();
       myChart2.update();
+      myChart3.update();
+      myChart4.update();
 
       graficos.style.display = "flex";
+      holder.style.display = "none";
     }
-    
-    
+
     // Colmeia 1
     var listaTemperatura = [[30, 29, 28, 25, 22, 23], [18, 18, 19, 20, 21, 22], [32, 33, 34, 35, 34, 32]]; 
-    var listaUmidade = [[90, 89, 93, 87, 88, 82], [60, 60, 63, 65, 68, 70], [70, 75, 75, 73, 70, 67]]; 
-    
-    
-    
-    
-    
-    
-    
-        
-        
-        
+    var listaUmidade = [[90, 89, 93, 87, 88, 82], [60, 60, 63, 65, 68, 70], [70, 75, 75, 73, 70, 67]];
+    // Relatórios
+    var listaTempRel = [[21, 26, 32], [16, 18, 24], [24, 28, 29]]; 
+    var listaUmidRel = [[80, 85, 93], [60, 62, 64], [70, 75, 82]];
 
 </script>

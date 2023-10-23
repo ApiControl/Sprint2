@@ -144,10 +144,19 @@ body {
 
 /* conteúdo da dashboard */
 
+.container .filler {
+  color: white;
+  font-weight: bold;
+  font-size: 80px;
+  text-shadow: 3px 4px 2px #FFB800;
+  text-align: center;
+}
+
 .painel{
     font-family: 'Poppins', sans-serif;
     display: flex;
-    width: 100%;
+    padding-left: 25px;
+    padding-top: 25px;
 }
 
 .painel .kpi {
@@ -245,7 +254,6 @@ body {
     min-width: 20px;
     height: 20px;
     min-height: 20px;
-    background-color: green;
 }
 
 
