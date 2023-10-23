@@ -246,6 +246,10 @@ body {
     flex: 50%;
     align-items: center;
 }
+
+.lista_colmeia_item a{
+  cursor: pointer;
+}
 /* melhorar dimensionalidade (espaçamento) do width (bolinhas de status) */
 
 .painel .kpi .lista_colmeias .lista_colmeia_item .status_colmeia{
