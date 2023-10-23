@@ -147,8 +147,7 @@ body {
 .container .filler {
   color: white;
   font-weight: bold;
-  font-size: 80px;
-  text-shadow: 3px 4px 2px #FFB800;
+  font-size: 45px;
   text-align: center;
 }
 
@@ -220,6 +219,10 @@ body {
 
 .painel .kpi .texto_periodo h1 {
     color: white;
+}
+
+h1, b {
+  text-shadow: 1px 3px 1px #FFB800;
 }
 
 .painel .kpi .texto_periodo .periodos{
