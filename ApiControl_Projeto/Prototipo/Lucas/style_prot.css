@@ -493,14 +493,6 @@ h2 {
   font-family: 'Poppins', sans-serif;
 }
 
-.servicos .titulo_servicos p {
-  color: #ddd;
-  text-align: right;
-  margin-right: 180px;
-  font-size: 18px;
-  font-style: italic;
-}
-
 .conteudo_servicos {
   display: flex;
   flex-direction: row;
@@ -523,24 +515,24 @@ h2 {
   margin-bottom: 100px;
 }
 
-.texto_servicos {
-  color: #ffffff;
-  font-size: 25px;
+.servicos .resumo {
+  font-size: 30px;
   padding-left: 55px;
   padding-right: 5px;
   padding-top: 10px;
-  padding-bottom: -10px;
   text-align: center;
   line-height: 1.5;
 }
 
-.texto_servicos p {
+.servicos .resumo {
   color: #0C2626;
-  font-size: 25px;
-  display: flex;
-  justify-content: center;
+  font-size: 30px;
   margin-top: 20px;
   font-weight: bold;
+}
+
+.resumo b{
+  text-shadow: 1px 3px 1px #FFB800;
 }
 
 @media(max-width: 1250px){
@@ -551,8 +543,10 @@ h2 {
   .conteudo_servicos {
     display: grid;
   }
-  .texto_servicos {
-    padding-left: 0;
+  .servicos .resumo {
+    margin: 0;
+    padding: 0;
+    text-align: center;
   }
 }
 
@@ -572,7 +566,6 @@ h2 {
 
 .center-text h2{
   margin-top: 0;
-  font-family: 'Poppins', sans-serif;
 }
 
 .flex-container {
@@ -586,14 +579,12 @@ h2 {
   padding-top: 50px;
 }
 
-.text-container {
-  display: flex;
+.center-text .resumo {
   align-items: start;
-  justify-content: center;
   width: 50%;
   height: 100%;
   font-family: 'Dosis', sans-serif;
-  font-size: 25px;
+  font-size: 30px;
   text-align: justify;
   line-height: 1.5;
   color: #333;
@@ -601,15 +592,14 @@ h2 {
   margin-right: -10px;
 }
 
-.text-container p{
+.center-text .resumo{
   height: 100%;
   width: 800px;
   padding-top: 100px;
   padding-right: 80px;
-  font-size: 25px;
-  display: flex;
+  font-size: 30px;
   font-weight: bold;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Dosis', sans-serif;
   text-align: center;
   margin-right: 50px;
 }
@@ -653,9 +643,11 @@ h2 {
     flex-direction: column;
   }
 
-  .text-container {
+  .center-text .resumo {
     width: 100%;
     text-align: center;
+    padding-right: 0;
+    margin: 0;
   }
 
   .image-container {
