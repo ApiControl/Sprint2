@@ -31,20 +31,17 @@ create table usuario(
 idUsuario int primary key auto_increment,
 nome varchar (30),
 usuario varchar (30),
+usuarioAdmin char (1),
 senha varchar (30),
 tipoUsuario varchar (45),
 fkEmpresa int,
 foreign key (fkEmpresa)
-	references empresa(idEmpresa),
-fkAdmin int,
-constraint fkAdmin
-foreign key (fkAdmin)
-	references usuario(idUsuario)
+	references empresa(idEmpresa)
 );
 
 -- parte verde da modelagem lógica -------------------
 
-create table especie( -- arrumar o escrito luminosidade
+create table especie( 
 idEspecie int primary key auto_increment,
 nome varchar(40),
 tipo varchar (40),
@@ -53,7 +50,7 @@ temperaturaMaxima double,
 umidadeMinima double,
 umidadeMaxima double,
 luminosidadeMinima double,
-luminoidadeMaxima double
+luminosidadeMaxima double
 );
 
 create table colmeia(
@@ -105,13 +102,13 @@ insert into endereco values -- id endereco, estado, cidade, cep, bairro, logrado
 
 select * from endereco;
 
-insert into usuario values -- null, nome, usuario, senha, tipoUsuario, fkEmpresa, fkAdmin
-(null, 'Andreia da silva Coltinho', 'Andreia Coltinho', 'Bee@1856', 'Administrador', 1, null),
-(null, 'Fábio Campos do Nascimento', 'Fábio Nascimento', 'Mel@2113', 'Administrador', 2, null),
-(null, 'Luana de Lima Mendonça Soares', 'Luana de Lima', 'Abelhas@3095', 'Administrador', 3, null),
-(null, 'Pedro de Paula Magalhães', 'Pedro Magalhães', 'Bee@4634', 'Funcionário', 1, 1),
-(null, 'Manuel Barroco Filho', 'Manuel Barroco', 'Mel@5012', 'Funcionário', 2, 2),
-(null, 'Gabriela Ferreira dos Campos', 'Gabriela dos Campos', 'Abelhas@6432', 'Funcionário', 3, 3);
+insert into usuario values -- null, nome, usuario, usuarioAdmin, senha, tipoUsuario, fkEmpresa
+(null, 'Andreia da silva Coltinho', 'Andreia Coltinho', '1', 'Bee@1856', 'Administrador', 1),
+(null, 'Fábio Campos do Nascimento', 'Fábio Nascimento', '1', 'Mel@2113', 'Administrador', 2),
+(null, 'Luana de Lima Mendonça Soares', 'Luana de Lima', '1', 'Abelhas@3095', 'Administrador', 3),
+(null, 'Pedro de Paula Magalhães', 'Pedro Magalhães', '0', 'Bee@4634', 'Funcionário', 1),
+(null, 'Manuel Barroco Filho', 'Manuel Barroco', '0', 'Mel@5012', 'Funcionário', 2),
+(null, 'Gabriela Ferreira dos Campos', 'Gabriela dos Campos', '0', 'Abelhas@6432', 'Funcionário', 3);
 
 select * from usuario;
 
@@ -149,12 +146,26 @@ insert into registros values -- null, valorRegistrado, dataHora, fkSensor
 
 select * from registros;
 
+
+-- mostrando os valores registrados, seus sensores e suas respectivas colmeias
+select * from registros as r
+join sensores as s
+	on r.fkSensor = s.idSensor
+join colmeia as c
+	on c.idColmeia = s.fkColmeia;
+
+
 -- mostrando dados da empresa junto com as colmeias
 select * from empresa as e
 join colmeia as c
 	on c.fkEmpresa = e.idEmpresa
 		where idEmpresa = 1;
-    
-    
-    
-    
+
+
+-- mostrando usuarios e suas relações com as empresas
+
+-- usuário Admin char(1)
+select * from usuario as u
+join empresa as e
+	on e.idEmpresa = u.fkEmpresa;
+
