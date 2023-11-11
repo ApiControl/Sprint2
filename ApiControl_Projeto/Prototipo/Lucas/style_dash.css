@@ -159,7 +159,12 @@ body {
 }
 
 .painel .kpi {
-  width: 25%;
+  width: 30%;
+  background-color: #FFE087;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  /* border-radius: 20px; */
 }
 
 .painel .kpi h1 {
@@ -206,10 +211,17 @@ body {
 
 .painel .kpi .lista_colmeias a {
     display: block;
-    color: white;
+    color: black;
+    background-color: #FFB800;
+    width: 40px;
+    height: 30px;
     text-decoration: none;
     padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
+
+
 
 .painel .kpi .texto_periodo{
     display: flex;
@@ -252,15 +264,20 @@ h1, b {
 
 .lista_colmeia_item a{
   cursor: pointer;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 10px;
 }
+
 /* melhorar dimensionalidade (espaçamento) do width (bolinhas de status) */
 
 .painel .kpi .lista_colmeias .lista_colmeia_item .status_colmeia{
-    border-radius: 50px;
+    border-radius: 10px;
     width: 20px;
     min-width: 20px;
     height: 20px;
     min-height: 20px;
+    margin-left: 10px;
 }
 
 
