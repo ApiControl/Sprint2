@@ -1,0 +1,300 @@
+@import url('https://fonts.cdnfonts.com/css/dosis');
+
+@font-face {
+  font-family: 'Chella';
+  src: local('Chella SemiBold Italic'), local('Chella-SemiBold-Italic'),
+      url('fontes/Chella-SemiBoldItalic.woff2') format('woff2'),
+      url('fontes/Chella-SemiBoldItalic.woff') format('woff'),
+      url('fontes/Chella-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Chella;
+  src: url("fontes/Chella-SemiBoldItalic.ttf");
+}
+
+* {
+  font-family: 'Dosis', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #121212;
+}
+
+/* Style do header com background e padding pra posicionamento */
+.header {
+  overflow: hidden;
+  background-color: #0C2626;
+  padding: 20px 10px;
+  margin: 0;
+}
+
+/* Style dos links do header */
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style do link do logo (Font-size com o mesmo valor do line-height do .header pra evitar conflito) */
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header img {
+  height: 50px;
+  float: left;
+}
+
+/* Background-color muda com mouse por cima */
+.header-left a:hover {
+  background-color: #FFE087;
+  color: #0C2626;
+}
+
+/* Style do link atual*/
+.header a.active {
+  background-color: #FFB800;
+  color: #0C2626;
+}
+
+/* "Responsividade" */
+@media screen and (max-width: 814px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-right {
+    float: none;
+  }
+
+  .header img {
+    height: 40px;
+    margin-right: 15px;
+    position: center;
+  }
+}
+
+/*User dropdown*/
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdown img {
+  float: right;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 25px;
+  margin: 0;
+}
+
+.dropdown:hover, .dropbtn:focus {
+  background-color: #FFB800;
+  color: #0C2626;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 147.53px;
+  max-width: 147.53px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+/* conteúdo da dashboard */
+
+.container .filler {
+  color: white;
+  font-weight: bold;
+  font-size: 45px;
+  text-align: center;
+}
+
+.painel{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    padding-left: 25px;
+    padding-top: 25px;
+}
+
+.painel .kpi {
+  width: 30%;
+  background-color: #FFE087;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  /* border-radius: 20px; */
+}
+
+.painel .kpi h1 {
+    display: inline;
+    margin: 0;
+    color: white;
+    padding-top: 1%;
+}
+
+.painel .kpi .titulo h1 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    color: white;
+    padding-top: 1%;
+}
+
+.painel .kpi .titulo {
+    height: 30vh;
+}
+
+.painel .container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 10px 2.5%;
+    display: flex;
+    flex-flow: column;
+}
+
+.painel .container-chart {
+    width: 90%;
+    height: 100%;
+    margin: 0;
+    padding: 10px 2.5%;
+    display: flex;
+}
+
+.painel .kpi .lista_colmeias{
+    width: 20vw;
+    height: 80%;
+    display: flex;
+}
+
+.painel .kpi .lista_colmeias a {
+    display: block;
+    color: black;
+    background-color: #FFB800;
+    box-shadow: #FFE087;
+    width: 40px;
+    height: 30px;
+    text-decoration: none;
+    padding-top: 5px;
+    padding-left: 30px;
+    padding-right: 20px;
+}
+
+/* .a:nth-child(0) {
+  // Alerta
+} */
+
+.painel .kpi .texto_periodo{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.painel .kpi .texto_periodo h1 {
+    color: white;
+}
+
+h1, b {
+  text-shadow: 1px 3px 1px #FFB800;
+}
+
+.painel .kpi .texto_periodo .periodos{
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.painel .kpi .lista_colmeias .lista_colmeia_item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 5vw;
+}
+
+.painel .kpi .lista_colmeias #colmeias{
+    flex-direction: column;
+    flex: 50%;
+    align-items: center;
+}
+
+.painel .kpi .lista_colmeias #colmeias2{
+    flex-direction: column;
+    flex: 50%;
+    align-items: center;
+}
+
+.lista_colmeia_item a{
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* melhorar dimensionalidade (espaçamento) do width (bolinhas de status) */
+
+.painel .kpi .lista_colmeias .lista_colmeia_item .status_colmeia{
+    border-radius: 10px;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    min-height: 20px;
+    margin-left: 10px;
+}
+
+
+
+/* "Responsividade" */
+/* .painel .container .titulo .container-chart .chart {
+  display: grid;
+  gap: 1em;
+  grid-template-rows: min-content minmax(0, 1fr) min-content;
+  grid-template-columns: 1fr minmax(0, 3fr);
+  grid-template-areas:  "a h"
+                        "a c"
+                        "a f";
+  height: calc(100vh - 2em);
+  width: calc(100vw - 2em);
+  padding: 0px 0px;
+} */
