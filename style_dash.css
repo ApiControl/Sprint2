@@ -144,6 +144,16 @@ body {
 
 /* conteúdo da dashboard */
 
+.container-image {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  transform: (0, 0);
+  top: 0; 
+  left: 0;
+
+}
+
 .container .filler {
   color: white;
   font-weight: bold;
@@ -154,13 +164,13 @@ body {
 .painel{
     font-family: 'Poppins', sans-serif;
     display: flex;
-    padding-left: 25px;
-    padding-top: 25px;
+    /* padding-left: 25px;
+    padding-top: 25px; */
 }
 
 .painel .kpi {
   width: 30%;
-  background-color: #FFE087;
+  background-color: #5E9C8E;
   padding-left: 10px;
   padding-top: 10px;
   padding-right: 10px;
@@ -168,10 +178,11 @@ body {
 }
 
 .painel .kpi h1 {
-    display: inline;
+    display: flex;
     margin: 0;
     color: white;
-    padding-top: 1%;
+    padding-top: 0;
+    justify-content: center;
 }
 
 .painel .kpi .titulo h1 {
@@ -277,7 +288,11 @@ h1, b {
     min-width: 20px;
     height: 20px;
     min-height: 20px;
-    margin-left: 10px;
+    /* margin-left: 10px; */
+}
+
+.status_colmeia {
+  margin-left: 15px;
 }
 
 
