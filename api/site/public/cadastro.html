@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AquaTech | Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+  <script src="./js/cadastro.js"></script>
+
+  <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  <link rel="icon" href="./assets/icon/favicon2.ico" />
+  <link rel="stylesheet" href="./css/style_cadastro_admin.css" />
+  <!-- <link rel="stylesheet" href="./css/style.css"> -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div class="header">
+      <img src="imagens/Logo ApiControl.png" href="index.html">
+      <a href="index.html" class="logo">ApiControl</a>
+        <div class="header-left">  
+          <a href="index.html">Home</a>
+          <a href="index.html#calc_scroll">Simulação</a>
+          <a href="index.html#servico_scroll">Serviços</a>
+          <a href="index.html#sobre_scroll">Sobre</a>
+          <a href="index.html#footer_scroll">Contato</a>
+        </div>
+        <div class="dropdown">
+          <img src="imagens\user_icon.png">
+          <button class="dropbtn" onclick="myFunction()">Usuário
+            <i class="fa fa-caret-down"></i>
+          </button>
+            <div class="dropdown-content" id="myDropdown">
+              <a href="dashboard.html">Dashboard</a>
+              <a href="login.html">Deslogar</a>
+            </div>
+          </div>
+  </div>
+
+  <div class="container-form">
+      <h2>Cadastro Passo - 1/2</h2>
+      <form >
+
+              <div class="field name-field">
+                  <div class="input-field">
+                      <input type="text" placeholder="Nome do Funcionário" class="name" required id="nome_input"/>
+                  </div>
+              </div>
+
+              <!-- <div class="field telefone-field">
+                  <div class="input-field">
+                      <input type="text" placeholder="Telefone Comercial" class="telefone" maxlength="12" required/>
+                  </div>
+              </div> -->
+
+              <div class="field email-field">
+                  <div class="input-field">
+                      <input type="email" placeholder="Email Empresarial" class="email" id="email_input"/>
+                  </div>
+                  <span class="error email-error">
+                      <p class="error-text">Por favor informar email válido</p>
+                  </span>
+              </div>
+
+              <div class="field create-password">
+                  <div class="input-field">
+                      <input type="password" placeholder="Criar senha" class="password" id="senha_input"/>
+                  </div>
+                  <span class="error password-error">
+                      <p class="error-text">
+                          Por favor inserir pelo menos 8 dígitos, incluindo um número, símbolo, letra minúscula
+                          e letra maiúscula
+                      </p>
+                  </span>
+              </div>
+
+              <div class="field confirm-password">
+                  <div class="input-field">
+                      <input type="password" placeholder="Confirmar senha" class="cPassword"/>
+                  </div>
+                  <span class="error cPassword-error">
+                      <p class="error-text">Senhas diferentes</p>
+                  </span>
+              </div>
+
+              <div class="policy_lembrar">
+                  <input type="checkbox" required>
+                  <h3>Eu aceito todos termos e condições</h3>
+              </div>
+
+              <div class="input-field button">
+                  <input value="Continuar" onclick="cadastrar()"/>
+              </div>
+
+              <div class="text">
+                  <h3>Já possui uma conta? <a href="login.html">Acessar</a></h3>
+              </div>
+      </form>
+  </div>
+
+  <!-- Rodapé -->
+<footer>
+  <div class="container">
+      <div class="row">
+          <!-- 1st Column -->
+          <div class="footer-col footer-logo">
+              <ul>
+                  <img src="imagens/Logo ApiControl.png" class="logoApi"><br>
+                  <b href="">ApiControl</b> <br>
+                  <c href="">Transformando Dados em Melhores Escolhas</c>
+              </ul>
+          </div>
+
+          <!-- 2nd Column -->
+          <div class="footer-col">
+              <h4>Contato</h4>
+              <ul>
+                  <li><img src="imagens/icon telefone.png"
+                          class="icon_phone"><a href="">(11) 99845-0000</a> </li>
+                  <li><img src="imagens/icon maps.png"
+                          class="icon_maps"><a href="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo</a>
+                  </li>
+                  <li><img src="imagens/icon email.png"
+                          class="icon_mail"><a href="">   contato@apicontrol.com</a> </li>
+              </ul>
+          </div>
+
+          <!-- 3rd Column -->
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="index.html">Home</a> </li>
+            <li><a href="index.html#calc_scroll">Simulação</a> </li>
+            <li><a href="index.html#servico_scroll">Serviços</a> </li>
+            <li><a href="index.html#sobre_scroll">Sobre</a> </li>
+          </ul>
+      </div>
+
+      <!-- 4th Column -->
+      <div class="footer-col">
+          <h4>Entre em contato:</h4>
+          <form action="cadastro_empresa.html">
+              <input type="submit" value="Fazer Cadastro" class="input_submit">
+          </form>
+          </div>
+      </div>
+      <hr>
+      <div class="row">
+          <div class="col">
+              <p>&#169; 2023 ApiControl. Todos os Direitos Reservados. </p>
+          </div>
+          <div class="social_icon">
+              <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+              <a href=""><i class="fa-brands fa-instagram"></i></a>
+              <a href=""><i class="fa-brands fa-linkedin"></i></a>
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+          </div>
+      </div>
+  </div>
+</footer>
+
+</body>
+
+<!-- <script 
+    src="https://kit.fontawesome.com/c213e24a43.js" crossorigin="anonymous">
+</script> -->
+ 
+
+</html>
+
+<script>
+
+
+ 
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    // var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    // var empresaVar = listaEmpresas.value;
+    // var cpfVar = cpf_input.value;
+
+    // if (
+    //   nomeVar == "" ||
+    //   emailVar == "" ||
+    //   senhaVar == "" ||
+    //   confirmacaoSenhaVar == "" ||
+    //   empresaVar == "" ||
+    //   cpfVar == ""
+    // ) {
+    //   cardErro.style.display = "block";
+    //   mensagem_erro.innerHTML =
+    //     "(Mensagem de erro para todos os campos em branco)";
+
+    //   finalizarAguardar();
+    //   return false;
+    // } else {
+    //   if(nomeVar.length <= 1) {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML =
+    //     "O campo nome tem que ter mais de 1 letra";
+    //     finalizarAguardar();
+    //     return false;
+    //   }
+    //   if(emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML =
+    //     "O campo email tem que conter um `@` e um `.`";
+    //     finalizarAguardar();
+    //     return false;
+    //   }
+    //   if(senhaVar.length <= 6) {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML =
+    //     "O campo senha tem que conter mais de 6 caractereres"
+    //     finalizarAguardar();
+    //     return false;
+    //   }
+    //   if(confirmacaoSenhaVar != senhaVar) {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML =
+    //     "O campo `Confirmaçao da Senha` deve ser igual ao campo `Senha`";
+    //     finalizarAguardar();
+    //     return false;
+    //   }
+    //   if(cpfVar.length != 14) {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML =
+    //     "O campo CPF tem que ter 14 caracteres";
+    //     finalizarAguardar();
+    //     return false;
+    //   }
+    //   setInterval(sumirMensagem, 5000);
+    // }
+    
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        // empresaServer: empresaVar,
+        // cpfServer: cpfVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          // finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+
+  function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Feche o menu suspenso se o usuário clicar fora dele
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+
+    const form = document.querySelector("form"),
+        emailField = form.querySelector(".email-field"),
+        emailInput = emailField.querySelector(".email"),
+        passField = form.querySelector(".create-password"),
+        passInput = passField.querySelector(".password"),
+        cPassField = form.querySelector(".confirm-password"),
+        cPassInput = cPassField.querySelector(".cPassword");
+
+    // Email Validação
+    function checkEmail() {
+        const emaiPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!emailInput.value.match(emaiPattern)) {
+            return emailField.classList.add("invalid"); //adicionando classe inválida se o valor do email não corresponder ao padrão de email
+        }
+        emailField.classList.remove("invalid"); //removendo classe inválida se o valor do email corresponder a emaiPattern
+    }
+
+    // Senha Validação
+    function createPass() {
+        const passPattern =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (!passInput.value.match(passPattern)) {
+            return passField.classList.add("invalid"); //adicionando classe inválida se o valor de entrada da senha não corresponder a passPattern
+        }
+        passField.classList.remove("invalid"); //removendo classe inválida se o valor de entrada da senha corresponder a passPattern
+    }
+
+    // Confirmar Senha Validação
+    function confirmPass() {
+        if (passInput.value !== cPassInput.value || cPassInput.value === "") {
+            return cPassField.classList.add("invalid");
+        }
+        cPassField.classList.remove("invalid");
+    }
+
+    // Chamando Função no form submit
+    form.addEventListener("submit", (e) => {
+        e.preventDefault(); //previnindo submit de trocar de página
+        checkEmail();
+        createPass();
+        confirmPass();
+
+        //Chamando funções pelo keyup para validar em tempo real
+        emailInput.addEventListener("keyup", checkEmail);
+        passInput.addEventListener("keyup", createPass);
+        cPassInput.addEventListener("keyup", confirmPass);
+
+        if (
+            !emailField.classList.contains("invalid") &&
+            !passField.classList.contains("invalid") &&
+            !cPassField.classList.contains("invalid")
+        ) {
+            location.href = form.getAttribute("action");
+        }
+    });
+</script>

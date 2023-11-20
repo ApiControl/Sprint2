@@ -1,0 +1,183 @@
+body {
+    margin: 0px;
+    height: 100vh;
+    display: flex;
+}
+
+.inputs {
+    background: #303030;
+    width: 30vw;
+    height: 100%;
+}
+
+.inputs .container {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.inputs .container .formulario {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15%;
+}
+
+.inputs .container .formulario .navbar {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+
+.inputs .container .formulario .formLogin {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30% ;
+    height: 400px;
+    gap: 48px;
+}
+
+.inputs .container .formulario .formCadastro {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10% ;
+    height: 250px;
+    gap: 10%;
+}
+
+.inputs .container .formulario .formCadastroEndereco {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10%;
+    height: 250px;
+    gap: 10%;
+}
+
+.inputs .container .formulario .navbar .loginBtn button{
+    background: transparent;
+    border: none;
+    color: #FEFDFD;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.inputs .container .formulario .navbar .cadastroBtn button{
+    background: transparent;
+    border: none;
+    color: #FEFDFD;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+/* .inputs .container .formulario .formLogin input {
+    background: transparent;
+    padding: 20px 25px;
+    border: 1px solid white;
+    border-radius: 10px;
+} */
+
+.inputs .container .formulario .formLogin button {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background: #1f1f1f;
+    color: #f0f0f0;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.inputs .container .formulario .formCadastro button {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background: #1f1f1f;
+    color: #f0f0f0;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.inputs .container .formulario .formCadastroEndereco button {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background: #1f1f1f;
+    color: #f0f0f0;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.imagem {
+    background: url(../assets/imagens/Messi-copa.jpg);
+    width: 70vw;
+    background-size: cover;
+    background-position: center;
+}
+
+.page {
+    display: flex;
+}
+
+.controleFormulario {
+    /* padding-bottom: 20px; */
+    position: relative;
+}
+
+.controleFormulario label {
+    display: inline-block;
+    font-size: 16px;
+    font-family: sans-serif;
+    margin-bottom: 14px;
+    color: #f0f0f0;
+}
+
+.controleFormulario input {
+    /* background: transparent; */
+    border: 2px solid #f0f0f0;
+    display: block;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 100%;
+    padding: 10px;
+}
+
+.controleFormulario i {
+    position: absolute;
+    top: 49%;
+    right: 5px;
+    visibility: hidden;
+}
+
+.controleFormulario small {
+    /* position: absolute;
+    bottom: 0;
+    left: 0; */
+    visibility: hidden;
+}
+
+/* Erro e sucesso */
+
+.controleFormulario.sucesso input {
+    border-color: #2ecc71;
+}
+
+.controleFormulario.erro input {
+    border-color: #e74c3c;
+}
+
+.controleFormulario.sucesso i.fa-circle-check {
+    visibility: visible;
+    color: #2ecc71;
+}
+
+.controleFormulario.erro i.fa-circle-exclamation {
+    visibility: visible;
+    color: #e74c3c;
+}
+
+.controleFormulario.erro small {
+    visibility: visible;
+    color: #e74c3c;
+}

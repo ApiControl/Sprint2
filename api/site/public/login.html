@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AquaTech | Login</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="stylesheet" href="./css/style_login_cadastro.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+      <img src="imagens/Logo ApiControl.png" href="index.html">
+      <a href="index.html" class="logo">ApiControl</a>
+        <div class="header-left">  
+          <a href="index.html">Home</a>
+          <a href="index.html#calc_scroll">Simulação</a>
+          <a href="index.html#servico_scroll">Serviços</a>
+          <a href="index.html#sobre_scroll">Sobre</a>
+          <a href="index.html#footer_scroll">Contato</a>
+        </div>
+        <div class="header-right card">
+          <a href="login.html">Login</a>
+          <a href="cadastro_empresa.html">Cadastro</a>
+        </div>
+  </div>
+  
+    <div class="container-form">
+      <h2>Login</h2>
+      <form>
+  
+        <div class="field email-field">
+          <div class="input-field">
+              <input type="email" placeholder="Email" class="email" id="email_input"/>
+          </div>
+          <span class="error email-error">
+              <p class="error-text">Por favor informar email válido</p>
+          </span>
+        </div>
+  
+        <div class="field confirm-password">
+          <div class="input-field">
+              <input type="password" placeholder="Senha" class="cPassword"
+              id="senha_input" />
+          </div>
+          <span class="error cPassword-error">
+              <p class="error-text">Senha incorreta</p>
+          </span>
+        </div>
+        
+        <div class="policy_lembrar">
+          <input type="checkbox">
+          <h3>Lembre-me</h3>
+        </div>
+  
+        <div class="input-field button">
+          <input value="Acessar" onclick="entrar()">
+        </div>
+  
+        <div class="text">
+          <h3>Ainda não tem uma conta? <a href="cadastro_empresa.html">Cadastre-se</a></h3>
+        </div>
+  
+      </form>
+  
+    </div>
+  
+      <!-- Rodapé -->
+  <footer>
+    <div class="container">
+        <div class="row">
+            <!-- 1st Column -->
+            <div class="footer-col footer-logo">
+                <ul>
+                    <img src="imagens/Logo ApiControl.png" class="logoApi"><br>
+                    <b href="">ApiControl</b> <br>
+                    <c href="">Transformando Dados em Melhores Escolhas</c>
+                </ul>
+            </div>
+  
+            <!-- 2nd Column -->
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><img src="imagens/icon telefone.png"
+                            class="icon_phone"><a href="">(11) 99845-0000</a> </li>
+                    <li><img src="imagens/icon maps.png"
+                            class="icon_maps"><a href="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo</a>
+                    </li>
+                    <li><img src="imagens/icon email.png"
+                            class="icon_mail"><a href="">   contato@apicontrol.com</a> </li>
+                </ul>
+            </div>
+  
+            <!-- 3rd Column -->
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul>
+                  <li><a href="index.html">Home</a> </li>
+                  <li><a href="index.html#calc_scroll">Simulação</a> </li>
+                  <li><a href="index.html#servico_scroll">Serviços</a> </li>
+                  <li><a href="index.html#sobre_scroll">Sobre</a> </li>
+                </ul>
+            </div>
+  
+            <!-- 4th Column -->
+            <div class="footer-col">
+                <h4>Entre em contato:</h4>
+                <form action="cadastro_empresa.html">
+                    <input type="submit" value="Fazer Cadastro" class="input_submit">
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <p>&#169; 2023 ApiControl. Todos os Direitos Reservados. </p>
+            </div>
+            <div class="social_icon">
+                <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+  </footer>
+    
+  </body>
+
+</html>
+
+<script>
+
+
+    function entrar() {
+        // aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        // if (emailVar == "" || senhaVar == "") {
+        //     cardErro.style.display = "block"
+        //     mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+        //     finalizarAguardar();
+        //     return false;
+        // }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+    // const form = document.querySelector("form"),
+    //     emailField = form.querySelector(".email-field"),
+    //     emailInput = emailField.querySelector(".email"),
+    //     cPassField = form.querySelector(".confirm-password"),
+    //     cPassInput = cPassField.querySelector(".cPassword");
+
+    // Email Validação
+    // function checkEmail() {
+    //     const emaiPattern = "admin.apicult@gmail.com";
+    //     if (!emailInput.value.match(emaiPattern)) {
+    //         return emailField.classList.add("invalid"); //adicionando classe inválida se o valor do email não corresponder ao padrão de email
+    //     }
+    //     emailField.classList.remove("invalid"); //removendo classe inválida se o valor do email corresponder a emaiPattern
+    // }
+
+    // Senha Validação
+    // function confirmPass() {
+    //     const passPattern = "Admin@1";
+
+    //     if (!cPassInput.value.match(passPattern)) {
+    //         return cPassField.classList.add("invalid"); //adicionando classe inválida se o valor de entrada da senha não corresponder a passPattern
+    //     }
+    //     cPassField.classList.remove("invalid"); //removendo classe inválida se o valor de entrada da senha corresponder a passPattern
+    // }
+
+    // // Chamando Função no form submit
+    // form.addEventListener("submit", (e) => {
+    //     e.preventDefault(); //previnindo submit de trocar de página
+    //     checkEmail();
+    //     confirmPass();
+
+    //     //Chamando funções pelo keyup para validar em tempo real
+    //     emailInput.addEventListener("keyup", checkEmail);
+    //     cPassInput.addEventListener("keyup", confirmPass);
+
+    //     if (
+    //         !emailField.classList.contains("invalid") &&
+    //         !cPassField.classList.contains("invalid")
+    //     ) {
+    //         location.href = form.getAttribute("action");
+    //     }
+    // });
+
+</script>

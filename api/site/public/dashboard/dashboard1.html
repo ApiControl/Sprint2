@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_dash.css">
+    <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+</head>
+
+<!-- Chama função para validar a última posição do vetor logo após a função adicionar colméia. -->
+<body onload="adicionar_colmeia()" onload="validarVetor()">
+
+    <!-- Header -->
+    <div class="header">
+        <img src="imagens/Logo ApiControl.png" href="index.html">
+        <a href="index.html" class="logo">ApiControl</a>
+          <div class="header-left">  
+            <a href="index.html">Home</a>
+            <a href="index.html#calc_scroll">Simulação</a>
+            <a href="index.html#servico_scroll">Serviços</a>
+            <a href="index.html#sobre_scroll">Sobre</a>
+            <a href="index.html#footer_scroll">Contato</a>
+          </div>
+          <div class="dropdown">
+            <img src="imagens\user_icon.png">
+            <button class="dropbtn" onclick="myFunction()">Usuário
+              <i class="fa fa-caret-down"></i>
+            </button>
+              <div class="dropdown-content" id="myDropdown">
+                <a href="cadastro_admin.html">Cadastrar</a>
+                <a href="login.html">Deslogar</a>
+              </div>
+            </div>
+    </div>
+
+    <!-- conteúdo da dashboard -->
+    <button onclick="validarVetor()">Validar Vetor</button>
+    <div class="painel">
+        <div class="kpi">
+            <h1>
+                Colmeias
+            </h1>
+            <div class="lista_colmeias">
+                <ol id="colmeias">
+                </ol>
+                <ol id="colmeias2">
+
+                </ol>
+            </div>
+        </div>
+        
+        <div class="container" style="display: flex;" id="holder">
+          <div class="container-image">
+            <img class="container-image-table" src="tabela_analytics_relatorio.png" alt="">
+          </div>
+              <br>
+              <span class="filler">Clique em uma das <b>colmeias a esquerda</b> para verificar seu <b>monitoramento</b> <br> e abaixo <br> Os <b>relatórios</b> para verificar dados de um <b>período</b> específico</span>
+        </div>
+        <div class="container" style="display: none;" id="graficos">
+            <div class="texto_periodo" >
+                <div class="periodos">
+                    <!-- <select id="periodo">
+                        <option value="tempAtual">Temperatura atual</option> <br>
+                        <option value="ult24Horas">Últimas 24 horas</option> <br>
+                        <option value="ultSemana">Última semana</option> <br>
+                        <option value="ultMes">Último mês</option> <br>
+                        <option value="ultAno">Último ano</option> <br>
+                    </select> -->
+                </div>
+                <h1 style="color: white;" id="title">
+                    Monitoramento da Colmeia
+                </h1>
+            </div>
+            <div class="titulo" style="display: flex;">
+                    <div class="container-chart chart">
+                        <canvas id="myChart" style="position: relative; height: 120px; width: 180px;"></canvas>
+                    </div>
+                
+                    <div class="container-chart chart">
+                        <canvas id="myChart2" style="position: relative; height: 120px; width: 180px;"></canvas>
+                    </div>
+            </div>
+            <div class="texto_periodo" >
+              <h1 style="color: white;" id="title">
+                Relatórios da Colmeia
+              </h1>
+              <div class="periodos">
+                  <select id="periodo" onchange="periodoGrafico(numClicado)">
+                      <option value="ultSemana">Última semana</option> <br>
+                      <option value="ultMes">Meses</option> <br>
+                  </select>
+              </div>
+          </div>
+              <div class="titulo" style="display: flex;">
+                      <div class="container-chart chart">
+                          <canvas id="myChart3" style="position: relative; height: 120px; width: 180px;"></canvas>
+                      </div>
+                  
+                      <div class="container-chart chart">
+                          <canvas id="myChart4" style="position: relative; height: 120px; width: 180px;"></canvas>
+                      </div>
+              </div>
+        </div>
+    </div>
+<div id="alerta"></div>
+</body>
+</html>
+
+<script>
+/* Quando o usuário clica no botão,
+alternar entre ocultar e mostrar o conteúdo suspenso */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Feche o menu suspenso se o usuário clicar fora dele
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+    const vetor_colmeia = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16, 17];
+    const vetor_colmeia2 = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27 ,28, 29, 30, 31, 32];
+
+    function adicionar_colmeia() {
+        contador = 0;
+        contador2 = 0;
+
+        while (contador < vetor_colmeia.length) {
+          if (contador == 0) {
+            colmeias.innerHTML += ` 
+            <li class="lista_colmeia_item">
+              <a onclick = "atualizarGrafico(${contador})">
+                ${vetor_colmeia[contador]}
+              </a>             
+            <div class="status_colmeia" style="background-color: red;"></div>
+            </li>
+            `
+
+            contador += 1;
+
+          } else if (contador == 1) {
+            colmeias.innerHTML += ` 
+            <li class="lista_colmeia_item">
+              <a onclick = "atualizarGrafico(${contador})">
+                ${vetor_colmeia[contador]}
+              </a>             
+            <div class="status_colmeia" style="background-color: orange;"></div>
+            </li>
+            `
+
+            contador += 1;
+
+          } else {
+            colmeias.innerHTML += ` 
+            <li class="lista_colmeia_item">
+              <a onclick = "atualizarGrafico(${contador})">
+                ${vetor_colmeia[contador]}
+              </a>             
+            <div class="status_colmeia" style="background-color: green;"></div>
+            </li>
+            `
+
+            contador += 1;
+          }
+        }
+
+        while (contador2 < vetor_colmeia2.length) {
+            colmeias2.innerHTML += ` 
+            <li class="lista_colmeia_item" >             
+            <a onclick = "graficos(${contador})">${vetor_colmeia2[contador2]} </a>
+            <div class="status_colmeia" style="background-color: green;"></div>
+            </li>
+            `
+            contador2 += 1;
+        }
+    }
+
+    var contClick = 0;
+    
+    const ctw = document.getElementById('myChart4');
+    const cty = document.getElementById('myChart3');
+    const ctx = document.getElementById('myChart2');
+    const ctz = document.getElementById('myChart');
+
+
+    const myChart = new Chart(ctz, {
+      type: 'line',
+      data: {
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        datasets: [{
+          label: 'Temperatura',
+          data: [],
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        // responsive: true,
+        // maintainAspectRatio: false,
+        scales: {
+          y: {
+          beginAtZero: true,
+          // grid: {
+          // 	color: '#000',
+          // 	drawBorder: false 
+          // }
+        },
+        x: {
+          // grid: {
+          // 	display: false,
+          // }
+            }
+        }
+      }
+    });
+
+    const myChart2 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      datasets: [{
+        label: 'Umidade',
+        data: [],
+        backgroundColor: 'rgb(40, 140, 255)',
+        borderColor: 'rgb(40, 140, 255)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      // responsive: true,
+      // maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          // grid: {
+            // 	color: '#000',
+            // 	drawBorder: false 
+            // }
+          },
+          x: {
+            // grid: {
+              // 	display: false,
+              // }
+            }
+          }
+        }
+      })
+
+      const myChart3 = new Chart(cty, {
+      type: 'line',
+      data: {
+        labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'],
+        datasets: [{
+          label: 'Temperatura Média',
+          data: [],
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        // responsive: true,
+        // maintainAspectRatio: false,
+        scales: {
+          y: {
+          beginAtZero: true,
+          // grid: {
+          // 	color: '#000',
+          // 	drawBorder: false 
+          // }
+        },
+        x: {
+          // grid: {
+          // 	display: false,
+          // }
+            }
+        }
+      }
+    });
+      
+    const myChart4 = new Chart(ctw, {
+      type: 'line',
+      data: {
+        labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'],
+        datasets: [{
+          label: 'Umidade Média',
+          data: [],
+          backgroundColor: 'rgb(40, 140, 255)',
+          borderColor: 'rgb(40, 140, 255)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        // responsive: true,
+        // maintainAspectRatio: false,
+        scales: {
+          y: {
+          beginAtZero: true,
+          // grid: {
+          // 	color: '#000',
+          // 	drawBorder: false 
+          // }
+        },
+        x: {
+          // grid: {
+          // 	display: false,
+          // }
+            }
+        }
+      }
+    });
+    
+    var numClicado = 0;
+
+    function atualizarGrafico(num) {
+      
+      myChart.config.data.datasets[0].data = listaTemperatura[num];
+      myChart2.config.data.datasets[0].data = listaUmidade[num];
+      myChart3.config.data.datasets[0].data = listaTempSem[num];
+      myChart4.config.data.datasets[0].data = listaUmidSem[num];
+
+      myChart.update();
+      myChart2.update();
+      myChart3.update();
+      myChart4.update();
+
+      graficos.style.display = "flex";
+      holder.style.display = "none";
+      numClicado = num;
+
+    }
+
+    function periodoGrafico(num) {
+      var period = document.getElementById("periodo").value;
+      
+      if (period == `ultSemana`) {
+        // myChart3.data.labels.pop();
+        // myChart4.data.labels.pop();
+        myChart3.config.data.labels = ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'];
+        myChart4.config.data.labels = ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'];
+        myChart3.config.data.datasets[0].data = listaTempSem[num];
+        myChart4.config.data.datasets[0].data = listaUmidSem[num];
+
+        myChart3.update();
+        myChart4.update();
+
+      } else if (period == `ultMes`) {
+        // myChart3.data.labels.pop();
+        // myChart4.data.labels.pop();
+        myChart3.config.data.labels = ['Janeiro', 'Fevereiro', 'Março', 'Maio', 'Abril', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        myChart4.config.data.labels = ['Janeiro', 'Fevereiro', 'Março', 'Maio', 'Abril', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        myChart3.config.data.datasets[0].data = listaTempMes[num];
+        myChart4.config.data.datasets[0].data = listaUmidMes[num];
+
+        myChart3.update();
+        myChart4.update();
+
+      }
+    }
+
+    // Colmeia 1
+    var listaTemperatura = [[30, 29, 28, 25, 22, 23], [18, 18, 19, 20, 21, 22], [32, 33, 34, 35, 34, 32]]; 
+    var listaUmidade = [[90, 89, 93, 87, 88, 82], [60, 60, 63, 65, 68, 70], [70, 75, 75, 73, 70, 67]];
+
+    // Relatórios
+      //Semana
+    var listaTempSem = [[25, 26, 26, 25, 26, 29, 25], [16, 18, 24, 17, 16, 18, 19], [24, 28, 29, 25, 26, 27, 26]]; 
+    var listaUmidSem = [[80, 82, 81, 85, 87, 90, 93], [60, 62, 64, 63, 64, 62, 61], [70, 72, 73, 75, 73, 80, 82]];
+
+      //Mês
+    var listaTempMes = [[30, 27, 25, 25, 28, 29, 27, 28, 26, 25, 28, 25], [16, 18, 24, 17, 16, 18, 19, 20, 18, 17, 16, 20], [24, 28, 29, 25, 26, 27, 26, 23, 25, 26, 28, 27]]; 
+    var listaUmidMes = [[80, 82, 81, 85, 87, 90, 93, 91, 88, 84, 80, 82], [60, 62, 64, 63, 64, 62, 61, 63, 65, 62, 64, 60], [70, 72, 73, 75, 73, 80, 82, 79, 80, 77, 75, 71]];
+
+    // Alertas 
+    function validarVetor() {
+      var ultimoValorTemp = listaTemperatura[listaTemperatura.length - 1];
+      var ultimoValorUmi = listaUmidade[listaUmidade.length - 1];
+
+      if (ultimoValorTemp > 35) {
+        alert("Alerta de aumento de temperatura");
+      } else if (ultimoValorTemp < 29) {
+        alert("Queda brusca de temperatura.");
+      }
+
+    }
+
+</script>
