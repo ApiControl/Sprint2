@@ -153,48 +153,82 @@ body {
   left: 0;
 }
 
-.blink{
+.alert, .alertUmid {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  display: none;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 3em;
+  line-height: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+.blink-emerg{
+  animation: blinking 0.25s infinite;
+}
+.blink-crit{
   animation: blinking 0.5s infinite;
 }
+.blink-alert{
+  animation: blinking 0.75s infinite;
+}
+.blink-ideal{
+  animation: blinking 1s infinite;
+}
 @keyframes blinking{
-  0%		{ opacity: 0.5; border-top-color: #0C2626; border-bottom-color: #0C2626;}
-  100%	{ opacity: 1; border-top-color: #FFB800; border-bottom-color: #FFB800;}
+  0%		{ opacity: 0.5; border-color: #0C2626;}
+  100%	{ opacity: 1; border-color: #FFB800;}
 }
 
 .btn-group button {
   border: 3px solid #0C2626; /* Green border */
-  color: white; /* White text */
+  color: black;
   font-weight: bold;
   padding: 10px 24px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
 }
 
-.btn-group .btnF1 {
+.btn-group .btnF1, .btn-group .btnUF1 {
   background-color: rgb(170, 193, 228);
 }
 
-.btn-group .btnF2 {
+.btn-group .btnF2, .btn-group .btnUF2 {
   background-color: rgb(94, 134, 196);
 }
 
-.btn-group .btnF3 {
+.btn-group .btnF3, .btn-group .btnUF3 {
   background-color: rgb(16, 71, 153);
 }
 
-.btn-group .btnI {
+.btn-group .btnI, .btn-group .btnUI {
   background-color: green;
 }
 
-.btn-group .btnQ3 {
+.btn-group .btnQ3, .btn-group .btnUQ3 {
   background-color: rgb(235, 235, 19);
 }
 
-.btn-group .btnQ2 {
+.btn-group .btnQ2, .btn-group .btnUQ2 {
   background-color: orange;
 }
 
-.btn-group .btnQ1 {
+.btn-group .btnQ1, .btn-group .btnUQ1 {
   background-color: red;
 }
 
@@ -205,9 +239,11 @@ body {
   display: table;
 }
 
+/*
 .btn-group button:not(:last-child) {
-  border-right: none; /* Prevent double borders */
+  border-right: none; Prevent double borders 
 }
+*/
 
 /* Add a background color on hover */
 .btn-group button:hover {

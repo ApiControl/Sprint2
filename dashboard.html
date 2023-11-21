@@ -58,19 +58,39 @@
         <div class="container" style="display: none;" id="graficos">
           <div class="container-analytics">
             <div class="btn-group">
-              <button class="btnF1" id="botaoF1">26ºC Emergência</button>
-              <button class="btnF2" id="botaoF2">27ºC Crítico</button>
-              <button class="btnF3" id="botaoF3">28ºC Alerta</button>
-              <button class="btnI" id="botaoI">29ºC Ideal 35ºC</button>
-              <button class="btnQ3" id="botaoQ3">Alerta 36ºC</button>
-              <button class="btnQ2" id="botaoQ2">Crítico 37ºC</button>
-              <button class="btnQ1" id="botaoQ1">Emergência 38ºC</button>
+              <button class="btnF1">26ºC Emergência</button>
+              <button class="btnF2">27ºC Crítico</button>
+              <button class="btnF3">28ºC Alerta</button>
+              <button class="btnI">29ºC Ideal 35ºC</button>
+              <button class="btnQ3">Alerta 36ºC</button>
+              <button class="btnQ2">Crítico 37ºC</button>
+              <button class="btnQ1">Emergência 38ºC</button>
+            </div>
+          </div>
+          <br>
+          <div class="container-analytics">
+            <div class="btn-group">
+              <button class="btnUF1">37% Emergência</button>
+              <button class="btnUF2">38% Crítico</button>
+              <button class="btnUF3">39% Alerta</button>
+              <button class="btnUI">40% Ideal 80%</button>
+              <button class="btnUQ3">Alerta 81%</button>
+              <button class="btnUQ2">Crítico 82%</button>
+              <button class="btnUQ1">Emergência 83%</button>
             </div>
           </div>
             <div class="texto_periodo" >
                 <h1 style="color: white;" id="title">
                     Monitoramento da Colmeia
                 </h1>
+                <div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                  <strong>Perigo!</strong> A temperatura está muito fora do ideal, as abelhas estão precisando de suporte!
+                </div>
+                <div class="alertUmid">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                  <strong>Perigo!</strong> A umidade está muito fora do ideal, as abelhas estão precisando de suporte!
+                </div>
             </div>
             <div class="titulo" style="display: flex;">
                     <div class="container-chart chart">
@@ -365,7 +385,7 @@ window.onclick = function(e) {
 
     // Colmeias 1, 2, 3
     var listaTemperatura = [[30, 29, 28, 25, 22, 23], [18, 18, 19, 20, 21, 22], [32, 33, 34, 35, 34, 32]]; 
-    var listaUmidade = [[90, 89, 93, 87, 88, 82], [60, 60, 63, 65, 68, 70], [70, 75, 75, 73, 70, 67]];
+    var listaUmidade = [[90, 89, 93, 87, 88, 83], [60, 60, 63, 65, 68, 70], [70, 75, 75, 73, 70, 67]];
 
     // Relatórios
       //Semana
@@ -385,36 +405,90 @@ window.onclick = function(e) {
     const btnQuente2 = document.querySelector('.btnQ2');
     const btnQuente1 = document.querySelector('.btnQ1');
 
+    const btnUmidFrio1 = document.querySelector('.btnUF1');
+    const btnUmidFrio2 = document.querySelector('.btnUF2');
+    const btnUmidFrio3 = document.querySelector('.btnUF3');
+    const btnUmidIdeal = document.querySelector('.btnUI');
+    const btnUmidQuente3 = document.querySelector('.btnUQ3');
+    const btnUmidQuente2 = document.querySelector('.btnUQ2');
+    const btnUmidQuente1 = document.querySelector('.btnUQ1');
+
     function VerificarAlerta() {
       var ultimoValorTemp = myChart.data.datasets[0].data[myChart.data.datasets[0].data.length - 1];
       var ultimoValorUmi = myChart2.data.datasets[0].data[myChart2.data.datasets[0].data.length - 1];
 
-      const alertButtons = document.querySelectorAll('.blink');
+      const emergButtons = document.querySelectorAll('.blink-emerg');
+      const critButtons = document.querySelectorAll('.blink-crit');
+      const alertButtons = document.querySelectorAll('.blink-alert');
+      const idealButtons = document.querySelectorAll('.blink-ideal');
+      const alertDisplay = document.querySelector('.alert');
+      const alertUmidDisplay = document.querySelector('.alertUmid');
 
-      alertButtons.forEach(blink => {
-        blink.classList.remove('blink');
+      emergButtons.forEach(blink => {
+        blink.classList.remove('blink-emerg');
       });
 
+      critButtons.forEach(blink => {
+        blink.classList.remove('blink-crit');
+      });
+
+      alertButtons.forEach(blink => {
+        blink.classList.remove('blink-alert');
+      });
+
+      idealButtons.forEach(blink => {
+        blink.classList.remove('blink-ideal');
+      });
+
+      alertDisplay.style.display = 'none';
+      alertUmidDisplay.style.display = 'none';
+
       if (ultimoValorTemp >= 38) {
-        btnQuente1.classList.add("blink");
+        btnQuente1.classList.add("blink-emerg");
+        alertDisplay.style.display = 'block';
 
       } else if (ultimoValorTemp == 37) {
-        btnQuente2.classList.add("blink");
+        btnQuente2.classList.add("blink-crit");
 
       } else if (ultimoValorTemp == 36) {
-        btnQuente3.classList.add("blink");
+        btnQuente3.classList.add("blink-alert");
 
       } else if (ultimoValorTemp <= 35 && ultimoValorTemp >= 29) {
-        btnIdeal.classList.add("blink");
+        btnIdeal.classList.add("blink-ideal");
 
       } else if (ultimoValorTemp == 28) {
-        btnFrio3.classList.add("blink");
+        btnFrio3.classList.add("blink-alert");
 
       } else if (ultimoValorTemp == 27) {
-        btnFrio2.classList.add("blink");
+        btnFrio2.classList.add("blink-crit");
       
       } else {
-        btnFrio1.classList.add("blink");
+        btnFrio1.classList.add("blink-emerg");
+        alertDisplay.style.display = 'block';
+      }
+
+      if (ultimoValorUmi >= 83) {
+        btnUmidQuente1.classList.add("blink-emerg");
+        alertUmidDisplay.style.display = 'block';
+
+      } else if (ultimoValorUmi == 82) {
+        btnUmidQuente2.classList.add("blink-crit");
+
+      } else if (ultimoValorUmi == 81) {
+        btnUmidQuente3.classList.add("blink-alert");
+
+      } else if (ultimoValorUmi <= 80 && ultimoValorUmi >= 40) {
+        btnUmidIdeal.classList.add("blink-ideal");
+
+      } else if (ultimoValorUmi == 39) {
+        btnUmidFrio3.classList.add("blink-alert");
+
+      } else if (ultimoValorUmi == 38) {
+        btnUmidFrio2.classList.add("blink-crit");
+      
+      } else {
+        btnUmidFrio1.classList.add("blink-emerg");
+        alertUmidDisplay.style.display = 'block';
       }
     }
 
