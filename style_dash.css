@@ -233,7 +233,8 @@ body {
   border-style: ridge;
   border-width: 4px;
   border-radius: 6px;
-  height: 75vh;
+  min-height: 75vh;
+  height: fit-content;
 }
 
 .painel .kpi h1 {
