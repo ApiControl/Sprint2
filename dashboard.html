@@ -11,7 +11,7 @@
 </head>
 
 <!-- Chama função para validar a última posição do vetor logo após a função adicionar colméia. -->
-<body onload="adicionar_colmeia()" onload="validarVetor()">
+<body onload="adicionar_colmeia(), alertas()">
 
     <!-- Header -->
     <div class="header">
@@ -37,7 +37,6 @@
     </div>
 
     <!-- conteúdo da dashboard -->
-    <button onclick="validarVetor()">Validar Vetor</button>
     <div class="painel">
         <div class="kpi">
             <h1>
@@ -53,23 +52,22 @@
         </div>
         
         <div class="container" style="display: flex;" id="holder">
-          <div class="container-image">
-            <img class="container-image-table" src="tabela_analytics_relatorio.png" alt="">
-          </div>
               <br>
               <span class="filler">Clique em uma das <b>colmeias a esquerda</b> para verificar seu <b>monitoramento</b> <br> e abaixo <br> Os <b>relatórios</b> para verificar dados de um <b>período</b> específico</span>
         </div>
         <div class="container" style="display: none;" id="graficos">
+          <div class="container-analytics">
+            <div class="btn-group">
+              <button class="btnF1" id="botaoF1">26ºC Emergência</button>
+              <button class="btnF2" id="botaoF2">27ºC Crítico</button>
+              <button class="btnF3" id="botaoF3">28ºC Alerta</button>
+              <button class="btnI" id="botaoI">29ºC Ideal 35ºC</button>
+              <button class="btnQ3" id="botaoQ3">Alerta 36ºC</button>
+              <button class="btnQ2" id="botaoQ2">Crítico 37ºC</button>
+              <button class="btnQ1" id="botaoQ1">Emergência 38ºC</button>
+            </div>
+          </div>
             <div class="texto_periodo" >
-                <div class="periodos">
-                    <!-- <select id="periodo">
-                        <option value="tempAtual">Temperatura atual</option> <br>
-                        <option value="ult24Horas">Últimas 24 horas</option> <br>
-                        <option value="ultSemana">Última semana</option> <br>
-                        <option value="ultMes">Último mês</option> <br>
-                        <option value="ultAno">Último ano</option> <br>
-                    </select> -->
-                </div>
                 <h1 style="color: white;" id="title">
                     Monitoramento da Colmeia
                 </h1>
@@ -105,7 +103,6 @@
               </div>
         </div>
     </div>
-<div id="alerta"></div>
 </body>
 </html>
 
@@ -125,8 +122,8 @@ window.onclick = function(e) {
     }
   }
 }
-    const vetor_colmeia = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16, 17];
-    const vetor_colmeia2 = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27 ,28, 29, 30, 31, 32];
+    const vetor_colmeia = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12];
+    const vetor_colmeia2 = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 
     function adicionar_colmeia() {
         contador = 0;
@@ -136,7 +133,7 @@ window.onclick = function(e) {
           if (contador == 0) {
             colmeias.innerHTML += ` 
             <li class="lista_colmeia_item">
-              <a onclick = "atualizarGrafico(${contador})">
+              <a onclick = "atualizarGrafico(${contador}), VerificarAlerta()">
                 ${vetor_colmeia[contador]}
               </a>             
             <div class="status_colmeia" style="background-color: red;"></div>
@@ -148,7 +145,7 @@ window.onclick = function(e) {
           } else if (contador == 1) {
             colmeias.innerHTML += ` 
             <li class="lista_colmeia_item">
-              <a onclick = "atualizarGrafico(${contador})">
+              <a onclick = "atualizarGrafico(${contador}), VerificarAlerta()">
                 ${vetor_colmeia[contador]}
               </a>             
             <div class="status_colmeia" style="background-color: orange;"></div>
@@ -160,7 +157,7 @@ window.onclick = function(e) {
           } else {
             colmeias.innerHTML += ` 
             <li class="lista_colmeia_item">
-              <a onclick = "atualizarGrafico(${contador})">
+              <a onclick = "atualizarGrafico(${contador}), VerificarAlerta()">
                 ${vetor_colmeia[contador]}
               </a>             
             <div class="status_colmeia" style="background-color: green;"></div>
@@ -174,7 +171,7 @@ window.onclick = function(e) {
         while (contador2 < vetor_colmeia2.length) {
             colmeias2.innerHTML += ` 
             <li class="lista_colmeia_item" >             
-            <a onclick = "graficos(${contador})">${vetor_colmeia2[contador2]} </a>
+            <a onclick = "graficos(${contador}), VerificarAlerta()">${vetor_colmeia2[contador2]} </a>
             <div class="status_colmeia" style="background-color: green;"></div>
             </li>
             `
@@ -366,7 +363,7 @@ window.onclick = function(e) {
       }
     }
 
-    // Colmeia 1
+    // Colmeias 1, 2, 3
     var listaTemperatura = [[30, 29, 28, 25, 22, 23], [18, 18, 19, 20, 21, 22], [32, 33, 34, 35, 34, 32]]; 
     var listaUmidade = [[90, 89, 93, 87, 88, 82], [60, 60, 63, 65, 68, 70], [70, 75, 75, 73, 70, 67]];
 
@@ -380,16 +377,49 @@ window.onclick = function(e) {
     var listaUmidMes = [[80, 82, 81, 85, 87, 90, 93, 91, 88, 84, 80, 82], [60, 62, 64, 63, 64, 62, 61, 63, 65, 62, 64, 60], [70, 72, 73, 75, 73, 80, 82, 79, 80, 77, 75, 71]];
 
     // Alertas 
-    function validarVetor() {
-      var ultimoValorTemp = listaTemperatura[listaTemperatura.length - 1];
-      var ultimoValorUmi = listaUmidade[listaUmidade.length - 1];
+    const btnFrio1 = document.querySelector('.btnF1');
+    const btnFrio2 = document.querySelector('.btnF2');
+    const btnFrio3 = document.querySelector('.btnF3');
+    const btnIdeal = document.querySelector('.btnI');
+    const btnQuente3 = document.querySelector('.btnQ3');
+    const btnQuente2 = document.querySelector('.btnQ2');
+    const btnQuente1 = document.querySelector('.btnQ1');
 
-      if (ultimoValorTemp > 35) {
-        alert("Alerta de aumento de temperatura");
-      } else if (ultimoValorTemp < 29) {
-        alert("Queda brusca de temperatura.");
+    function VerificarAlerta() {
+      var ultimoValorTemp = myChart.data.datasets[0].data[myChart.data.datasets[0].data.length - 1];
+      var ultimoValorUmi = myChart2.data.datasets[0].data[myChart2.data.datasets[0].data.length - 1];
+
+      const alertButtons = document.querySelectorAll('.blink');
+
+      alertButtons.forEach(blink => {
+        blink.classList.remove('blink');
+      });
+
+      if (ultimoValorTemp >= 38) {
+        btnQuente1.classList.add("blink");
+
+      } else if (ultimoValorTemp == 37) {
+        btnQuente2.classList.add("blink");
+
+      } else if (ultimoValorTemp == 36) {
+        btnQuente3.classList.add("blink");
+
+      } else if (ultimoValorTemp <= 35 && ultimoValorTemp >= 29) {
+        btnIdeal.classList.add("blink");
+
+      } else if (ultimoValorTemp == 28) {
+        btnFrio3.classList.add("blink");
+
+      } else if (ultimoValorTemp == 27) {
+        btnFrio2.classList.add("blink");
+      
+      } else {
+        btnFrio1.classList.add("blink");
       }
+    }
 
+    function alertas() {
+      setInterval(VerificarAlerta, 10000);
     }
 
 </script>

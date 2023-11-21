@@ -144,14 +144,75 @@ body {
 
 /* conteúdo da dashboard */
 
-.container-image {
+.container-analytics {
   display: flex;
   justify-content: center;
   position: relative;
   transform: (0, 0);
   top: 0; 
   left: 0;
+}
 
+.blink{
+  animation: blinking 0.5s infinite;
+}
+@keyframes blinking{
+  0%		{ opacity: 0.5; border-top-color: #0C2626; border-bottom-color: #0C2626;}
+  100%	{ opacity: 1; border-top-color: #FFB800; border-bottom-color: #FFB800;}
+}
+
+.btn-group button {
+  border: 3px solid #0C2626; /* Green border */
+  color: white; /* White text */
+  font-weight: bold;
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+.btn-group .btnF1 {
+  background-color: rgb(170, 193, 228);
+}
+
+.btn-group .btnF2 {
+  background-color: rgb(94, 134, 196);
+}
+
+.btn-group .btnF3 {
+  background-color: rgb(16, 71, 153);
+}
+
+.btn-group .btnI {
+  background-color: green;
+}
+
+.btn-group .btnQ3 {
+  background-color: rgb(235, 235, 19);
+}
+
+.btn-group .btnQ2 {
+  background-color: orange;
+}
+
+.btn-group .btnQ1 {
+  background-color: red;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  opacity: 0.75;
+  transition: 0.5s;
 }
 
 .container .filler {
@@ -162,19 +223,17 @@ body {
 }
 
 .painel{
-    font-family: 'Poppins', sans-serif;
     display: flex;
-    /* padding-left: 25px;
-    padding-top: 25px; */
+    padding-left: 15px;
+    padding-top: 15px;
 }
 
 .painel .kpi {
-  width: 30%;
-  background-color: #5E9C8E;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
-  /* border-radius: 20px; */
+  border: 1.5px solid #FFB800;
+  border-style: ridge;
+  border-width: 4px;
+  border-radius: 6px;
+  height: 75vh;
 }
 
 .painel .kpi h1 {
@@ -222,17 +281,27 @@ body {
 
 .painel .kpi .lista_colmeias a {
     display: block;
-    color: black;
-    background-color: #FFB800;
+    color: black; 
+    background-color: #FFE087;
     width: 40px;
     height: 30px;
     text-decoration: none;
+    font-weight: bold;
     padding-top: 5px;
     padding-left: 20px;
     padding-right: 20px;
+    border: 2.5px solid #FFB800;
+    border-bottom-width: 5px;
 }
 
+.painel .kpi .lista_colmeias a:hover {background-color: #c7ae68;}
 
+.painel .kpi .lista_colmeias a:active {
+  background-color: #c7ae68;
+  border-color: #bb8600;
+  border-bottom-width: 2.5px;
+  transform: translateY(1px);
+}
 
 .painel .kpi .texto_periodo{
     display: flex;
