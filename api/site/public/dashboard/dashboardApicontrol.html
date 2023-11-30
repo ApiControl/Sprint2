@@ -11,7 +11,7 @@
 </head>
 
 <!-- Chama função para validar a última posição do vetor logo após a função adicionar colméia. -->
-<body onload="adicionar_colmeia()" onload="validarVetor()">
+<body onload="buscarColmeias()" onload="validarVetor()">
 
     <!-- Header -->
     <div class="header">
@@ -125,61 +125,152 @@ window.onclick = function(e) {
     }
   }
 }
-    const vetor_colmeia = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16, 17];
-    const vetor_colmeia2 = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27 ,28, 29, 30, 31, 32];
+    const vetor_colmeia = [];
+    var colmeia_banco = [];
+
+    function buscarColmeias(num) {
+      var fkEmpresa = sessionStorage.FK_EMPRESA
+
+      fetch(`/colmeias/buscar/${fkEmpresa}`, {
+        cache: 'no-store'
+        }).then(function(response) {
+
+            if(response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    inserirColmeias(resposta);
+
+            });
+        }else {
+            console.error('Nenhum dado encontrado ou erro na API')
+        }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+
+
+    }
+
+    function inserirColmeias(resposta) {
+
+      for(var i=0; i < resposta.length;i++) {
+        colmeia_banco.push(resposta[i].idColmeia)
+        vetor_colmeia.push(i+1);
+      }
+
+      adicionar_colmeia();
+
+    }
+
 
     function adicionar_colmeia() {
         contador = 0;
         contador2 = 0;
 
-        while (contador < vetor_colmeia.length) {
-          if (contador == 0) {
-            colmeias.innerHTML += ` 
+
+        for(var i=0; i<vetor_colmeia.length;i++) {
+          colmeias.innerHTML += ` 
             <li class="lista_colmeia_item">
-              <a onclick = "atualizarGrafico(${contador})">
-                ${vetor_colmeia[contador]}
+              <a onclick = "atualizarGraficoTemperatura(${vetor_colmeia[i]})">
+                ${vetor_colmeia[i]}
               </a>             
             <div class="status_colmeia" style="background-color: red;"></div>
             </li>
             `
-
-            contador += 1;
-
-          } else if (contador == 1) {
-            colmeias.innerHTML += ` 
-            <li class="lista_colmeia_item">
-              <a onclick = "atualizarGrafico(${contador})">
-                ${vetor_colmeia[contador]}
-              </a>             
-            <div class="status_colmeia" style="background-color: orange;"></div>
-            </li>
-            `
-
-            contador += 1;
-
-          } else {
-            colmeias.innerHTML += ` 
-            <li class="lista_colmeia_item">
-              <a onclick = "atualizarGrafico(${contador})">
-                ${vetor_colmeia[contador]}
-              </a>             
-            <div class="status_colmeia" style="background-color: green;"></div>
-            </li>
-            `
-
-            contador += 1;
-          }
         }
 
-        while (contador2 < vetor_colmeia2.length) {
-            colmeias2.innerHTML += ` 
-            <li class="lista_colmeia_item" >             
-            <a onclick = "graficos(${contador})">${vetor_colmeia2[contador2]} </a>
-            <div class="status_colmeia" style="background-color: green;"></div>
-            </li>
-            `
-            contador2 += 1;
+    }
+
+    var ultimasTemperaturas = [];
+    var ultimasUmidades = [];
+    var ultimasLabels = [];
+
+    function atualizarGraficoTemperatura(num) {
+      var fkEmpresa = sessionStorage.FK_EMPRESA;
+      var numero = colmeia_banco[num-1];
+      var sensor = 1
+
+      fetch(`/medidas/ultimas/`, {
+        headers: {
+          "id": numero,
+          "sensor": sensor
+        },
+        cache: 'no-store'
+        }).then(function(response) {
+
+            if(response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    ultimasLabels = [];
+                    ultimasTemperaturas = [];
+                    ultimasUmidades = [];
+
+                  for(var i=0; i<resposta.length;i++) {
+                    ultimasLabels.push(resposta[i].momento_grafico);
+                    ultimasTemperaturas.push(resposta[i].valorRegistrado);
+                  }
+
+                    atualizarGraficoUmidade(numero);
+
+            });
+        }else {
+            console.error('Nenhum dado encontrado ou erro na API')
         }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+
+
+    }
+
+    function atualizarGraficoUmidade(numero) {
+      var sensor = 2;
+
+      fetch(`/medidas/ultimas/`, {
+        headers: {
+          "id": numero,
+          "sensor": sensor
+        },
+        cache: 'no-store'
+        }).then(function(response) {
+
+            if(response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    graficos.style.display = "flex";
+                    holder.style.display = "none";
+
+                  for(var i=0; i<resposta.length;i++) {
+                    ultimasUmidades.push(resposta[i].valorRegistrado);
+                  }
+
+                    atualizarGraficos();
+            });
+        }else {
+            console.error('Nenhum dado encontrado ou erro na API')
+        }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+
+    }
+
+    function atualizarGraficos() {
+
+      myChart.config.data.labels = ultimasLabels;
+      myChart2.config.data.labels = ultimasLabels;
+      myChart.config.data.datasets[0].data = ultimasTemperaturas;
+      myChart2.config.data.datasets[0].data = ultimasUmidades;
+
+      myChart.update();
+      myChart2.update();
+
     }
 
     var contClick = 0;
@@ -207,11 +298,13 @@ window.onclick = function(e) {
         // maintainAspectRatio: false,
         scales: {
           y: {
-          beginAtZero: true,
-          // grid: {
-          // 	color: '#000',
-          // 	drawBorder: false 
-          // }
+            beginAtZero: true,
+            min: 0,
+            max: 50
+            // grid: {
+            // 	color: '#000',
+            // 	drawBorder: false 
+            // }
         },
         x: {
           // grid: {
@@ -240,6 +333,8 @@ window.onclick = function(e) {
       scales: {
         y: {
           beginAtZero: true,
+          min: 0,
+          max: 100
           // grid: {
             // 	color: '#000',
             // 	drawBorder: false 
@@ -320,23 +415,23 @@ window.onclick = function(e) {
     
     var numClicado = 0;
 
-    function atualizarGrafico(num) {
+    // function atualizarGrafico(num) {
       
-      myChart.config.data.datasets[0].data = listaTemperatura[num];
-      myChart2.config.data.datasets[0].data = listaUmidade[num];
-      myChart3.config.data.datasets[0].data = listaTempSem[num];
-      myChart4.config.data.datasets[0].data = listaUmidSem[num];
+    //   myChart.config.data.datasets[0].data = listaTemperatura[num];
+    //   myChart2.config.data.datasets[0].data = listaUmidade[num];
+    //   myChart3.config.data.datasets[0].data = listaTempSem[num];
+    //   myChart4.config.data.datasets[0].data = listaUmidSem[num];
 
-      myChart.update();
-      myChart2.update();
-      myChart3.update();
-      myChart4.update();
+    //   myChart.update();
+    //   myChart2.update();
+    //   myChart3.update();
+    //   myChart4.update();
 
-      graficos.style.display = "flex";
-      holder.style.display = "none";
-      numClicado = num;
+    //   graficos.style.display = "flex";
+    //   holder.style.display = "none";
+    //   numClicado = num;
 
-    }
+    // }
 
     function periodoGrafico(num) {
       var period = document.getElementById("periodo").value;
@@ -367,8 +462,8 @@ window.onclick = function(e) {
     }
 
     // Colmeia 1
-    var listaTemperatura = [[30, 29, 28, 25, 22, 23], [18, 18, 19, 20, 21, 22], [32, 33, 34, 35, 34, 32]]; 
-    var listaUmidade = [[90, 89, 93, 87, 88, 82], [60, 60, 63, 65, 68, 70], [70, 75, 75, 73, 70, 67]];
+    // var listaTemperatura = [[30, 29, 28, 25, 22, 23], [18, 18, 19, 20, 21, 22], [32, 33, 34, 35, 34, 32]]; 
+    // var listaUmidade = [[90, 89, 93, 87, 88, 82], [60, 60, 63, 65, 68, 70], [70, 75, 75, 73, 70, 67]];
 
     // Relatórios
       //Semana
