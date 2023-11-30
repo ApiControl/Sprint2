@@ -4,21 +4,21 @@ const mysql = require('mysql2');
 
 const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3000;
-const HABILITAR_OPERACAO_INSERIR = false;
+const HABILITAR_OPERACAO_INSERIR = true;
 
 const serial = async (
     valoresDht11Umidade,
     // valoresDht11Temperatura,
     // valoresLuminosidade,
-    valoresLm35Temperatura,
+    valoresLm35Temperatura
     // valoresChave
 ) => {
     const poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
             port: 3306,
-            user: 'aluno',
-            password: 'sptech',
+            user: 'root',
+            password: 'NivMizzet0410',
             database: 'apiControl'
         }
     ).promise();
@@ -42,7 +42,7 @@ const serial = async (
         const dht11Umidade = parseFloat(valores[0]);
         // const dht11Temperatura = parseFloat(valores[1]);
         // const luminosidade = parseFloat(valores[2]);
-        const lm35Temperatura = parseFloat(valores[3]);
+        const lm35Temperatura = parseFloat(valores[1]);
         // const chave = parseInt(valores[4]);
 
         valoresDht11Umidade.push(dht11Umidade);
@@ -53,7 +53,7 @@ const serial = async (
 
         if (HABILITAR_OPERACAO_INSERIR) {
             await poolBancoDados.execute(
-                `insert into sensores(dht11Umidade, lm35Temperatura) values (null, '${dht11Umidade}', '${lm35Temperatura}', '°'); (?, ?)`,
+                'INSERT INTO registros (valorRegistrado) VALUES (?), (?);',
                 [dht11Umidade, lm35Temperatura]
             );
         }
@@ -68,7 +68,7 @@ const servidor = (
     valoresDht11Umidade,
     // valoresDht11Temperatura,
     // valoresLuminosidade,
-    valoresLm35Temperatura,
+    valoresLm35Temperatura
     // valoresChave
 ) => {
     const app = express();
@@ -107,14 +107,14 @@ const servidor = (
         valoresDht11Umidade,
         // valoresDht11Temperatura,
         // valoresLuminosidade,
-        valoresLm35Temperatura,
+        valoresLm35Temperatura
         // valoresChave
     );
     servidor(
         valoresDht11Umidade,
         // valoresDht11Temperatura,
         // valoresLuminosidade,
-        valoresLm35Temperatura,
+        valoresLm35Temperatura
         // valoresChave
     );
 })();

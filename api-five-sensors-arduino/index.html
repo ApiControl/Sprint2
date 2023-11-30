@@ -250,7 +250,7 @@
         function obterDados(grafico, endpoint) {
 
             var http = new XMLHttpRequest();
-            http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
+            http.open('GET', 'http://localhost:3000/sensores/' + endpoint, true);
             http.send(null);
 
             var valores = JSON.parse(http.responseText);
