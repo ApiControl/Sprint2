@@ -1,9 +1,9 @@
-var aquarioModel = require("../models/aquarioModel");
+var colmeiaModel = require("../models/colmeiaModel");
 
-function buscarAquariosPorEmpresa(req, res) {
-  var idUsuario = req.params.idUsuario;
+function buscarColmeiasPorEmpresa(req, res) {
+  var idEmpresa = req.params.fkEmpresa;
 
-  aquarioModel.buscarAquariosPorEmpresa(idUsuario).then((resultado) => {
+  colmeiaModel.buscarColmeiasPorEmpresa(idEmpresa).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -11,7 +11,7 @@ function buscarAquariosPorEmpresa(req, res) {
     }
   }).catch(function (erro) {
     console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+    console.log("Houve um erro ao buscar as colmeias: ", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
 }
@@ -44,6 +44,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarAquariosPorEmpresa,
+  buscarColmeiasPorEmpresa,
   cadastrar
 }

@@ -66,7 +66,8 @@
         </div>
   
         <div class="input-field button">
-          <input value="Acessar" onclick="entrar()">
+          <!-- <input value="Acessar" onclick="entrar()"> -->
+            <button onclick="entrar()">Acessar</button>
         </div>
   
         <div class="text">
@@ -189,7 +190,7 @@
                     // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
+                        window.location.href = "./dashboard/dashboardApicontrol.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
