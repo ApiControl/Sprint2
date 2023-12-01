@@ -186,10 +186,11 @@ window.onclick = function(e) {
     var ultimasTemperaturas = [];
     var ultimasUmidades = [];
     var ultimasLabels = [];
+    var numero = 0;
 
     function atualizarGraficoTemperatura(num) {
       var fkEmpresa = sessionStorage.FK_EMPRESA;
-      var numero = colmeia_banco[num-1];
+      numero = colmeia_banco[num-1];
       var sensor = 1
 
       fetch(`/medidas/ultimas/`, {
@@ -203,6 +204,7 @@ window.onclick = function(e) {
             if(response.ok) {
                 response.json().then(function(resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
 
                     ultimasLabels = [];
                     ultimasTemperaturas = [];
@@ -271,6 +273,79 @@ window.onclick = function(e) {
       myChart.update();
       myChart2.update();
 
+      setTimeout(atuallizarTempoRealTemp, 10000)
+
+    }
+
+    function atuallizarTempoRealTemp() {
+
+      var sensor = 1;
+
+      fetch(`/medidas/tempo-real/`, {
+        headers: {
+          "id": numero,
+          "sensor": sensor
+        },
+        cache: 'no-store'
+        }).then(function(response) {
+
+            if(response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    setTimeout(atuallizarTempoRealTemp, 10000)
+                  
+                  if(resposta[0].momento_grafico == ultimasLabels[ultimasLabels.length - 1]) {
+                    console.log('Não há dados novos para inserir')
+                  } else {
+                    ultimasLabels.shift();
+                    ultimasLabels.push(resposta[0].momento_grafico);
+
+                    ultimasTemperaturas.shift();
+                    ultimasTemperaturas.push(resposta[0].valorRegistrado);
+
+                    atuallizarTempoRealUmidade()
+                  }
+                  
+            });
+        }else {
+            console.error('Nenhum dado encontrado ou erro na API')
+        }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+
+    }
+
+    function atuallizarTempoRealUmidade() {
+      var sensor = 2;
+
+      fetch(`/medidas/tempo-real/`, {
+        headers: {
+          "id": numero,
+          "sensor": sensor
+        },
+        cache: 'no-store'
+        }).then(function(response) {
+
+            if(response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    ultimasUmidades.shift();
+                    ultimasUmidades.push(resposta[0].valorRegistrado);
+  
+
+                    atualizarGraficos();
+
+            });
+        }else {
+            console.error('Nenhum dado encontrado ou erro na API')
+        }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
     }
 
     var contClick = 0;
