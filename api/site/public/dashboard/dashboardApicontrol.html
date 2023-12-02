@@ -173,13 +173,15 @@ window.onclick = function(e) {
         for(var i=0; i<vetor_colmeia.length;i++) {
           colmeias.innerHTML += ` 
             <li class="lista_colmeia_item">
-              <a onclick = "atualizarGraficoTemperatura(${vetor_colmeia[i]})">
+              <a onclick = "exibirGraficos(${vetor_colmeia[i] - 1})">
                 ${vetor_colmeia[i]}
               </a>             
             <div class="status_colmeia" style="background-color: red;"></div>
             </li>
             `
-        }
+
+          }
+          chamarAtualizar();
 
     }
 
@@ -188,14 +190,28 @@ window.onclick = function(e) {
     var ultimasLabels = [];
     var numero = 0;
 
-    function atualizarGraficoTemperatura(num) {
+    var contReq = 0;
+    var contReqAtualizar = 0;
+
+    function chamarAtualizar() {
+
+      if(contReq < colmeia_banco.length) {
+        atualizarTemperaturas(colmeia_banco[contReq]);
+        contReq++;
+      } else {
+          // setTimeout(atuallizarTempoRealTemp, 5000);
+          atualizarTempoRealTemp();
+      }
+      
+    }
+
+    function atualizarTemperaturas(num) {
       var fkEmpresa = sessionStorage.FK_EMPRESA;
-      numero = colmeia_banco[num-1];
       var sensor = 1
 
       fetch(`/medidas/ultimas/`, {
         headers: {
-          "id": numero,
+          "id": num,
           "sensor": sensor
         },
         cache: 'no-store'
@@ -206,16 +222,20 @@ window.onclick = function(e) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    ultimasLabels = [];
-                    ultimasTemperaturas = [];
-                    ultimasUmidades = [];
+                    var vetorLabels = [];
+                    var vetorTemperaturas = [];
 
-                  for(var i=0; i<resposta.length;i++) {
-                    ultimasLabels.push(resposta[i].momento_grafico);
-                    ultimasTemperaturas.push(resposta[i].valorRegistrado);
-                  }
+                    for(var i=0; i<resposta.length;i++) {
+                      vetorLabels.push(resposta[i].momento_grafico)
+                      vetorTemperaturas.push(resposta[i].valorRegistrado)
+                    }
 
-                    atualizarGraficoUmidade(numero);
+                    ultimasTemperaturas.push(vetorTemperaturas);
+                    ultimasLabels.push(vetorLabels);
+
+
+
+                    atualizarGraficoUmidade(num);
 
             });
         }else {
@@ -229,12 +249,12 @@ window.onclick = function(e) {
 
     }
 
-    function atualizarGraficoUmidade(numero) {
+    function atualizarGraficoUmidade(num) {
       var sensor = 2;
 
       fetch(`/medidas/ultimas/`, {
         headers: {
-          "id": numero,
+          "id": num,
           "sensor": sensor
         },
         cache: 'no-store'
@@ -243,15 +263,18 @@ window.onclick = function(e) {
             if(response.ok) {
                 response.json().then(function(resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
 
-                    graficos.style.display = "flex";
-                    holder.style.display = "none";
+                    var vetorUmidade = [];
 
                   for(var i=0; i<resposta.length;i++) {
-                    ultimasUmidades.push(resposta[i].valorRegistrado);
+                    vetorUmidade.push(resposta[i].valorRegistrado);
                   }
 
-                    atualizarGraficos();
+                  ultimasUmidades.push(vetorUmidade);
+
+
+                  chamarAtualizar();
             });
         }else {
             console.error('Nenhum dado encontrado ou erro na API')
@@ -263,27 +286,51 @@ window.onclick = function(e) {
 
     }
 
-    function atualizarGraficos() {
+    function exibirGraficos(num) {
 
-      myChart.config.data.labels = ultimasLabels;
-      myChart2.config.data.labels = ultimasLabels;
-      myChart.config.data.datasets[0].data = ultimasTemperaturas;
-      myChart2.config.data.datasets[0].data = ultimasUmidades;
+      botaoClicado = num;
+      graficos.style.display = "flex";
+      holder.style.display = "none";
+
+      myChart.config.data.labels = ultimasLabels[num];
+      myChart2.config.data.labels = ultimasLabels[num];
+      myChart.config.data.datasets[0].data = ultimasTemperaturas[num];
+      myChart2.config.data.datasets[0].data = ultimasUmidades[num];
 
       myChart.update();
       myChart2.update();
 
-      setTimeout(atuallizarTempoRealTemp, 10000)
-
     }
 
-    function atuallizarTempoRealTemp() {
+    var botaoClicado = -1;
 
+    function atualizarGraficos(num) {
+
+      
+
+      myChart.config.data.labels = ultimasLabels[num];
+      myChart2.config.data.labels = ultimasLabels[num];
+      myChart.config.data.datasets[0].data = ultimasTemperaturas[num];
+      myChart2.config.data.datasets[0].data = ultimasUmidades[num];
+
+      myChart.update();
+      myChart2.update();
+    }
+  
+
+    function atualizarTempoRealTemp() {
+      
+      if(contReqAtualizar == 4) {
+        contReqAtualizar = 0;
+      }
+
+      var idColmeia = colmeia_banco[contReqAtualizar];
       var sensor = 1;
+      
 
       fetch(`/medidas/tempo-real/`, {
         headers: {
-          "id": numero,
+          "id": idColmeia,
           "sensor": sensor
         },
         cache: 'no-store'
@@ -292,18 +339,19 @@ window.onclick = function(e) {
             if(response.ok) {
                 response.json().then(function(resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    setTimeout(atuallizarTempoRealTemp, 10000)
                   
-                  if(resposta[0].momento_grafico == ultimasLabels[ultimasLabels.length - 1]) {
-                    console.log('Não há dados novos para inserir')
+                  if(resposta[0].momento_grafico == ultimasLabels[contReqAtualizar][ultimasLabels[contReqAtualizar].length - 1]) {
+                    console.log(`Não há dados novos para inserir na colmeia ${colmeia_banco[contReqAtualizar]}`)
+                    contReqAtualizar++;
+                    setTimeout(atualizarTempoRealTemp, 1000)
                   } else {
-                    ultimasLabels.shift();
-                    ultimasLabels.push(resposta[0].momento_grafico);
+                    ultimasLabels[contReqAtualizar].shift();
+                    ultimasLabels[contReqAtualizar].push(resposta[0].momento_grafico);
 
-                    ultimasTemperaturas.shift();
-                    ultimasTemperaturas.push(resposta[0].valorRegistrado);
+                    ultimasTemperaturas[contReqAtualizar].shift();
+                    ultimasTemperaturas[contReqAtualizar].push(resposta[0].valorRegistrado);
 
-                    atuallizarTempoRealUmidade()
+                    atualizarTempoRealUmidade()
                   }
                   
             });
@@ -317,12 +365,14 @@ window.onclick = function(e) {
 
     }
 
-    function atuallizarTempoRealUmidade() {
+    function atualizarTempoRealUmidade() {
+      var idColmeia = colmeia_banco[contReqAtualizar];
+      var idBotao = vetor_colmeia[contReqAtualizar] - 1;
       var sensor = 2;
 
       fetch(`/medidas/tempo-real/`, {
         headers: {
-          "id": numero,
+          "id": idColmeia,
           "sensor": sensor
         },
         cache: 'no-store'
@@ -331,13 +381,16 @@ window.onclick = function(e) {
             if(response.ok) {
                 response.json().then(function(resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
 
-                    ultimasUmidades.shift();
-                    ultimasUmidades.push(resposta[0].valorRegistrado);
-  
-
-                    atualizarGraficos();
-
+                    ultimasUmidades[contReqAtualizar].shift();
+                    ultimasUmidades[contReqAtualizar].push(resposta[0].valorRegistrado);
+                  
+                    if(botaoClicado == contReqAtualizar) {
+                      atualizarGraficos(idBotao);
+                    }
+                    contReqAtualizar++;
+                    setTimeout(atualizarTempoRealTemp, 1000);
             });
         }else {
             console.error('Nenhum dado encontrado ou erro na API')
