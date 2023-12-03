@@ -3,16 +3,16 @@
 @font-face {
   font-family: 'Chella';
   src: local('Chella SemiBold Italic'), local('Chella-SemiBold-Italic'),
-      url('fontes/Chella-SemiBoldItalic.woff2') format('woff2'),
-      url('fontes/Chella-SemiBoldItalic.woff') format('woff'),
-      url('fontes/Chella-SemiBoldItalic.ttf') format('truetype');
+      url('../fontes/Chella-SemiBoldItalic.woff2') format('woff2'),
+      url('../fontes/Chella-SemiBoldItalic.woff') format('woff'),
+      url('../fontes/Chella-SemiBoldItalic.ttf') format('truetype');
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: Chella;
-  src: url("fontes/Chella-SemiBoldItalic.ttf");
+  src: url("../fontes/Chella-SemiBoldItalic.ttf");
 }
 
 * {

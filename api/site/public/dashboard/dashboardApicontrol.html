@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style_dash.css">
-    <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
+    <link rel="shortcut icon" type="imagex/png" href="../assets/icon/Logo-ApiControl.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard</title>
@@ -15,23 +15,18 @@
 
     <!-- Header -->
     <div class="header">
-        <img src="imagens/Logo ApiControl.png" href="index.html">
-        <a href="index.html" class="logo">ApiControl</a>
-          <div class="header-left">  
-            <a href="index.html">Home</a>
-            <a href="index.html#calc_scroll">Simulação</a>
-            <a href="index.html#servico_scroll">Serviços</a>
-            <a href="index.html#sobre_scroll">Sobre</a>
-            <a href="index.html#footer_scroll">Contato</a>
-          </div>
+        <img src="../assets/imgs/Logo ApiControl.png">
+        <a class="logo">ApiControl</a>
+          <div class="header-left">
+          </div>  
           <div class="dropdown">
-            <img src="imagens\user_icon.png">
+            <img src="../assets/imgs/user_icon.png">
             <button class="dropbtn" onclick="myFunction()">Usuário
               <i class="fa fa-caret-down"></i>
             </button>
               <div class="dropdown-content" id="myDropdown">
                 <a href="cadastro_admin.html">Cadastrar</a>
-                <a href="login.html">Deslogar</a>
+                <a href="../login.html" onclick="deslogar()">Deslogar</a>
               </div>
             </div>
     </div>

@@ -8,6 +8,7 @@ var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
 
 var app = express();
 
+var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
 var colmeiasRouter = require("./src/routes/colmeias");
@@ -20,6 +21,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
+app.use("/", indexRouter);
+app.use("/index", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresasRouter);
 app.use("/colmeias", colmeiasRouter);
