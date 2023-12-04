@@ -9,16 +9,16 @@
 @font-face {
   font-family: 'Chella';
   src: local('Chella SemiBold Italic'), local('Chella-SemiBold-Italic'),
-      url('fontes/Chella-SemiBoldItalic.woff2') format('woff2'),
-      url('fontes/Chella-SemiBoldItalic.woff') format('woff'),
-      url('fontes/Chella-SemiBoldItalic.ttf') format('truetype');
+      url('../fontes/Chella-SemiBoldItalic.woff2') format('woff2'),
+      url('../fontes/Chella-SemiBoldItalic.woff') format('woff'),
+      url('../fontes/Chella-SemiBoldItalic.ttf') format('truetype');
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: Chella;
-  src: url("fontes/Chella-SemiBoldItalic.ttf");
+  src: url("../fontes/Chella-SemiBoldItalic.ttf");
 }
 
 * {
@@ -203,7 +203,7 @@ body {
   margin: 18px 0;
 }
 
-form .input-field input {
+form .input-field input, form .input-field button {
   height: 100%;
   width: 100%;
   outline: none;
@@ -218,11 +218,11 @@ form .input-field input {
   cursor: pointer;
 }
 
-.input-field input:focus {
+.input-field input:focus, .input-field button:focus {
   border-color: #FFB800;
 }
 
-.input-field input {
+.input-field input, .input-field button {
   height: 100%;
   width: 100%;
   outline: none;
@@ -266,7 +266,7 @@ form .input-field input {
   margin: 25px 0 6px;
 }
 
-.input-field.button input {
+.input-field.button input, .input-field.button button {
   color: #fff;
   letter-spacing: 1px;
   border: none;
@@ -274,7 +274,7 @@ form .input-field input {
   cursor: pointer;
 }
 
-.button input:hover {
+.button input:hover, .button button:hover {
   background-color: #FFB800;
 }
 

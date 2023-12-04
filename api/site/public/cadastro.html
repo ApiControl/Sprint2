@@ -6,15 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>AquaTech | Cadastro</title>
+  <title>ApiControl | Cadastro</title>
 
   <script src="./js/sessao.js"></script>
   <script src="./js/cadastro.js"></script>
 
-  <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
+  <link rel="shortcut icon" type="imagex/png" href="assets/icon/Logo-ApiControl.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
   <link rel="stylesheet" href="./css/style_cadastro_admin.css" />
   <!-- <link rel="stylesheet" href="./css/style.css"> -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -27,29 +26,24 @@
 
   <!-- Header -->
   <div class="header">
-      <img src="imagens/Logo ApiControl.png" href="index.html">
-      <a href="index.html" class="logo">ApiControl</a>
+      <img src="assets/imgs/Logo ApiControl.png">
+      <a class="logo">ApiControl</a>
         <div class="header-left">  
-          <a href="index.html">Home</a>
-          <a href="index.html#calc_scroll">Simulação</a>
-          <a href="index.html#servico_scroll">Serviços</a>
-          <a href="index.html#sobre_scroll">Sobre</a>
-          <a href="index.html#footer_scroll">Contato</a>
         </div>
         <div class="dropdown">
-          <img src="imagens\user_icon.png">
+          <img src="assets/imgs/user_icon.png">
           <button class="dropbtn" onclick="myFunction()">Usuário
             <i class="fa fa-caret-down"></i>
           </button>
             <div class="dropdown-content" id="myDropdown">
-              <a href="dashboard.html">Dashboard</a>
-              <a href="login.html">Deslogar</a>
+              <a href="./dashboard/dashboardApicontrol.html">Dashboard</a>
+              <a href="./login.html" onclick="deslogar()">Deslogar</a>
             </div>
           </div>
   </div>
 
   <div class="container-form">
-      <h2>Cadastro Passo - 1/2</h2>
+      <h2>Cadastro de Funcionário</h2>
       <form >
 
               <div class="field name-field">
@@ -94,17 +88,9 @@
                   </span>
               </div>
 
-              <div class="policy_lembrar">
-                  <input type="checkbox" required>
-                  <h3>Eu aceito todos termos e condições</h3>
-              </div>
-
               <div class="input-field button">
-                  <input value="Continuar" onclick="cadastrar()"/>
-              </div>
-
-              <div class="text">
-                  <h3>Já possui uma conta? <a href="login.html">Acessar</a></h3>
+                  <!-- <input value="Continuar" onclick="cadastrar()"/> -->
+                  <button onclick="cadastrar()">Cadastrar</button>
               </div>
       </form>
   </div>
@@ -116,7 +102,7 @@
           <!-- 1st Column -->
           <div class="footer-col footer-logo">
               <ul>
-                  <img src="imagens/Logo ApiControl.png" class="logoApi"><br>
+                  <img src="assets/imgs/Logo ApiControl.png" class="logoApi"><br>
                   <b href="">ApiControl</b> <br>
                   <c href="">Transformando Dados em Melhores Escolhas</c>
               </ul>
@@ -126,33 +112,14 @@
           <div class="footer-col">
               <h4>Contato</h4>
               <ul>
-                  <li><img src="imagens/icon telefone.png"
+                  <li><img src="assets/imgs/icon telefone.png"
                           class="icon_phone"><a href="">(11) 99845-0000</a> </li>
-                  <li><img src="imagens/icon maps.png"
+                  <li><img src="assets/imgs/icon maps.png"
                           class="icon_maps"><a href="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo</a>
                   </li>
-                  <li><img src="imagens/icon email.png"
+                  <li><img src="assets/imgs/icon email.png"
                           class="icon_mail"><a href="">   contato@apicontrol.com</a> </li>
               </ul>
-          </div>
-
-          <!-- 3rd Column -->
-        <div class="footer-col">
-          <h4>Menu</h4>
-          <ul>
-            <li><a href="index.html">Home</a> </li>
-            <li><a href="index.html#calc_scroll">Simulação</a> </li>
-            <li><a href="index.html#servico_scroll">Serviços</a> </li>
-            <li><a href="index.html#sobre_scroll">Sobre</a> </li>
-          </ul>
-      </div>
-
-      <!-- 4th Column -->
-      <div class="footer-col">
-          <h4>Entre em contato:</h4>
-          <form action="cadastro_empresa.html">
-              <input type="submit" value="Fazer Cadastro" class="input_submit">
-          </form>
           </div>
       </div>
       <hr>
@@ -181,7 +148,9 @@
 
 <script>
 
-
+  function deslogar() {
+    sessionStorage.clear();
+  }
  
 
   function cadastrar() {
