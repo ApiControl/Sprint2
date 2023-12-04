@@ -11,7 +11,7 @@
 </head>
 
 <!-- Chama função para validar a última posição do vetor logo após a função adicionar colméia. -->
-<body onload="buscarColmeias()" onload="validarVetor()">
+<body onload="buscarColmeias()" onload="alertas()">
 
     <!-- Header -->
     <div class="header">
@@ -32,7 +32,6 @@
     </div>
 
     <!-- conteúdo da dashboard -->
-    <button onclick="validarVetor()">Validar Vetor</button>
     <div class="painel">
         <div class="kpi">
             <h1>
@@ -48,13 +47,33 @@
         </div>
         
         <div class="container" style="display: flex;" id="holder">
-          <div class="container-image">
-            <img class="container-image-table" src="tabela_analytics_relatorio.png" alt="">
-          </div>
               <br>
               <span class="filler">Clique em uma das <b>colmeias a esquerda</b> para verificar seu <b>monitoramento</b> <br> e abaixo <br> Os <b>relatórios</b> para verificar dados de um <b>período</b> específico</span>
         </div>
         <div class="container" style="display: none;" id="graficos">
+          <div class="container-analytics">
+            <div class="btn-group">
+              <button class="btnF1">26ºC Emergência</button>
+              <button class="btnF2">27ºC Crítico</button>
+              <button class="btnF3">28ºC Alerta</button>
+              <button class="btnI">29ºC Ideal 35ºC</button>
+              <button class="btnQ3">Alerta 36ºC</button>
+              <button class="btnQ2">Crítico 37ºC</button>
+              <button class="btnQ1">Emergência 38ºC</button>
+            </div>
+          </div>
+          <br>
+          <div class="container-analytics">
+            <div class="btn-group">
+              <button class="btnUF1">37% Emergência</button>
+              <button class="btnUF2">38% Crítico</button>
+              <button class="btnUF3">39% Alerta</button>
+              <button class="btnUI">40% Ideal 80%</button>
+              <button class="btnUQ3">Alerta 81%</button>
+              <button class="btnUQ2">Crítico 82%</button>
+              <button class="btnUQ1">Emergência 83%</button>
+            </div>
+          </div>
             <div class="texto_periodo" >
                 <div class="periodos">
                     <!-- <select id="periodo">
@@ -171,7 +190,7 @@ window.onclick = function(e) {
               <a onclick = "exibirGraficos(${vetor_colmeia[i] - 1})">
                 ${vetor_colmeia[i]}
               </a>             
-            <div class="status_colmeia" style="background-color: red;"></div>
+            <div class="status_colmeia" style="background-color: red;" id="status_${i}"></div>
             </li>
             `
 
@@ -597,17 +616,104 @@ window.onclick = function(e) {
     var listaTempMes = [[30, 27, 25, 25, 28, 29, 27, 28, 26, 25, 28, 25], [16, 18, 24, 17, 16, 18, 19, 20, 18, 17, 16, 20], [24, 28, 29, 25, 26, 27, 26, 23, 25, 26, 28, 27]]; 
     var listaUmidMes = [[80, 82, 81, 85, 87, 90, 93, 91, 88, 84, 80, 82], [60, 62, 64, 63, 64, 62, 61, 63, 65, 62, 64, 60], [70, 72, 73, 75, 73, 80, 82, 79, 80, 77, 75, 71]];
 
-    // Alertas 
-    function validarVetor() {
-      var ultimoValorTemp = listaTemperatura[listaTemperatura.length - 1];
-      var ultimoValorUmi = listaUmidade[listaUmidade.length - 1];
+    // Alertas
+    const btnFrio1 = document.querySelector('.btnF1');
+    const btnFrio2 = document.querySelector('.btnF2');
+    const btnFrio3 = document.querySelector('.btnF3');
+    const btnIdeal = document.querySelector('.btnI');
+    const btnQuente3 = document.querySelector('.btnQ3');
+    const btnQuente2 = document.querySelector('.btnQ2');
+    const btnQuente1 = document.querySelector('.btnQ1');
 
-      if (ultimoValorTemp > 35) {
-        alert("Alerta de aumento de temperatura");
-      } else if (ultimoValorTemp < 29) {
-        alert("Queda brusca de temperatura.");
+    const btnUmidFrio1 = document.querySelector('.btnUF1');
+    const btnUmidFrio2 = document.querySelector('.btnUF2');
+    const btnUmidFrio3 = document.querySelector('.btnUF3');
+    const btnUmidIdeal = document.querySelector('.btnUI');
+    const btnUmidQuente3 = document.querySelector('.btnUQ3');
+    const btnUmidQuente2 = document.querySelector('.btnUQ2');
+    const btnUmidQuente1 = document.querySelector('.btnUQ1');
+
+    function VerificarAlerta() {
+      var ultimoValorTemp = myChart.data.datasets[0].data[myChart.data.datasets[0].data.length - 1];
+      var ultimoValorUmi = myChart2.data.datasets[0].data[myChart2.data.datasets[0].data.length - 1];
+
+      const emergButtons = document.querySelectorAll('.blink-emerg');
+      const critButtons = document.querySelectorAll('.blink-crit');
+      const alertButtons = document.querySelectorAll('.blink-alert');
+      const idealButtons = document.querySelectorAll('.blink-ideal');
+      const alertDisplay = document.querySelector('.alert');
+      const alertUmidDisplay = document.querySelector('.alertUmid');
+
+      emergButtons.forEach(blink => {
+        blink.classList.remove('blink-emerg');
+      });
+
+      critButtons.forEach(blink => {
+        blink.classList.remove('blink-crit');
+      });
+
+      alertButtons.forEach(blink => {
+        blink.classList.remove('blink-alert');
+      });
+
+      idealButtons.forEach(blink => {
+        blink.classList.remove('blink-ideal');
+      });
+
+      alertDisplay.style.display = 'none';
+      alertUmidDisplay.style.display = 'none';
+
+      if (ultimoValorTemp >= 38) {
+        btnQuente1.classList.add("blink-emerg");
+        alertDisplay.style.display = 'block';
+
+      } else if (ultimoValorTemp == 37) {
+        btnQuente2.classList.add("blink-crit");
+
+      } else if (ultimoValorTemp == 36) {
+        btnQuente3.classList.add("blink-alert");
+
+      } else if (ultimoValorTemp <= 35 && ultimoValorTemp >= 29) {
+        btnIdeal.classList.add("blink-ideal");
+
+      } else if (ultimoValorTemp == 28) {
+        btnFrio3.classList.add("blink-alert");
+
+      } else if (ultimoValorTemp == 27) {
+        btnFrio2.classList.add("blink-crit");
+      
+      } else {
+        btnFrio1.classList.add("blink-emerg");
+        alertDisplay.style.display = 'block';
       }
 
+      if (ultimoValorUmi >= 83) {
+        btnUmidQuente1.classList.add("blink-emerg");
+        alertUmidDisplay.style.display = 'block';
+
+      } else if (ultimoValorUmi == 82) {
+        btnUmidQuente2.classList.add("blink-crit");
+
+      } else if (ultimoValorUmi == 81) {
+        btnUmidQuente3.classList.add("blink-alert");
+
+      } else if (ultimoValorUmi <= 80 && ultimoValorUmi >= 40) {
+        btnUmidIdeal.classList.add("blink-ideal");
+
+      } else if (ultimoValorUmi == 39) {
+        btnUmidFrio3.classList.add("blink-alert");
+
+      } else if (ultimoValorUmi == 38) {
+        btnUmidFrio2.classList.add("blink-crit");
+      
+      } else {
+        btnUmidFrio1.classList.add("blink-emerg");
+        alertUmidDisplay.style.display = 'block';
+      }
+    }
+
+    function alertas() {
+      setInterval(VerificarAlerta, 2000);
     }
 
 </script>
