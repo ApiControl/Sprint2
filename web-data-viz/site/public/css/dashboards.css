@@ -85,7 +85,7 @@ body {
   padding: 20px;
 }
 
-.publicacao > *:not(:last-child) {
+.publicacao>*:not(:last-child) {
   padding: 0 0 10px 0;
 }
 
@@ -104,7 +104,7 @@ body {
   justify-content: flex-end;
 }
 
-.div-buttons > * {
+.div-buttons>* {
   margin-left: 30px;
 }
 
@@ -159,6 +159,7 @@ body {
   text-align: center;
   padding-top: 15px;
 }
+
 
 .cards {
   display: flex;
