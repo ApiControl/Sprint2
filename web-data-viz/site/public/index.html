@@ -1,341 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style_prot.css">
-    <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style_prot.css">
+  <link rel="shortcut icon" type="imagex/png" href="imagens/Logo-ApiControl.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Home</title>
 </head>
+
 <body>
 
   <!-- Header -->
-      <div class="header">
-        <img src="imagens/Logo ApiControl.png" href="index.html">
-        <a href="index.html" class="logo">ApiControl</a>
-          <div class="header-left">  
-            <a href="#home" onclick="SlideScroll()">Home</a>
-            <a href="#calculadora" onclick="CalcScroll()">Simulação</a>
-            <a href="#serviço" onclick="ServicoScroll()">Serviços</a>
-            <a href="#sobre" onclick="SobreScroll()">Sobre</a>
-            <a href="#footer" onclick="FooterScroll()">Contato</a>
-          </div>
-          <div class="header-right card">
-            <a href="login.html">Login</a>
-            <a href="cadastro_empresa.html">Cadastro</a>
-          </div>
+  <div class="header">
+    <img src="imagens/Logo ApiControl.png" href="index.html">
+    <a href="index.html" class="logo">ApiControl</a>
+    <div class="header-left">
+      <a href="#home" onclick="SlideScroll()">Home</a>
+      <a href="#calculadora" onclick="CalcScroll()">Simulação</a>
+      <a href="#serviço" onclick="ServicoScroll()">Serviços</a>
+      <a href="#sobre" onclick="SobreScroll()">Sobre</a>
+      <a href="#footer" onclick="FooterScroll()">Contato</a>
     </div>
+    <div class="header-right card">
+      <a href="login.html">Login</a>
+      <a href="cadastro_empresa.html">Cadastro</a>
+    </div>
+  </div>
 
   <!-- Slideshow container -->
-<div class="slideshow-container" id="slide_scroll">
+  <div class="slideshow-container" id="slide_scroll">
 
     <!-- Imagens do slider / Captions / Números da página -->
     <div class="mySlides fade">
       <div class="numbertext">1 / 3</div>
       <img src="imagens/apicultura.jpg" style="width:100%">
-        <div class="text">
-            <h5>Você sabia?</h5>
-            <p>A eficácia da produção das abelhas é afetada pela temperatura, umidade e até incisão de luz de suas colmeias</p>
-            <!-- Dots/"bolinhas" -->
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
+      <div class="text">
+        <h5>Você sabia?</h5>
+        <p>A eficácia da produção das abelhas é afetada pela temperatura, umidade e até incisão de luz de suas colmeias
+        </p>
+        <!-- Dots/"bolinhas" -->
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
     </div>
-  
+
     <div class="mySlides fade">
       <div class="numbertext">2 / 3</div>
       <img src="imagens/Mel.jpg" style="width:100%">
-        <div class="text">
-            <h5>Maior produção de mel</h5>
-            <p>Mantenha as colmeias de suas abelhas em temperatura e umidade ideal para melhor produção de mel!</p>
-            <!-- Dots/"bolinhas" -->
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
+      <div class="text">
+        <h5>Maior produção de mel</h5>
+        <p>Mantenha as colmeias de suas abelhas em temperatura e umidade ideal para melhor produção de mel!</p>
+        <!-- Dots/"bolinhas" -->
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
     </div>
-  
+
     <div class="mySlides fade">
       <div class="numbertext">3 / 3</div>
       <img src="imagens/colmeia.jpg" style="width:100%">
-        <div class="text">
-            <h5>Monitoramento de colmeias</h5>
-            <p>Suas abelhas necessitam de um ambiente bem monitorado para que as devidas ações sejam tomadas para preservar suas colmeias!</p>
-            <!-- Dots/"bolinhas" -->
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
+      <div class="text">
+        <h5>Monitoramento de colmeias</h5>
+        <p>Suas abelhas necessitam de um ambiente bem monitorado para que as devidas ações sejam tomadas para preservar
+          suas colmeias!</p>
+        <!-- Dots/"bolinhas" -->
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
     </div>
-  
+
     <!-- Botão de previous e next -->
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
+  </div>
 
 
   <!--Calculadora-->
-<div class="section" id="calc_scroll">
-  <p class="tituloSimulador">
-    Simule sua produção e veja como pode alavancar seu negócio!
-  </p>
-  <div class="divContainer" >
-    <div class="divSimulador">
-      <div>
-        <span class="tituloItem">Quantidade de colmeias em seu apiário:</span><br>
-        <div class="inputContainer">
-          <input type="number" onkeypress="return event.charCode >= 48" min="1" class="inputSimulador" id="i_qtd_colmeia"  value="10">
-          <button onclick="calcValores(1)" class="botaoSimulador">+</button>
-          <button onclick="calcValores(2)" class="botaoSimulador">-</button>
+  <div class="section" id="calc_scroll">
+    <p class="tituloSimulador">
+      Simule sua produção e veja como pode alavancar seu negócio!
+    </p>
+    <div class="divContainer">
+      <div class="divSimulador">
+        <div>
+          <span class="tituloItem">Quantidade de colmeias em seu apiário:</span><br>
+          <div class="inputContainer">
+            <input type="number" onkeypress="return event.charCode >= 48" min="1" class="inputSimulador"
+              id="i_qtd_colmeia" value="10">
+            <button onclick="calcValores(1)" class="botaoSimulador">+</button>
+            <button onclick="calcValores(2)" class="botaoSimulador">-</button>
+          </div>
         </div>
-      </div>
-      <div>
-        <span class="tituloItem">Colmeias que foram perdidas no ultimo ano:</span>
-        <div class="inputContainer">
-          <input class="inputSimulador" id="i_qtd_colmeias_perdidas" value="2">
-          <button onclick="calcValores(3)" class="botaoSimulador">+</button>
-          <button onclick="calcValores(4)" class="botaoSimulador">-</button>
+        <div>
+          <span class="tituloItem">Colmeias que foram perdidas no ultimo ano:</span>
+          <div class="inputContainer">
+            <input class="inputSimulador" id="i_qtd_colmeias_perdidas" value="2">
+            <button onclick="calcValores(3)" class="botaoSimulador">+</button>
+            <button onclick="calcValores(4)" class="botaoSimulador">-</button>
+          </div>
         </div>
-      </div>
-      <div>
-        <span class="tituloItem">Quantos quilos são produzidos por mês:</span><br>
-        <div class="inputContainer">
-          <input class="inputSimulador" id="i_qtd_kg" value="10">
-          <button onclick="calcValores(5)" class="botaoSimulador">+</button>
-          <button onclick="calcValores(6)" class="botaoSimulador">-</button>
+        <div>
+          <span class="tituloItem">Quantos quilos são produzidos por mês:</span><br>
+          <div class="inputContainer">
+            <input class="inputSimulador" id="i_qtd_kg" value="10">
+            <button onclick="calcValores(5)" class="botaoSimulador">+</button>
+            <button onclick="calcValores(6)" class="botaoSimulador">-</button>
+          </div>
         </div>
-      </div>
-      <div>
-        <span class="tituloItem">Valor do quilo do mel:</span><br>
-        <div class="inputContainer">
-          <input class="inputSimulador" id="i_valor_mel" value="10">
-          <button onclick="calcValores(7)" class="botaoSimulador">+</button>
-          <button onclick="calcValores(8)" class="botaoSimulador">-</button>
+        <div>
+          <span class="tituloItem">Valor do quilo do mel:</span><br>
+          <div class="inputContainer">
+            <input class="inputSimulador" id="i_valor_mel" value="10">
+            <button onclick="calcValores(7)" class="botaoSimulador">+</button>
+            <button onclick="calcValores(8)" class="botaoSimulador">-</button>
+          </div>
+          <button class="botaoResultado" onclick="aparecerResultado()">
+            Simular
+          </button>
         </div>
-        <button class="botaoResultado" onclick="aparecerResultado()">
-          Simular
-        </button>
+
       </div>
-    
-    </div>
-    <div id="div_resultado" class="divResultado">
-      <span class="tituloResultado">
-        Resultado
-      </span>
-      <div class="valoresContainer">
-        <span class="valoresTitulo">Quantidade de mel perdido por ano:</span>
-        <span class="valoresResultado" id="mel_perdido">10kg</span>
-      </div>
-      <div class="valoresContainer">
-        <span class="valoresTitulo">Prejuizo estimado em um ano:</span>
-        <span class="valoresResultado" id="valor_perda">R$500,00</span>
-      </div>
-      <div class="valoresContainer">
-        <span class="valoresTitulo">Percentual de perda:</span>
-        <span class="valoresResultado" id="percentual_perda">25%</span>
-      </div>
-      <div class="ctaContainer">
-        <span class="ctaText">A ApiControl pode te ajudar.
-          <a class="ctaLink" href="cadastro_empresa.html">
-            Entrar em contato
-          </a>
+      <div id="div_resultado" class="divResultado">
+        <span class="tituloResultado">
+          Resultado
+        </span>
+        <div class="valoresContainer">
+          <span class="valoresTitulo">Quantidade de mel perdido por ano:</span>
+          <span class="valoresResultado" id="mel_perdido">10kg</span>
+        </div>
+        <div class="valoresContainer">
+          <span class="valoresTitulo">Prejuizo estimado em um ano:</span>
+          <span class="valoresResultado" id="valor_perda">R$500,00</span>
+        </div>
+        <div class="valoresContainer">
+          <span class="valoresTitulo">Percentual de perda:</span>
+          <span class="valoresResultado" id="percentual_perda">25%</span>
+        </div>
+        <div class="ctaContainer">
+          <span class="ctaText">A ApiControl pode te ajudar.
+            <a class="ctaLink" href="cadastro_empresa.html">
+              Entrar em contato
+            </a>
           </span>
+        </div>
       </div>
     </div>
-    </div>
-</div>
+  </div>
 
   <!-- Serviços -->
-<div class="servicos" id="servico_scroll">
-  <div class="titulo_servicos">
-    <h2>Serviços</h2>
-  </div>
-  <div class="conteudo_servicos">
-    <div class="imagem_servicos">
-      <img class="img_api" src="https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg" >
+  <div class="servicos" id="servico_scroll">
+    <div class="titulo_servicos">
+      <h2>Serviços</h2>
     </div>
-      <span class="resumo">Nossa empresa oferece uma <b>solução completa</b> e avançada para a apicultura, integrando <b>sensores de temperatura e umidade</b> nas colmeias para um controle preciso. Isso permite que os apicultores acessem informações em <b>tempo real</b> por meio de uma plataforma inuitiva e realizem análises remotas para tomar decisões conscientes e eficazes.
+    <div class="conteudo_servicos">
+      <div class="imagem_servicos">
+        <img class="img_api" src="https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg">
+      </div>
+      <span class="resumo">Nossa empresa oferece uma <b>solução completa</b> e avançada para a apicultura, integrando
+        <b>sensores de temperatura e umidade</b> nas colmeias para um controle preciso. Isso permite que os apicultores
+        acessem informações em <b>tempo real</b> por meio de uma plataforma inuitiva e realizem análises remotas para
+        tomar decisões conscientes e eficazes.
       </span>
+    </div>
   </div>
-</div>
 
   <!-- Sobre nós -->
-<div class="center-text" id="sobre_scroll">
-  <h2>Sobre Nós</h2>  
-  <div class="flex-container">
-    
-    <div class="image-container">
+  <div class="center-text" id="sobre_scroll">
+    <h2>Sobre Nós</h2>
+    <div class="flex-container">
 
-      <div class="caixa-roxa"></div>
-      <div class="caixa-abelha"></div>
-      
-    </div>
+      <div class="image-container">
+
+        <div class="caixa-roxa"></div>
+        <div class="caixa-abelha"></div>
+
+      </div>
       <span class="resumo">
-        Estamos empenhados em <b>revolucionar</b> completamente a maneira como os apicultores trabalham. Apresentamos uma <b>ferramenta</b> que não apenas torna suas tarefas mais simples, mas também os coloca no caminho do <b>sucesso</b>, utilizando dados precisos. Nossa missão é proporcionar uma transformação significativa para a apicultura, capacitando nossos parceiros com o que há de melhor na tecnologia, tudo isso, de forma <b>acessível e descomplicada</b>.
+        Estamos empenhados em <b>revolucionar</b> completamente a maneira como os apicultores trabalham. Apresentamos
+        uma <b>ferramenta</b> que não apenas torna suas tarefas mais simples, mas também os coloca no caminho do
+        <b>sucesso</b>, utilizando dados precisos. Nossa missão é proporcionar uma transformação significativa para a
+        apicultura, capacitando nossos parceiros com o que há de melhor na tecnologia, tudo isso, de forma <b>acessível
+          e descomplicada</b>.
       </span>
+    </div>
   </div>
-</div>
 
   <!-- Rodapé -->
-<footer>
-  <div class="container" id="footer_scroll">
+  <footer>
+    <div class="container" id="footer_scroll">
       <div class="row">
-          <!-- 1st Column -->
-          <div class="footer-col footer-logo">
-              <ul>
-                  <img src="imagens/Logo ApiControl.png" class="logoApi"><br>
-                  <b href="index.html">ApiControl</b> <br>
-                  <c href="">Transformando Dados em Melhores Escolhas</c>
-              </ul>
-          </div>
+        <!-- 1st Column -->
+        <div class="footer-col footer-logo">
+          <ul>
+            <img src="imagens/Logo ApiControl.png" class="logoApi"><br>
+            <b href="index.html">ApiControl</b> <br>
+            <c href="">Transformando Dados em Melhores Escolhas</c>
+          </ul>
+        </div>
 
-          <!-- 2nd Column -->
-          <div class="footer-col">
-              <h4>Contato</h4>
-              <ul>
-                  <li><img src="imagens/icon telefone.png"
-                          class="icon_phone"><a href="">(11) 99845-0000</a> </li>
-                  <li><img src="imagens/icon maps.png"
-                          class="icon_maps"><a href="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo</a>
-                  </li>
-                  <li><img src="imagens/icon email.png"
-                          class="icon_mail"><a href="">   contato@apicontrol.com</a> </li>
-              </ul>
-          </div>
+        <!-- 2nd Column -->
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li><img src="imagens/icon telefone.png" class="icon_phone"><a href="">(11) 99845-0000</a> </li>
+            <li><img src="imagens/icon maps.png" class="icon_maps"><a href="">Rua Haddock Lobo, 595 - Cerqueira César,
+                São Paulo</a>
+            </li>
+            <li><img src="imagens/icon email.png" class="icon_mail"><a href=""> contato@apicontrol.com</a> </li>
+          </ul>
+        </div>
 
-          <!-- 3rd Column -->
-          <div class="footer-col">
-              <h4>Menu</h4>
-              <ul>
-                  <li> <a href="#home" onclick="SlideScroll()">Home</a> </li>
-                  <li><a href="#calculadora" onclick="CalcScroll()">Simulação</a> </li>
-                  <li><a href="#serviço" onclick="ServicoScroll()">Serviços</a> </li>
-                  <li><a href="#sobre" onclick="SobreScroll()">Sobre</a> </li>
-              </ul>
-          </div>
+        <!-- 3rd Column -->
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li> <a href="#home" onclick="SlideScroll()">Home</a> </li>
+            <li><a href="#calculadora" onclick="CalcScroll()">Simulação</a> </li>
+            <li><a href="#serviço" onclick="ServicoScroll()">Serviços</a> </li>
+            <li><a href="#sobre" onclick="SobreScroll()">Sobre</a> </li>
+          </ul>
+        </div>
 
-          <!-- 4th Column -->
-          <div class="footer-col">
-              <h4>Entre em contato:</h4>
-              <form action="cadastro_empresa.html">
-                <input type="submit" value="Fazer Cadastro" class="input_submit">
-            </form>
-          </div>
       </div>
       <hr>
       <div class="row">
-          <div class="col">
-              <p>&#169; 2023 ApiControl. Todos os Direitos Reservados. </p>
-          </div>
-          <div class="social_icon">
-              <a href=""><i class="fa-brands fa-whatsapp"></i></a>
-              <a href=""><i class="fa-brands fa-instagram"></i></a>
-              <a href=""><i class="fa-brands fa-linkedin"></i></a>
-              <a href=""><i class="fa-brands fa-facebook"></i></a>
-          </div>
+        <div class="col">
+          <p>&#169; 2023 ApiControl. Todos os Direitos Reservados. </p>
+        </div>
+        <div class="social_icon">
+          <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin"></i></a>
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+        </div>
       </div>
-  </div>
-</footer>
+    </div>
+  </footer>
 
 
-  
+
 </body>
+
 </html>
 
 <script>
 
-// "Carousel"
-let slideIndex = 1;
-showSlides(slideIndex);
+  // "Carousel"
+  let slideIndex = 1;
+  showSlides(slideIndex);
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
+
+  // Image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
   }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
 
-// Calculadora
-
-// Faz aparecer bloco de resultado e exibe os valores 
-function aparecerResultado() {
-  div_resultado.style.display = "flex";
-  var qtdColmeias = Number(i_qtd_colmeia.value);//Variavel que armazena a quantidade de colmeias ativas no apiário
-  var colmeiasPerdidas = Number(i_qtd_colmeias_perdidas.value);//Variavel que armazena a quantidade de colmeias perdidas
-  var kgColmeias = Number(i_qtd_kg.value);// Variavel que armazena a produtividade em kg das colmeias
-  var valMel = Number(i_valor_mel.value);//Variavel que armazena o input de valor do kg de mel
-  var kgPerdidoAno = colmeiasPerdidas * kgColmeias * 12; //Calculo de perda de kg por colmeias perdidas
-  var dinheiroPerdido = kgPerdidoAno * valMel ; //Calculo em dinheiro da perda da produção de colmeias no ano
-  var percentualPerda = (colmeiasPerdidas / (qtdColmeias + colmeiasPerdidas)) * 100;
-  // Calculo do percentual de colmeias perdidas
-  
-  mel_perdido.innerHTML = `${kgPerdidoAno}kg`; // Exibição da quantidade perdida
-  valor_perda.innerHTML = `R$${dinheiroPerdido}`; // Exibição do valor perdido 
-  percentual_perda.innerHTML = `${percentualPerda.toFixed(1)}%`; //Exibição da perda percentual
-
-}
-
-//Somas e subtrações dos inputs pelos botões
-function calcValores(numero) {
-  if(numero == 1) {
-    i_qtd_colmeia.value++;
-  }else if (numero == 2 && i_qtd_colmeia.value > 0) {
-    i_qtd_colmeia.value--;
-  }else if (numero == 3) {
-    i_qtd_colmeias_perdidas.value++;
-  }else if (numero == 4 && i_qtd_colmeias_perdidas.value > 0) {
-    i_qtd_colmeias_perdidas.value--;
-  }else if (numero == 5) {
-    i_qtd_kg.value++;
-  }else if (numero == 6 && i_qtd_kg.value > 0) {
-    i_qtd_kg.value--;
-  }else if (numero == 7) {
-    i_valor_mel.value++;
-  }else if (numero == 8 && i_valor_mel.value > 0) {
-    i_valor_mel.value--;
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
   }
-}
 
-function SlideScroll() {
-  document.getElementById("slide_scroll").scrollIntoView({behavior: "smooth"});
-}
+  // Calculadora
 
-function CalcScroll() {
-  document.getElementById("calc_scroll").scrollIntoView({behavior: "smooth"});
-}
+  // Faz aparecer bloco de resultado e exibe os valores 
+  function aparecerResultado() {
+    div_resultado.style.display = "flex";
+    var qtdColmeias = Number(i_qtd_colmeia.value);//Variavel que armazena a quantidade de colmeias ativas no apiário
+    var colmeiasPerdidas = Number(i_qtd_colmeias_perdidas.value);//Variavel que armazena a quantidade de colmeias perdidas
+    var kgColmeias = Number(i_qtd_kg.value);// Variavel que armazena a produtividade em kg das colmeias
+    var valMel = Number(i_valor_mel.value);//Variavel que armazena o input de valor do kg de mel
+    var kgPerdidoAno = colmeiasPerdidas * kgColmeias * 12; //Calculo de perda de kg por colmeias perdidas
+    var dinheiroPerdido = kgPerdidoAno * valMel; //Calculo em dinheiro da perda da produção de colmeias no ano
+    var percentualPerda = (colmeiasPerdidas / (qtdColmeias + colmeiasPerdidas)) * 100;
+    // Calculo do percentual de colmeias perdidas
 
-function ServicoScroll() {
-  document.getElementById("servico_scroll").scrollIntoView({behavior: "smooth"});
-}
+    mel_perdido.innerHTML = `${kgPerdidoAno}kg`; // Exibição da quantidade perdida
+    valor_perda.innerHTML = `R$${dinheiroPerdido}`; // Exibição do valor perdido 
+    percentual_perda.innerHTML = `${percentualPerda.toFixed(1)}%`; //Exibição da perda percentual
 
-function SobreScroll() {
-  document.getElementById("sobre_scroll").scrollIntoView({behavior: "smooth"});
-}
+  }
 
-function FooterScroll() {
-  document.getElementById("footer_scroll").scrollIntoView({behavior: "smooth"});
-}
+  //Somas e subtrações dos inputs pelos botões
+  function calcValores(numero) {
+    if (numero == 1) {
+      i_qtd_colmeia.value++;
+    } else if (numero == 2 && i_qtd_colmeia.value > 0) {
+      i_qtd_colmeia.value--;
+    } else if (numero == 3) {
+      i_qtd_colmeias_perdidas.value++;
+    } else if (numero == 4 && i_qtd_colmeias_perdidas.value > 0) {
+      i_qtd_colmeias_perdidas.value--;
+    } else if (numero == 5) {
+      i_qtd_kg.value++;
+    } else if (numero == 6 && i_qtd_kg.value > 0) {
+      i_qtd_kg.value--;
+    } else if (numero == 7) {
+      i_valor_mel.value++;
+    } else if (numero == 8 && i_valor_mel.value > 0) {
+      i_valor_mel.value--;
+    }
+  }
+
+  function SlideScroll() {
+    document.getElementById("slide_scroll").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function CalcScroll() {
+    document.getElementById("calc_scroll").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function ServicoScroll() {
+    document.getElementById("servico_scroll").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function SobreScroll() {
+    document.getElementById("sobre_scroll").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function FooterScroll() {
+    document.getElementById("footer_scroll").scrollIntoView({ behavior: "smooth" });
+  }
 
 </script>
 
