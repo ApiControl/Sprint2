@@ -210,7 +210,7 @@ window.onclick = function(e) {
     function chamarAtualizar() {
 
       if(contReq < colmeia_banco.length) {
-        atualizarTemperaturas(colmeia_banco[contReq]);
+        atualizarTemperaturas(colmeia_banco[contReq]);        
         contReq++;
       } else {
           // setTimeout(atuallizarTempoRealTemp, 5000);
@@ -241,13 +241,11 @@ window.onclick = function(e) {
 
                     for(var i=0; i<resposta.length;i++) {
                       vetorLabels.push(resposta[i].momento_grafico)
-                      vetorTemperaturas.push(resposta[i].valorRegistrado)
+                      vetorTemperaturas.push(resposta[i].valorRegistrado)                      
                     }
 
                     ultimasTemperaturas.push(vetorTemperaturas);
                     ultimasLabels.push(vetorLabels);
-
-
 
                     atualizarGraficoUmidade(num);
 
@@ -286,8 +284,7 @@ window.onclick = function(e) {
                   }
 
                   ultimasUmidades.push(vetorUmidade);
-
-
+                  
                   chamarAtualizar();
             });
         }else {
@@ -350,21 +347,26 @@ window.onclick = function(e) {
         cache: 'no-store'
         }).then(function(response) {
 
+          
+
             if(response.ok) {
                 response.json().then(function(resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                   
                   if(resposta[0].momento_grafico == ultimasLabels[contReqAtualizar][ultimasLabels[contReqAtualizar].length - 1]) {
                     console.log(`Não há dados novos para inserir na colmeia ${colmeia_banco[contReqAtualizar]}`)
+                    alterarKpis(contReqAtualizar)
                     contReqAtualizar++;
                     setTimeout(atualizarTempoRealTemp, 1000)
                   } else {
                     ultimasLabels[contReqAtualizar].shift();
                     ultimasLabels[contReqAtualizar].push(resposta[0].momento_grafico);
-
+                    
                     ultimasTemperaturas[contReqAtualizar].shift();
                     ultimasTemperaturas[contReqAtualizar].push(resposta[0].valorRegistrado);
-
+                    
+                    
+                    alterarKpis(contReqAtualizar);
                     atualizarTempoRealUmidade()
                   }
                   
@@ -376,6 +378,31 @@ window.onclick = function(e) {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
         })
+
+    }
+
+    function alterarKpis(contReqAtualizar) {
+
+      if(ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length - 1] >= 29 &&
+          ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length - 1] <= 35 ) {
+          modificarStatusColmeia(contReqAtualizar, 'ideal');
+          } else if(ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] > 35 &&
+                    ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] <= 36) {
+                      modificarStatusColmeia(contReqAtualizar, 'alerta');
+          } else if(ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] > 36 &&
+                    ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] <= 37) {
+                      modificarStatusColmeia(contReqAtualizar, 'critico');
+          }else if(ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] > 37) {
+                      modificarStatusColmeia(contReqAtualizar, 'emergencia');
+          }else if(ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] < 29 &&
+                    ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] >= 28) {
+                      modificarStatusColmeia(contReqAtualizar, 'alertaFrio');
+          }else if(ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] < 28 &&
+                    ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] >= 27) {
+                      modificarStatusColmeia(contReqAtualizar, 'criticoFrio');
+          }else if(ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length-1] < 26) {
+                      modificarStatusColmeia(contReqAtualizar, 'emergenciaFrio');
+          }
 
     }
 
@@ -413,6 +440,100 @@ window.onclick = function(e) {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
         })
+    }
+
+    function modificarStatusColmeia(colmeia, status) {
+
+      if(colmeia == 0) {
+        if(status == 'ideal') {
+          status_0.style.backgroundColor = "green";
+        }
+        if(status == 'alerta') {
+          status_0.style.backgroundColor = "rgb(235, 235, 19)"
+        }
+        if(status == 'critico') {
+          status_0.style.backgroundColor = "orange"
+        }
+        if(status == 'emergencia') {
+          status_0.style.backgroundColor = "red"
+        }
+        if(status == 'alertaFrio') {
+          status_0.style.backgroundColor = "rgb(16, 71, 153)"
+        }
+        if(status == 'criticoFrio') {
+          status_0.style.backgroundColor = "rgb(94, 134, 196)"
+        }
+        if(status == 'emergenciaFrio') {
+          status_0.style.backgroundColor = "rgb(170, 193, 228)"
+        }
+
+      }else if(colmeia == 1) {
+        if(status == 'ideal') {
+          status_1.style.backgroundColor = "green"
+        }
+        if(status == 'alerta') {
+          status_1.style.backgroundColor = "rgb(235, 235, 19)"
+        }
+        if(status == 'critico') {
+          status_1.style.backgroundColor = "orange"
+        }
+        if(status == 'emergencia') {
+          status_1.style.backgroundColor = "red"
+        }
+        if(status == 'alertaFrio') {
+          status_1.style.backgroundColor = "rgb(16, 71, 153)"
+        }
+        if(status == 'criticoFrio') {
+          status_1.style.backgroundColor = "rgb(94, 134, 196)"
+        }if(status == 'emergenciaFrio') {
+          status_1.style.backgroundColor = "rgb(170, 193, 228)"
+        }
+
+      }else if(colmeia == 2) {
+        if(status == "ideal") {
+          status_2.style.backgroundColor = "green"
+        }
+        if(status == 'alerta') {
+          status_2.style.backgroundColor = "rgb(235, 235, 19)"
+        }
+        if(status == 'critico') {
+          status_2.style.backgroundColor = "orange"
+        }
+        if(status == 'emergencia') {
+          status_2.style.backgroundColor = "red"
+        }
+        if(status == 'alertaFrio') {
+          status_2.style.backgroundColor = "rgb(16, 71, 153)"
+        }
+        if(status == 'criticoFrio') {
+          status_2.style.backgroundColor = "rgb(94, 134, 196)"
+        }if(status == 'emergenciaFrio') {
+          status_2.style.backgroundColor = "rgb(170, 193, 228)"
+        }
+
+      }else if(colmeia == 3) {
+        if(status == "ideal") {
+          status_3.style.backgroundColor = "green"
+        }
+        if(status == 'alerta') {
+          status_3.style.backgroundColor = "rgb(235, 235, 19)"
+        }
+        if(status == 'critico') {
+          status_3.style.backgroundColor = "orange"
+        }
+        if(status == 'emergencia') {
+          status_3.style.backgroundColor = "red"
+        }
+        if(status == 'alertaFrio') {
+          status_3.style.backgroundColor = "rgb(16, 71, 153)"
+        }
+        if(status == 'criticoFrio') {
+          status_1.style.backgroundColor = "rgb(94, 134, 196)"
+        }if(status == 'emergenciaFrio') {
+          status_3.style.backgroundColor = "rgb(170, 193, 228)"
+        }
+      }
+
     }
 
     var contClick = 0;
