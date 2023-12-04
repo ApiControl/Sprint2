@@ -401,6 +401,35 @@ h1, b {
   margin-left: 15px;
 }
 
+/* Help-Desk */
+.pop-up {
+  display: none;
+  position: absolute;
+  width: 90vw;
+  height: 90vh;
+  align-items: center;
+  justify-content: center; 
+}
+
+.fechar{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.Dash{
+  background-color: #fff;
+  position: relative;
+}
+
 
 
 /* "Responsividade" */

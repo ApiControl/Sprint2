@@ -7,18 +7,29 @@
     <link rel="shortcut icon" type="imagex/png" href="../assets/icon/Logo-ApiControl.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Dashboard</title>
 </head>
 
 <!-- Chama função para validar a última posição do vetor logo após a função adicionar colméia. -->
-<body onload="buscarColmeias()" onload="alertas()">
+<body onload="buscarColmeias()">
 
     <!-- Header -->
     <div class="header">
         <img src="../assets/imgs/Logo ApiControl.png">
         <a class="logo">ApiControl</a>
           <div class="header-left">
-          </div>  
+            <a href="#" onclick="faleConosco()">Fale Conosco</a>
+          </div>
+
+          <div id="iframeContainer" class="pop-up">
+            <div  class="Dash">
+              <span class="fechar" onclick="fecharHelpDesk()">X</span>
+              <iframe width="500px" height="400px" src="https://app.pipefy.com/public/form/F2Ilnzra?embedded=true"
+                frameborder="0"></iframe>
+            </div>
+          </div>
+
           <div class="dropdown">
             <img src="../assets/imgs/user_icon.png">
             <button class="dropbtn" onclick="myFunction()">Usuário
@@ -47,10 +58,6 @@
         </div>
         
         <div class="container" style="display: flex;" id="holder">
-              <br>
-              <span class="filler">Clique em uma das <b>colmeias a esquerda</b> para verificar seu <b>monitoramento</b> <br> e abaixo <br> Os <b>relatórios</b> para verificar dados de um <b>período</b> específico</span>
-        </div>
-        <div class="container" style="display: none;" id="graficos">
           <div class="container-analytics">
             <div class="btn-group">
               <button class="btnF1">26ºC Emergência</button>
@@ -74,8 +81,12 @@
               <button class="btnUQ1">Emergência 83%</button>
             </div>
           </div>
+              <br>
+              <span class="filler">Clique em uma das <b>colmeias a esquerda</b> para verificar seu <b>monitoramento</b> <br> e abaixo <br> Os <b>relatórios</b> para verificar dados de um <b>período</b> específico</span>
+        </div>
+        <div class="container" style="display: none;" id="graficos">
             <div class="texto_periodo" >
-                <div class="periodos">
+                <!-- <div class="periodos"> -->
                     <!-- <select id="periodo">
                         <option value="tempAtual">Temperatura atual</option> <br>
                         <option value="ult24Horas">Últimas 24 horas</option> <br>
@@ -83,10 +94,19 @@
                         <option value="ultMes">Último mês</option> <br>
                         <option value="ultAno">Último ano</option> <br>
                     </select> -->
-                </div>
+                <!-- </div> -->
                 <h1 style="color: white;" id="title">
                     Monitoramento da Colmeia
                 </h1>
+                <div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <strong>Perigo!</strong> A temperatura está muito fora do ideal, as abelhas estão precisando de suporte!
+                </div>
+
+                <div class="alertUmid">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <strong>Perigo!</strong> A umidade está muito fora do ideal, as abelhas estão precisando de suporte!
+                </div>
             </div>
             <div class="titulo" style="display: flex;">
                     <div class="container-chart chart">
@@ -381,6 +401,28 @@ window.onclick = function(e) {
 
     }
 
+    function SweetAlertsQuente() {
+          Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: `A colmeia ${colmeia} está em estado de emergência!`,
+            text: "Ela está muito acima da temperatura ideal!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+    }
+
+    function SweetAlertsFrio() {
+          Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: `A colmeia ${colmeia} está em estado de emergência!`,
+            text: "Ela está muito abaixo da temperatura ideal!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+    }
+
     function alterarKpis(contReqAtualizar) {
 
       if(ultimasTemperaturas[contReqAtualizar][ultimasTemperaturas[contReqAtualizar].length - 1] >= 29 &&
@@ -444,93 +486,155 @@ window.onclick = function(e) {
 
     function modificarStatusColmeia(colmeia, status) {
 
+      emergButtons.forEach(blink => {
+        blink.classList.remove('blink-emerg');
+      });
+
+      critButtons.forEach(blink => {
+        blink.classList.remove('blink-crit');
+      });
+
+      alertButtons.forEach(blink => {
+        blink.classList.remove('blink-alert');
+      });
+
+      idealButtons.forEach(blink => {
+        blink.classList.remove('blink-ideal');
+      });
+
+      alertDisplay.style.display = 'none';
+      alertUmidDisplay.style.display = 'none';
+
       if(colmeia == 0) {
         if(status == 'ideal') {
           status_0.style.backgroundColor = "green";
         }
         if(status == 'alerta') {
-          status_0.style.backgroundColor = "rgb(235, 235, 19)"
+          status_0.style.backgroundColor = "rgb(235, 235, 19)";
+          btnQuente3.classList.add("blink-alert");
         }
         if(status == 'critico') {
-          status_0.style.backgroundColor = "orange"
+          status_0.style.backgroundColor = "orange";
+          btnQuente2.classList.add("blink-crit");
         }
         if(status == 'emergencia') {
-          status_0.style.backgroundColor = "red"
+          status_0.style.backgroundColor = "red";
+          SweetAlertsQuente();
+          btnQuente1.classList.add("blink-emerg");
+          alertDisplay.style.display = 'block';
         }
         if(status == 'alertaFrio') {
-          status_0.style.backgroundColor = "rgb(16, 71, 153)"
+          status_0.style.backgroundColor = "rgb(16, 71, 153)";
+          btnFrio3.classList.add("blink-alert");
         }
         if(status == 'criticoFrio') {
-          status_0.style.backgroundColor = "rgb(94, 134, 196)"
+          status_0.style.backgroundColor = "rgb(94, 134, 196)";
+          btnFrio2.classList.add("blink-crit");
         }
         if(status == 'emergenciaFrio') {
-          status_0.style.backgroundColor = "rgb(170, 193, 228)"
+          status_0.style.backgroundColor = "rgb(170, 193, 228)";
+          SweetAlertsFrio();
+          btnFrio1.classList.add("blink-emerg");
+          alertDisplay.style.display = 'block';
         }
 
       }else if(colmeia == 1) {
         if(status == 'ideal') {
-          status_1.style.backgroundColor = "green"
+          status_1.style.backgroundColor = "green";
         }
         if(status == 'alerta') {
-          status_1.style.backgroundColor = "rgb(235, 235, 19)"
+          status_1.style.backgroundColor = "rgb(235, 235, 19)";
+          btnQuente3.classList.add("blink-alert");
         }
         if(status == 'critico') {
-          status_1.style.backgroundColor = "orange"
+          status_1.style.backgroundColor = "orange";
+          btnQuente2.classList.add("blink-crit");
         }
         if(status == 'emergencia') {
-          status_1.style.backgroundColor = "red"
+          status_1.style.backgroundColor = "red";
+          SweetAlertsQuente();
+          btnQuente1.classList.add("blink-emerg");
+          alertDisplay.style.display = 'block';
         }
         if(status == 'alertaFrio') {
-          status_1.style.backgroundColor = "rgb(16, 71, 153)"
+          status_1.style.backgroundColor = "rgb(16, 71, 153)";
+          btnFrio3.classList.add("blink-alert");
         }
         if(status == 'criticoFrio') {
-          status_1.style.backgroundColor = "rgb(94, 134, 196)"
-        }if(status == 'emergenciaFrio') {
-          status_1.style.backgroundColor = "rgb(170, 193, 228)"
+          status_1.style.backgroundColor = "rgb(94, 134, 196)";
+          btnFrio2.classList.add("blink-crit");
+        }
+        if(status == 'emergenciaFrio') {
+          status_1.style.backgroundColor = "rgb(170, 193, 228)";
+          SweetAlertsFrio();
+          btnFrio1.classList.add("blink-emerg");
+          alertDisplay.style.display = 'block';
         }
 
       }else if(colmeia == 2) {
         if(status == "ideal") {
-          status_2.style.backgroundColor = "green"
+          status_2.style.backgroundColor = "green";
         }
         if(status == 'alerta') {
-          status_2.style.backgroundColor = "rgb(235, 235, 19)"
+          status_2.style.backgroundColor = "rgb(235, 235, 19)";
+          btnQuente3.classList.add("blink-alert");
         }
         if(status == 'critico') {
-          status_2.style.backgroundColor = "orange"
+          status_2.style.backgroundColor = "orange";
+          btnQuente2.classList.add("blink-crit");
         }
         if(status == 'emergencia') {
-          status_2.style.backgroundColor = "red"
+          status_2.style.backgroundColor = "red";
+          SweetAlertsQuente();
+          btnQuente1.classList.add("blink-emerg");
+          alertDisplay.style.display = 'block';
         }
         if(status == 'alertaFrio') {
-          status_2.style.backgroundColor = "rgb(16, 71, 153)"
+          status_2.style.backgroundColor = "rgb(16, 71, 153)";
+          btnFrio3.classList.add("blink-alert");
         }
         if(status == 'criticoFrio') {
-          status_2.style.backgroundColor = "rgb(94, 134, 196)"
-        }if(status == 'emergenciaFrio') {
-          status_2.style.backgroundColor = "rgb(170, 193, 228)"
+          status_2.style.backgroundColor = "rgb(94, 134, 196)";
+          btnFrio2.classList.add("blink-crit");
+        }
+        if(status == 'emergenciaFrio') {
+          status_2.style.backgroundColor = "rgb(170, 193, 228)";
+          SweetAlertsFrio();
+          btnFrio1.classList.add("blink-emerg");
+          alertDisplay.style.display = 'block';
         }
 
       }else if(colmeia == 3) {
         if(status == "ideal") {
-          status_3.style.backgroundColor = "green"
+          status_3.style.backgroundColor = "green";
         }
         if(status == 'alerta') {
-          status_3.style.backgroundColor = "rgb(235, 235, 19)"
+          status_3.style.backgroundColor = "rgb(235, 235, 19)";
+          btnQuente3.classList.add("blink-alert");
         }
         if(status == 'critico') {
-          status_3.style.backgroundColor = "orange"
+          status_3.style.backgroundColor = "orange";
+          btnQuente2.classList.add("blink-crit");
         }
         if(status == 'emergencia') {
-          status_3.style.backgroundColor = "red"
+          status_3.style.backgroundColor = "red";
+          SweetAlertsQuente();
+          btnQuente1.classList.add("blink-emerg");
+          alertDisplay.style.display = 'block';
         }
         if(status == 'alertaFrio') {
-          status_3.style.backgroundColor = "rgb(16, 71, 153)"
+          status_3.style.backgroundColor = "rgb(16, 71, 153)";
+          btnFrio3.classList.add("blink-alert");
         }
         if(status == 'criticoFrio') {
-          status_1.style.backgroundColor = "rgb(94, 134, 196)"
-        }if(status == 'emergenciaFrio') {
-          status_3.style.backgroundColor = "rgb(170, 193, 228)"
+          status_1.style.backgroundColor = "rgb(94, 134, 196)";
+          btnFrio2.classList.add("blink-crit");
+        }
+        if(status == 'emergenciaFrio') {
+          status_3.style.backgroundColor = "rgb(170, 193, 228)";
+          SweetAlertsFrio();
+          btnFrio1.classList.add("blink-emerg");
+          alertDisplay.style.display = 'block';
         }
       }
 
@@ -737,7 +841,7 @@ window.onclick = function(e) {
     var listaTempMes = [[30, 27, 25, 25, 28, 29, 27, 28, 26, 25, 28, 25], [16, 18, 24, 17, 16, 18, 19, 20, 18, 17, 16, 20], [24, 28, 29, 25, 26, 27, 26, 23, 25, 26, 28, 27]]; 
     var listaUmidMes = [[80, 82, 81, 85, 87, 90, 93, 91, 88, 84, 80, 82], [60, 62, 64, 63, 64, 62, 61, 63, 65, 62, 64, 60], [70, 72, 73, 75, 73, 80, 82, 79, 80, 77, 75, 71]];
 
-    // Alertas
+    // Analytics blink alerts
     const btnFrio1 = document.querySelector('.btnF1');
     const btnFrio2 = document.querySelector('.btnF2');
     const btnFrio3 = document.querySelector('.btnF3');
@@ -754,87 +858,106 @@ window.onclick = function(e) {
     const btnUmidQuente2 = document.querySelector('.btnUQ2');
     const btnUmidQuente1 = document.querySelector('.btnUQ1');
 
-    function VerificarAlerta() {
-      var ultimoValorTemp = myChart.data.datasets[0].data[myChart.data.datasets[0].data.length - 1];
-      var ultimoValorUmi = myChart2.data.datasets[0].data[myChart2.data.datasets[0].data.length - 1];
+    const emergButtons = document.querySelectorAll('.blink-emerg');
+    const critButtons = document.querySelectorAll('.blink-crit');
+    const alertButtons = document.querySelectorAll('.blink-alert');
+    const idealButtons = document.querySelectorAll('.blink-ideal');
+    const alertDisplay = document.querySelector('.alert');
+    const alertUmidDisplay = document.querySelector('.alertUmid');
 
-      const emergButtons = document.querySelectorAll('.blink-emerg');
-      const critButtons = document.querySelectorAll('.blink-crit');
-      const alertButtons = document.querySelectorAll('.blink-alert');
-      const idealButtons = document.querySelectorAll('.blink-ideal');
-      const alertDisplay = document.querySelector('.alert');
-      const alertUmidDisplay = document.querySelector('.alertUmid');
 
-      emergButtons.forEach(blink => {
-        blink.classList.remove('blink-emerg');
-      });
+    /* Help-Desk Pipefy */
+    function faleConosco() {
+    // Obtém o elemento do iframe
+    var iframeContainer = document.getElementById("iframeContainer");
+    iframeContainer.style.display = "none";
 
-      critButtons.forEach(blink => {
-        blink.classList.remove('blink-crit');
-      });
+    // Alterna a visibilidade do iframe
+    if (iframeContainer.style.display === "none") {
+      iframeContainer.style.display = "flex";
+    } else {
+      iframeContainer.style.display = "none";
+    }
+  }
 
-      alertButtons.forEach(blink => {
-        blink.classList.remove('blink-alert');
-      });
-
-      idealButtons.forEach(blink => {
-        blink.classList.remove('blink-ideal');
-      });
-
-      alertDisplay.style.display = 'none';
-      alertUmidDisplay.style.display = 'none';
-
-      if (ultimoValorTemp >= 38) {
-        btnQuente1.classList.add("blink-emerg");
-        alertDisplay.style.display = 'block';
-
-      } else if (ultimoValorTemp == 37) {
-        btnQuente2.classList.add("blink-crit");
-
-      } else if (ultimoValorTemp == 36) {
-        btnQuente3.classList.add("blink-alert");
-
-      } else if (ultimoValorTemp <= 35 && ultimoValorTemp >= 29) {
-        btnIdeal.classList.add("blink-ideal");
-
-      } else if (ultimoValorTemp == 28) {
-        btnFrio3.classList.add("blink-alert");
-
-      } else if (ultimoValorTemp == 27) {
-        btnFrio2.classList.add("blink-crit");
-      
-      } else {
-        btnFrio1.classList.add("blink-emerg");
-        alertDisplay.style.display = 'block';
-      }
-
-      if (ultimoValorUmi >= 83) {
-        btnUmidQuente1.classList.add("blink-emerg");
-        alertUmidDisplay.style.display = 'block';
-
-      } else if (ultimoValorUmi == 82) {
-        btnUmidQuente2.classList.add("blink-crit");
-
-      } else if (ultimoValorUmi == 81) {
-        btnUmidQuente3.classList.add("blink-alert");
-
-      } else if (ultimoValorUmi <= 80 && ultimoValorUmi >= 40) {
-        btnUmidIdeal.classList.add("blink-ideal");
-
-      } else if (ultimoValorUmi == 39) {
-        btnUmidFrio3.classList.add("blink-alert");
-
-      } else if (ultimoValorUmi == 38) {
-        btnUmidFrio2.classList.add("blink-crit");
-      
-      } else {
-        btnUmidFrio1.classList.add("blink-emerg");
-        alertUmidDisplay.style.display = 'block';
-      }
+  function fecharHelpDesk() {
+        document.getElementById('iframeContainer').style.display = 'none';
     }
 
-    function alertas() {
-      setInterval(VerificarAlerta, 2000);
-    }
+    // function VerificarAlerta() {
+    //   var ultimoValorTemp = myChart.data.datasets[0].data[myChart.data.datasets[0].data.length - 1];
+    //   var ultimoValorUmi = myChart2.data.datasets[0].data[myChart2.data.datasets[0].data.length - 1];
+
+    //   emergButtons.forEach(blink => {
+    //     blink.classList.remove('blink-emerg');
+    //   });
+
+    //   critButtons.forEach(blink => {
+    //     blink.classList.remove('blink-crit');
+    //   });
+
+    //   alertButtons.forEach(blink => {
+    //     blink.classList.remove('blink-alert');
+    //   });
+
+    //   idealButtons.forEach(blink => {
+    //     blink.classList.remove('blink-ideal');
+    //   });
+
+    //   alertDisplay.style.display = 'none';
+    //   alertUmidDisplay.style.display = 'none';
+
+    //   if (ultimoValorTemp >= 38) {
+    //     btnQuente1.classList.add("blink-emerg");
+    //     alertDisplay.style.display = 'block';
+
+    //   } else if (ultimoValorTemp == 37) {
+    //     btnQuente2.classList.add("blink-crit");
+
+    //   } else if (ultimoValorTemp == 36) {
+    //     btnQuente3.classList.add("blink-alert");
+
+    //   } else if (ultimoValorTemp <= 35 && ultimoValorTemp >= 29) {
+    //     btnIdeal.classList.add("blink-ideal");
+
+    //   } else if (ultimoValorTemp == 28) {
+    //     btnFrio3.classList.add("blink-alert");
+
+    //   } else if (ultimoValorTemp == 27) {
+    //     btnFrio2.classList.add("blink-crit");
+      
+    //   } else {
+    //     btnFrio1.classList.add("blink-emerg");
+    //     alertDisplay.style.display = 'block';
+    //   }
+
+    //   if (ultimoValorUmi >= 83) {
+    //     btnUmidQuente1.classList.add("blink-emerg");
+    //     alertUmidDisplay.style.display = 'block';
+
+    //   } else if (ultimoValorUmi == 82) {
+    //     btnUmidQuente2.classList.add("blink-crit");
+
+    //   } else if (ultimoValorUmi == 81) {
+    //     btnUmidQuente3.classList.add("blink-alert");
+
+    //   } else if (ultimoValorUmi <= 80 && ultimoValorUmi >= 40) {
+    //     btnUmidIdeal.classList.add("blink-ideal");
+
+    //   } else if (ultimoValorUmi == 39) {
+    //     btnUmidFrio3.classList.add("blink-alert");
+
+    //   } else if (ultimoValorUmi == 38) {
+    //     btnUmidFrio2.classList.add("blink-crit");
+      
+    //   } else {
+    //     btnUmidFrio1.classList.add("blink-emerg");
+    //     alertUmidDisplay.style.display = 'block';
+    //   }
+    // }
+
+    // function alertas() {
+    //   setInterval(VerificarAlerta, 2000);
+    // }
 
 </script>
