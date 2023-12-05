@@ -58,14 +58,11 @@
                   </div>
               </div> -->
 
-              <div class="field email-field">
-                  <div class="input-field">
-                      <input type="email" placeholder="Email Empresarial" class="email" id="email_input"/>
-                  </div>
-                  <span class="error email-error">
-                      <p class="error-text">Por favor informar email válido</p>
-                  </span>
-              </div>
+              <div class="field username-field">
+                <div class="input-field">
+                    <input type="text" placeholder="Nome de Usuário" class="username" required id="username_input"/>
+                </div>
+            </div>
 
               <div class="field create-password">
                   <div class="input-field">
@@ -90,7 +87,7 @@
 
               <div class="input-field button">
                   <!-- <input value="Continuar" onclick="cadastrar()"/> -->
-                  <button onclick="cadastrar()">Cadastrar</button>
+                  <button type="submit">Cadastrar</button>
               </div>
       </form>
   </div>
@@ -159,7 +156,7 @@
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
+    var userVar = username_input.value;
     var senhaVar = senha_input.value;
     // var confirmacaoSenhaVar = confirmacao_senha_input.value;
     // var empresaVar = listaEmpresas.value;
@@ -229,7 +226,7 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
-        emailServer: emailVar,
+        userServer: userVar,
         senhaServer: senhaVar,
         // empresaServer: empresaVar,
         // cpfServer: cpfVar
@@ -245,7 +242,7 @@
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
-            window.location = "login.html";
+            window.location = "C:\Users\mathe\OneDrive\Área de Trabalho\SPTech\PI\Sprint2\api\site\public\dashboard\dashboardApicontrol.html";
           }, "2000");
 
           limparFormulario();
@@ -297,21 +294,19 @@ window.onclick = function(e) {
 }
 
     const form = document.querySelector("form"),
-        emailField = form.querySelector(".email-field"),
-        emailInput = emailField.querySelector(".email"),
         passField = form.querySelector(".create-password"),
         passInput = passField.querySelector(".password"),
         cPassField = form.querySelector(".confirm-password"),
         cPassInput = cPassField.querySelector(".cPassword");
 
-    // Email Validação
-    function checkEmail() {
-        const emaiPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-        if (!emailInput.value.match(emaiPattern)) {
-            return emailField.classList.add("invalid"); //adicionando classe inválida se o valor do email não corresponder ao padrão de email
-        }
-        emailField.classList.remove("invalid"); //removendo classe inválida se o valor do email corresponder a emaiPattern
-    }
+    // // Email Validação
+    // function checkEmail() {
+    //     const emaiPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    //     if (!emailInput.value.match(emaiPattern)) {
+    //         return emailField.classList.add("invalid"); //adicionando classe inválida se o valor do email não corresponder ao padrão de email
+    //     }
+    //     emailField.classList.remove("invalid"); //removendo classe inválida se o valor do email corresponder a emaiPattern
+    // }
 
     // Senha Validação
     function createPass() {
@@ -335,21 +330,19 @@ window.onclick = function(e) {
     // Chamando Função no form submit
     form.addEventListener("submit", (e) => {
         e.preventDefault(); //previnindo submit de trocar de página
-        checkEmail();
         createPass();
         confirmPass();
 
         //Chamando funções pelo keyup para validar em tempo real
-        emailInput.addEventListener("keyup", checkEmail);
         passInput.addEventListener("keyup", createPass);
         cPassInput.addEventListener("keyup", confirmPass);
 
         if (
-            !emailField.classList.contains("invalid") &&
             !passField.classList.contains("invalid") &&
             !cPassField.classList.contains("invalid")
         ) {
-            location.href = form.getAttribute("action");
+            // location.href = form.getAttribute("action");
+            cadastrar();
         }
     });
 </script>

@@ -205,7 +205,7 @@ body {
 }
 
 .btn-group .btnF1, .btn-group .btnUF1 {
-  background-color: rgb(170, 193, 228);
+  background-color: rgb(45, 238, 255);
 }
 
 .btn-group .btnF2, .btn-group .btnUF2 {
@@ -428,6 +428,7 @@ h1, b {
 .Dash{
   background-color: #fff;
   position: relative;
+  top: 12vh;
 }
 
 

@@ -15,20 +15,20 @@
 <body onload="buscarColmeias()">
 
     <!-- Header -->
-    <div class="header">
+    <div class="header" id="header">
         <img src="../assets/imgs/Logo ApiControl.png">
         <a class="logo">ApiControl</a>
           <div class="header-left">
             <a href="#" onclick="faleConosco()">Fale Conosco</a>
           </div>
 
-          <div id="iframeContainer" class="pop-up">
+          <!-- <div id="iframeContainer" class="pop-up">
             <div  class="Dash">
               <span class="fechar" onclick="fecharHelpDesk()">X</span>
               <iframe width="500px" height="400px" src="https://app.pipefy.com/public/form/F2Ilnzra?embedded=true"
                 frameborder="0"></iframe>
             </div>
-          </div>
+          </div> -->
 
           <div class="dropdown">
             <img src="../assets/imgs/user_icon.png">
@@ -36,7 +36,7 @@
               <i class="fa fa-caret-down"></i>
             </button>
               <div class="dropdown-content" id="myDropdown">
-                <a href="cadastro_admin.html">Cadastrar</a>
+                <a href="../cadastro.html">Cadastrar</a>
                 <a href="../login.html" onclick="deslogar()">Deslogar</a>
               </div>
             </div>
@@ -82,9 +82,33 @@
             </div>
           </div>
               <br>
-              <span class="filler">Clique em uma das <b>colmeias a esquerda</b> para verificar seu <b>monitoramento</b> <br> e abaixo <br> Os <b>relatórios</b> para verificar dados de um <b>período</b> específico</span>
+              <span class="filler" id="filler">Clique em uma das <b>colmeias a esquerda</b> para verificar seu <b>monitoramento</b> <br> e abaixo <br> Os <b>relatórios</b> para verificar dados de um <b>período</b> específico</span>
         </div>
         <div class="container" style="display: none;" id="graficos">
+          <div class="container-analytics">
+            <div class="btn-group">
+              <button class="btnF1">26ºC Emergência</button>
+              <button class="btnF2">27ºC Crítico</button>
+              <button class="btnF3">28ºC Alerta</button>
+              <button class="btnI">29ºC Ideal 35ºC</button>
+              <button class="btnQ3">Alerta 36ºC</button>
+              <button class="btnQ2">Crítico 37ºC</button>
+              <button class="btnQ1">Emergência 38ºC</button>
+            </div>
+          </div>
+          <br>
+          <div class="container-analytics">
+            <div class="btn-group">
+              <button class="btnUF1">37% Emergência</button>
+              <button class="btnUF2">38% Crítico</button>
+              <button class="btnUF3">39% Alerta</button>
+              <button class="btnUI">40% Ideal 80%</button>
+              <button class="btnUQ3">Alerta 81%</button>
+              <button class="btnUQ2">Crítico 82%</button>
+              <button class="btnUQ1">Emergência 83%</button>
+            </div>
+          </div>
+              <br>
             <div class="texto_periodo" >
                 <!-- <div class="periodos"> -->
                     <!-- <select id="periodo">
@@ -96,7 +120,7 @@
                     </select> -->
                 <!-- </div> -->
                 <h1 style="color: white;" id="title">
-                    Monitoramento da Colmeia
+                    Monitoramento da Colmeia (Ultimas capturas de dados)
                 </h1>
                 <div class="alert">
                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -119,14 +143,8 @@
             </div>
             <div class="texto_periodo" >
               <h1 style="color: white;" id="title">
-                Relatórios da Colmeia
+                Relatório anual
               </h1>
-              <div class="periodos">
-                  <select id="periodo" onchange="periodoGrafico(numClicado)">
-                      <option value="ultSemana">Última semana</option> <br>
-                      <option value="ultMes">Meses</option> <br>
-                  </select>
-              </div>
           </div>
               <div class="titulo" style="display: flex;">
                       <div class="container-chart chart">
@@ -223,6 +241,12 @@ window.onclick = function(e) {
     var ultimasUmidades = [];
     var ultimasLabels = [];
     var numero = 0;
+    var mediaTemperaturas = [];
+    var mediaUmidades = [];
+    var labelMedias = [];
+    var mediaTemperaturasOrder = [];
+    var mediaUmidadesOrder = [];
+    var labelMediasOrder = [];
 
     var contReq = 0;
     var contReqAtualizar = 0;
@@ -231,9 +255,9 @@ window.onclick = function(e) {
 
       if(contReq < colmeia_banco.length) {
         atualizarTemperaturas(colmeia_banco[contReq]);        
-        contReq++;
       } else {
           // setTimeout(atuallizarTempoRealTemp, 5000);
+          buscarMediasAnuais();
           atualizarTempoRealTemp();
       }
       
@@ -304,8 +328,144 @@ window.onclick = function(e) {
                   }
 
                   ultimasUmidades.push(vetorUmidade);
-                  
+                  alterarKpis(contReq);
+                  contReq++;
                   chamarAtualizar();
+            });
+        }else {
+            console.error('Nenhum dado encontrado ou erro na API')
+        }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+
+    }
+
+    function buscarMediasAnuais() {
+      var fkEmpresa = sessionStorage.FK_EMPRESA;
+      var sensor = 1;
+
+      fetch(`/medidas/medias/`, {
+        headers: {
+          "id": fkEmpresa,
+          "sensor": sensor
+        },
+        cache: 'no-store'
+        }).then(function(response) {
+
+            if(response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                  for(var i=0; i<resposta.length;i++) {
+                    mediaTemperaturas.push(resposta[i].valorRegistrado);
+                    labelMedias.push(resposta[i].mes);
+                  }
+
+                  for(var i=0; i<mediaTemperaturas.length;i++) {
+                    if(labelMedias[i] == 'January 2023') {
+                      labelMediasOrder[0] = 'Janeiro'
+                      mediaTemperaturasOrder[0] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'February 2023') {
+                      labelMediasOrder[1] = 'Fevereiro'
+                      mediaTemperaturasOrder[1] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'March 2023') {
+                      labelMediasOrder[2] = 'Março'
+                      mediaTemperaturasOrder[2] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'April 2023') {
+                      labelMediasOrder[3] = 'Abril'
+                      mediaTemperaturasOrder[3] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'May 2023') {
+                      labelMediasOrder[4] = 'Maio'
+                      mediaTemperaturasOrder[4] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'June 2023') {
+                      labelMediasOrder[5] = 'Junho'
+                      mediaTemperaturasOrder[5] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'July 2023') {
+                      labelMediasOrder[6] = 'Julho'
+                      mediaTemperaturasOrder[6] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'August 2023') {
+                      labelMediasOrder[7] = 'Agosto'
+                      mediaTemperaturasOrder[7] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'September 2023') {
+                      labelMediasOrder[8] = 'Setembro'
+                      mediaTemperaturasOrder[8] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'October 2023') {
+                      labelMediasOrder[9] = 'Outubro'
+                      mediaTemperaturasOrder[9] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'November 2023') {
+                      labelMediasOrder[10] = 'Novembro'
+                      mediaTemperaturasOrder[10] = mediaTemperaturas[i]
+                    }else if(labelMedias[i] == 'December 2023') {
+                      labelMediasOrder[11] = 'Dezembro'
+                      mediaTemperaturasOrder[11] = mediaTemperaturas[i]
+                    }
+                  }
+
+                  buscarMediasAnuaisUmidade()
+            });
+        }else {
+            console.error('Nenhum dado encontrado ou erro na API')
+        }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+
+    }
+
+    function buscarMediasAnuaisUmidade() {
+      var fkEmpresa = sessionStorage.FK_EMPRESA;
+      var sensor = 2;
+
+      fetch(`/medidas/medias/`, {
+        headers: {
+          "id": fkEmpresa,
+          "sensor": sensor
+        },
+        cache: 'no-store'
+        }).then(function(response) {
+
+            if(response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                  for(var i=0; i<resposta.length;i++) {
+                    mediaUmidades.push(resposta[i].valorRegistrado);
+                  }
+
+                  for(var i=0; i<mediaTemperaturas.length;i++) {
+                    if(labelMedias[i] == 'January 2023') {
+                      mediaUmidadesOrder[0] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'February 2023') {
+                      mediaUmidadesOrder[1] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'March 2023') {
+                      mediaUmidadesOrder[2] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'April 2023') {
+                      mediaUmidadesOrder[3] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'May 2023') {
+                      mediaUmidadesOrder[4] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'June 2023') {
+                      mediaUmidadesOrder[5] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'July 2023') {
+                      mediaUmidadesOrder[6] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'August 2023') {
+                      mediaUmidadesOrder[7] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'September 2023') {
+                      mediaUmidadesOrder[8] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'October 2023') {
+                      mediaUmidadesOrder[9] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'November 2023') {
+                      mediaUmidadesOrder[10] = mediaUmidades[i]
+                    }else if(labelMedias[i] == 'December 2023') {
+                      mediaUmidadesOrder[11] = mediaUmidades[i]
+                    }
+                  }
+
+                  
             });
         }else {
             console.error('Nenhum dado encontrado ou erro na API')
@@ -327,9 +487,16 @@ window.onclick = function(e) {
       myChart2.config.data.labels = ultimasLabels[num];
       myChart.config.data.datasets[0].data = ultimasTemperaturas[num];
       myChart2.config.data.datasets[0].data = ultimasUmidades[num];
+      myChart3.config.data.labels = labelMediasOrder;
+      myChart3.config.data.datasets[0].data = mediaTemperaturasOrder;
+      myChart4.config.data.labels = labelMediasOrder;
+      myChart4.config.data.datasets[0].data = mediaUmidadesOrder;
+
 
       myChart.update();
       myChart2.update();
+      myChart3.update();
+      myChart4.update();
 
     }
 
@@ -343,9 +510,17 @@ window.onclick = function(e) {
       myChart2.config.data.labels = ultimasLabels[num];
       myChart.config.data.datasets[0].data = ultimasTemperaturas[num];
       myChart2.config.data.datasets[0].data = ultimasUmidades[num];
+      myChart3.config.data.labels = labelMediasOrder;
+      myChart3.config.data.datasets[0].data = mediaTemperaturasOrder;
+      myChart4.config.data.labels = labelMediasOrder;
+      myChart4.config.data.datasets[0].data = mediaUmidadesOrder;
+
 
       myChart.update();
       myChart2.update();
+      myChart3.update();
+      myChart4.update();
+
     }
   
 
@@ -375,7 +550,7 @@ window.onclick = function(e) {
                   
                   if(resposta[0].momento_grafico == ultimasLabels[contReqAtualizar][ultimasLabels[contReqAtualizar].length - 1]) {
                     console.log(`Não há dados novos para inserir na colmeia ${colmeia_banco[contReqAtualizar]}`)
-                    alterarKpis(contReqAtualizar)
+                    // alterarKpis(contReqAtualizar)
                     contReqAtualizar++;
                     setTimeout(atualizarTempoRealTemp, 1000)
                   } else {
@@ -401,25 +576,81 @@ window.onclick = function(e) {
 
     }
 
-    function SweetAlertsQuente() {
+  //   let alertQueue = [];
+
+  // function alertaQuente() {
+  //   const newAlert = Swal.mixin({
+  //     toast: true,
+  //     position: 'top-end',
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //     didOpen: () => {
+  //       alertQueue.push(newAlert);
+  //       updateAlertPositions();
+  //     },
+  //     didClose: () => {
+  //       alertQueue = alertQueue.filter(alert => alert !== newAlert);
+  //       updateAlertPositions();
+  //     }
+  //   });
+
+  //   newAlert.fire({
+  //     icon: 'warning',
+  //     title: `A colmeia ${vetor_colmeia[contReqAtualizar]} está em estado de emergência!`,
+  //     text: 'Ela está muito acima da temperatura ideal!',
+  //   });
+  // }
+
+  // function updateAlertPositions() {
+  //   alertQueue.forEach((alert, index) => {
+  //     const topOffset = index * 100; // Adjust this value to set the distance between alerts
+  //     alert.setPosition('top-end', topOffset);
+  //   });
+  // }
+
+    function alertaQuente() {
           Swal.fire({
             position: "top-end",
             icon: "warning",
-            title: `A colmeia ${colmeia} está em estado de emergência!`,
+            title: `A colmeia ${vetor_colmeia[contReqAtualizar]} está em estado de emergência!`,
             text: "Ela está muito acima da temperatura ideal!",
             showConfirmButton: false,
-            timer: 1500
+            timer: 5000
           });
     }
 
-    function SweetAlertsFrio() {
+  //   function alertaFrio() {
+  //   const newAlert = Swal.mixin({
+  //     toast: true,
+  //     position: 'top-end',
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //     didOpen: () => {
+  //       alertQueue.push(newAlert);
+  //       updateAlertPositions();
+  //     },
+  //     didClose: () => {
+  //       alertQueue = alertQueue.filter(alert => alert !== newAlert);
+  //       updateAlertPositions();
+  //     }
+  //   });
+
+  //   newAlert.fire({
+  //     icon: 'warning',
+  //     title: `A colmeia ${vetor_colmeia[contReqAtualizar]} está em estado de emergência!`,
+  //     text: 'Ela está muito abaixo da temperatura ideal!',
+  //   });
+  // }
+
+
+    function alertaFrio() {
           Swal.fire({
             position: "top-end",
             icon: "warning",
-            title: `A colmeia ${colmeia} está em estado de emergência!`,
+            title: `A colmeia ${vetor_colmeia[contReqAtualizar]} está em estado de emergência!`,
             text: "Ela está muito abaixo da temperatura ideal!",
             showConfirmButton: false,
-            timer: 1500
+            timer: 5000
           });
     }
 
@@ -486,56 +717,31 @@ window.onclick = function(e) {
 
     function modificarStatusColmeia(colmeia, status) {
 
-      emergButtons.forEach(blink => {
-        blink.classList.remove('blink-emerg');
-      });
-
-      critButtons.forEach(blink => {
-        blink.classList.remove('blink-crit');
-      });
-
-      alertButtons.forEach(blink => {
-        blink.classList.remove('blink-alert');
-      });
-
-      idealButtons.forEach(blink => {
-        blink.classList.remove('blink-ideal');
-      });
-
-      alertDisplay.style.display = 'none';
-      alertUmidDisplay.style.display = 'none';
-
       if(colmeia == 0) {
         if(status == 'ideal') {
           status_0.style.backgroundColor = "green";
         }
         if(status == 'alerta') {
           status_0.style.backgroundColor = "rgb(235, 235, 19)";
-          btnQuente3.classList.add("blink-alert");
         }
         if(status == 'critico') {
           status_0.style.backgroundColor = "orange";
-          btnQuente2.classList.add("blink-crit");
         }
         if(status == 'emergencia') {
           status_0.style.backgroundColor = "red";
-          SweetAlertsQuente();
-          btnQuente1.classList.add("blink-emerg");
-          alertDisplay.style.display = 'block';
+          alertaQuente();
+          // alertDisplay.style.display = 'block';
         }
         if(status == 'alertaFrio') {
           status_0.style.backgroundColor = "rgb(16, 71, 153)";
-          btnFrio3.classList.add("blink-alert");
         }
         if(status == 'criticoFrio') {
           status_0.style.backgroundColor = "rgb(94, 134, 196)";
-          btnFrio2.classList.add("blink-crit");
         }
         if(status == 'emergenciaFrio') {
-          status_0.style.backgroundColor = "rgb(170, 193, 228)";
-          SweetAlertsFrio();
-          btnFrio1.classList.add("blink-emerg");
-          alertDisplay.style.display = 'block';
+          status_0.style.backgroundColor = "rgb(45, 238, 255)"
+          alertaFrio();
+          // btnFrio1.classList.add("blink-emerg");
         }
 
       }else if(colmeia == 1) {
@@ -544,31 +750,25 @@ window.onclick = function(e) {
         }
         if(status == 'alerta') {
           status_1.style.backgroundColor = "rgb(235, 235, 19)";
-          btnQuente3.classList.add("blink-alert");
         }
         if(status == 'critico') {
           status_1.style.backgroundColor = "orange";
-          btnQuente2.classList.add("blink-crit");
         }
         if(status == 'emergencia') {
           status_1.style.backgroundColor = "red";
-          SweetAlertsQuente();
-          btnQuente1.classList.add("blink-emerg");
-          alertDisplay.style.display = 'block';
+          alertaQuente();
+          // alertDisplay.style.display = 'block';
         }
         if(status == 'alertaFrio') {
           status_1.style.backgroundColor = "rgb(16, 71, 153)";
-          btnFrio3.classList.add("blink-alert");
         }
         if(status == 'criticoFrio') {
           status_1.style.backgroundColor = "rgb(94, 134, 196)";
-          btnFrio2.classList.add("blink-crit");
         }
         if(status == 'emergenciaFrio') {
-          status_1.style.backgroundColor = "rgb(170, 193, 228)";
-          SweetAlertsFrio();
-          btnFrio1.classList.add("blink-emerg");
-          alertDisplay.style.display = 'block';
+          status_1.style.backgroundColor = "rgb(45, 238, 255)";
+          alertaFrio();
+          // alertDisplay.style.display = 'block';
         }
 
       }else if(colmeia == 2) {
@@ -577,31 +777,25 @@ window.onclick = function(e) {
         }
         if(status == 'alerta') {
           status_2.style.backgroundColor = "rgb(235, 235, 19)";
-          btnQuente3.classList.add("blink-alert");
         }
         if(status == 'critico') {
           status_2.style.backgroundColor = "orange";
-          btnQuente2.classList.add("blink-crit");
         }
         if(status == 'emergencia') {
           status_2.style.backgroundColor = "red";
-          SweetAlertsQuente();
-          btnQuente1.classList.add("blink-emerg");
-          alertDisplay.style.display = 'block';
+          alertaQuente();
+          // alertDisplay.style.display = 'block';
         }
         if(status == 'alertaFrio') {
           status_2.style.backgroundColor = "rgb(16, 71, 153)";
-          btnFrio3.classList.add("blink-alert");
         }
         if(status == 'criticoFrio') {
           status_2.style.backgroundColor = "rgb(94, 134, 196)";
-          btnFrio2.classList.add("blink-crit");
         }
         if(status == 'emergenciaFrio') {
-          status_2.style.backgroundColor = "rgb(170, 193, 228)";
-          SweetAlertsFrio();
-          btnFrio1.classList.add("blink-emerg");
-          alertDisplay.style.display = 'block';
+          status_2.style.backgroundColor = "rgb(45, 238, 255)";
+          alertaFrio();
+          // alertDisplay.style.display = 'block';
         }
 
       }else if(colmeia == 3) {
@@ -610,35 +804,45 @@ window.onclick = function(e) {
         }
         if(status == 'alerta') {
           status_3.style.backgroundColor = "rgb(235, 235, 19)";
-          btnQuente3.classList.add("blink-alert");
         }
         if(status == 'critico') {
           status_3.style.backgroundColor = "orange";
-          btnQuente2.classList.add("blink-crit");
         }
         if(status == 'emergencia') {
           status_3.style.backgroundColor = "red";
-          SweetAlertsQuente();
-          btnQuente1.classList.add("blink-emerg");
-          alertDisplay.style.display = 'block';
+          alertaQuente();
+          // alertDisplay.style.display = 'block';
         }
         if(status == 'alertaFrio') {
           status_3.style.backgroundColor = "rgb(16, 71, 153)";
-          btnFrio3.classList.add("blink-alert");
         }
         if(status == 'criticoFrio') {
           status_1.style.backgroundColor = "rgb(94, 134, 196)";
-          btnFrio2.classList.add("blink-crit");
         }
         if(status == 'emergenciaFrio') {
-          status_3.style.backgroundColor = "rgb(170, 193, 228)";
-          SweetAlertsFrio();
-          btnFrio1.classList.add("blink-emerg");
-          alertDisplay.style.display = 'block';
+          status_3.style.backgroundColor = "rgb(45, 238, 255)";
+          alertaFrio();
+          // alertDisplay.style.display = 'block';
         }
       }
 
     }
+
+    function loadDelayedContent() {
+      header.innerHTML += `<div id="iframeContainer" class="pop-up">
+            <div  class="Dash">
+              <span class="fechar" onclick="fecharHelpDesk()">X</span>
+              <iframe width="500px" height="400px" src="https://app.pipefy.com/public/form/F2Ilnzra?embedded=true"
+                frameborder="0"></iframe>
+            </div>
+          </div>`;
+    }
+
+    // Delay in milliseconds (5 seconds = 5000ms)
+    var delayDuration = 5000; // 5 seconds delay
+
+    // Call the function to load content into the div after the specified delay
+    setTimeout(loadDelayedContent, delayDuration);
 
     var contClick = 0;
     
@@ -719,9 +923,9 @@ window.onclick = function(e) {
       const myChart3 = new Chart(cty, {
       type: 'line',
       data: {
-        labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'],
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
         datasets: [{
-          label: 'Temperatura Média',
+          label: 'Temperatura',
           data: [],
           backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgb(255, 99, 132)',
@@ -733,11 +937,13 @@ window.onclick = function(e) {
         // maintainAspectRatio: false,
         scales: {
           y: {
-          beginAtZero: true,
-          // grid: {
-          // 	color: '#000',
-          // 	drawBorder: false 
-          // }
+            beginAtZero: true,
+            min: 0,
+            max: 50
+            // grid: {
+            // 	color: '#000',
+            // 	drawBorder: false 
+            // }
         },
         x: {
           // grid: {
@@ -747,38 +953,104 @@ window.onclick = function(e) {
         }
       }
     });
-      
+
     const myChart4 = new Chart(ctw, {
-      type: 'line',
-      data: {
-        labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'],
-        datasets: [{
-          label: 'Umidade Média',
-          data: [],
-          backgroundColor: 'rgb(40, 140, 255)',
-          borderColor: 'rgb(40, 140, 255)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        // responsive: true,
-        // maintainAspectRatio: false,
-        scales: {
-          y: {
+    type: 'bar',
+    data: {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      datasets: [{
+        label: 'Umidade',
+        data: [],
+        backgroundColor: 'rgb(40, 140, 255)',
+        borderColor: 'rgb(40, 140, 255)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      // responsive: true,
+      // maintainAspectRatio: false,
+      scales: {
+        y: {
           beginAtZero: true,
+          min: 0,
+          max: 100
           // grid: {
-          // 	color: '#000',
-          // 	drawBorder: false 
-          // }
-        },
-        x: {
-          // grid: {
-          // 	display: false,
-          // }
+            // 	color: '#000',
+            // 	drawBorder: false 
+            // }
+          },
+          x: {
+            // grid: {
+              // 	display: false,
+              // }
             }
+          }
         }
-      }
-    });
+      })
+
+    //   const myChart3 = new Chart(cty, {
+    //   type: 'line',
+    //   data: {
+    //     labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'],
+    //     datasets: [{
+    //       label: 'Temperatura Média',
+    //       data: [],
+    //       backgroundColor: 'rgb(255, 99, 132)',
+    //       borderColor: 'rgb(255, 99, 132)',
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     // responsive: true,
+    //     // maintainAspectRatio: false,
+    //     scales: {
+    //       y: {
+    //       beginAtZero: true,
+    //       // grid: {
+    //       // 	color: '#000',
+    //       // 	drawBorder: false 
+    //       // }
+    //     },
+    //     x: {
+    //       // grid: {
+    //       // 	display: false,
+    //       // }
+    //         }
+    //     }
+    //   }
+    // });
+      
+    // const myChart4 = new Chart(ctw, {
+    //   type: 'line',
+    //   data: {
+    //     labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo'],
+    //     datasets: [{
+    //       label: 'Umidade Média',
+    //       data: [],
+    //       backgroundColor: 'rgb(40, 140, 255)',
+    //       borderColor: 'rgb(40, 140, 255)',
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     // responsive: true,
+    //     // maintainAspectRatio: false,
+    //     scales: {
+    //       y: {
+    //       beginAtZero: true,
+    //       // grid: {
+    //       // 	color: '#000',
+    //       // 	drawBorder: false 
+    //       // }
+    //     },
+    //     x: {
+    //       // grid: {
+    //       // 	display: false,
+    //       // }
+    //         }
+    //     }
+    //   }
+    // });
     
     var numClicado = 0;
 
